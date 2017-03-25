@@ -18,7 +18,7 @@ public class GradeBook {
 		//view.registerListener(controller);
 		
 		view.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		view.setSize(1000, 1000);
+		view.setSize(800, 600);
 		view.setVisible(true);
 
 	}

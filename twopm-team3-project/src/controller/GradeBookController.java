@@ -22,7 +22,7 @@ public class GradeBookController implements ActionListener {
 		this.view = view;
 		//TODO functions for adding classes to view
 		
-		//view.LoadData(model.getSemesters()); load semester to view
+		view.LoadData(model.getSemesters()); //load semester to view
 	}
 	
 	class MenuListener implements ActionListener {
