@@ -1,7 +1,6 @@
 package model;
 
-import java.io.FileInputStream;
-import java.io.ObjectInputStream;
+import java.io.*;
 import java.util.ArrayList;
 
 public class OpenDriver {
@@ -9,12 +8,12 @@ public class OpenDriver {
 	private ArrayList<Semester> semesters;
 
 	public OpenDriver() {
-		
+		semesters = new ArrayList<Semester>();
 		readFile();
 		
 		
 		//add a default semesters with courses, categories, and grades
-		if(semesters.isEmpty()) {
+		/*if(semesters.isEmpty()) {
 			Semester template = new Semester("Default");
 			
 			Category newCategory;
@@ -51,7 +50,7 @@ public class OpenDriver {
 			
 			semesters.add(template);
 		}
-		
+		*/
 		
 		
 	}
@@ -64,17 +63,23 @@ public class OpenDriver {
 
 	private void readFile() {
 		Semester curr;
+		ObjectInputStream in = null;
 		
 		try {
-			ObjectInputStream in = new ObjectInputStream(new FileInputStream("savefile.ser"));
+			in = new ObjectInputStream(new FileInputStream("savefile.ser"));
 			
 			while((curr = (Semester)in.readObject()) != null) {
 				semesters.add(curr);			
 			}
 						
+		} catch(EOFException e) {
+			return;
 		} catch(Exception e) {
 			e.printStackTrace();
-		}	
+
+		}
+		
+		
 		
 	}
 	
