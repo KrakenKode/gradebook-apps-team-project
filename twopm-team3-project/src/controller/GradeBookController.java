@@ -1,5 +1,5 @@
 package controller;
-
+import view.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -9,7 +9,12 @@ import view.*;
 public class GradeBookController implements ActionListener {
 	
 	private GradeBookView view;
+<<<<<<< HEAD
 	private GradeBookModel model;
+=======
+	
+	//view.LoadData(model.getSemesters());
+>>>>>>> branch 'master' of https://github.com/UTSA-CS-3443/twopm-team3.git
 	
 	public GradeBookController(GradeBookModel model, GradeBookView view) {
 		this.model = model;
