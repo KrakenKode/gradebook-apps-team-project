@@ -24,10 +24,8 @@ public class Category implements Serializable {
 
 	
 	
-	
-	
 	/////////////Getters and Setters///////////////////
-	
+
 	public String getName() {
 		return name;
 	}
