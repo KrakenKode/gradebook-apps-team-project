@@ -8,8 +8,7 @@ public class GradeBookModel {
 	
 	public GradeBookModel() {
 		OpenDriver open = new OpenDriver();
-		//semesters = 
-		
+		semesters = open.getSemesters();	
 	}
 	
 }
