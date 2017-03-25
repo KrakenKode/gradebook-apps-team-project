@@ -21,7 +21,7 @@ public class GradeBookController implements ActionListener {
 		this.model = model;
 		this.view = view;
 		//TODO functions for adding classes to view
-		
+		view.addMenuListener(new MenuListener());
 		view.LoadData(model.getSemesters()); //load semester to view
 	}
 	
@@ -38,7 +38,7 @@ public class GradeBookController implements ActionListener {
 				    File selectedFile = fileChooser.getSelectedFile();
 				    //TODO open file using open class
 				}
-			} else if (e.equals("Save")){
+			} else if (command.equals("Save")){
 				JFileChooser fileChooser = new JFileChooser();
 				fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
 				FileNameExtensionFilter filter = new FileNameExtensionFilter("ser");
@@ -47,6 +47,8 @@ public class GradeBookController implements ActionListener {
 				    File selectedFile = fileChooser.getSelectedFile();
 				    //TODO save file using save class
 				}
+			}else if( command.equals("Quit")){
+				System.exit(0);
 			}
 		}
 	}

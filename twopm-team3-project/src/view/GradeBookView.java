@@ -2,6 +2,8 @@ package view;
 import model.*;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.util.*;
 
@@ -18,7 +20,11 @@ public class GradeBookView extends JFrame{
 	private JPanel mainpanel;
 	private DefaultMutableTreeNode root;
 	private JTabbedPane tabbedPane;
-
+	private JMenuBar menuBar;
+	private JMenu menu;
+	private JMenuItem saveMenu;
+	private JMenuItem openMenu;
+	private JMenuItem quitMenu;
 
 	public GradeBookView(){
 		super("GradeBook Management System");
@@ -35,10 +41,43 @@ public class GradeBookView extends JFrame{
 		//root node gets hidden
 		root = new DefaultMutableTreeNode("Root");
 
-		
+		addMenu();
 		this.setVisible(true);	
 	}
+	
+	public void addMenu(){
 
+		//Create the menu bar.
+		menuBar = new JMenuBar();
+
+		//Build the first menu.
+		menu = new JMenu("File");
+		menu.setMnemonic(KeyEvent.VK_F);
+		menu.getAccessibleContext().setAccessibleDescription(
+		        "The only menu in this program that has menu items");
+		menuBar.add(menu);
+	
+		
+		//menu.addSeparator();	//adds a line in the menu
+
+		saveMenu = new JMenuItem("Save");
+		menu.add(saveMenu);
+		
+		openMenu = new JMenuItem("Open", KeyEvent.VK_O);
+		menu.add(openMenu);
+		
+		
+		quitMenu = new JMenuItem("Quit", KeyEvent.VK_Q);
+		menu.add(quitMenu);
+		mainpanel.add(menuBar, BorderLayout.NORTH);	
+	}
+	
+	public void addMenuListener(ActionListener e){
+		quitMenu.addActionListener(e);
+		saveMenu.addActionListener(e);
+		openMenu.addActionListener(e);
+	}
+	
 	public void LoadData(ArrayList<Semester> semdata){
 		//build semester and add to root
 		for(Semester sem : semdata){
