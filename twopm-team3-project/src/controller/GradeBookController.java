@@ -11,13 +11,13 @@ public class GradeBookController implements ActionListener {
 	private GradeBookView view;
 	private GradeBookModel model;
 	
-	//view.LoadData(model.getSemesters());
 
 	public GradeBookController(GradeBookModel model, GradeBookView view) {
 		this.model = model;
 		this.view = view;
 		//TODO functions for adding classes to view
 		
+		//view.LoadData(model.getSemesters()); load semester to view
 	}
 	
 	public void loadData(){
