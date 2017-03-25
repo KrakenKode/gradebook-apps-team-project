@@ -65,7 +65,6 @@ public class OpenDriver {
 	private void readFile() {
 		Semester curr;
 		
-		
 		try {
 			ObjectInputStream in = new ObjectInputStream(new FileInputStream("savefile.ser"));
 			
@@ -74,9 +73,8 @@ public class OpenDriver {
 			}
 						
 		} catch(Exception e) {
-			e.printStackTrace();		
-		}
-		
+			e.printStackTrace();
+		}	
 		
 	}
 	

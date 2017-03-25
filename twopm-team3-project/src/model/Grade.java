@@ -15,9 +15,6 @@ public class Grade implements Serializable {
 	}
 
 	
-	
-	
-	
 	/////////////Getters and Setters///////////////////
 	
 	public String getName() {
