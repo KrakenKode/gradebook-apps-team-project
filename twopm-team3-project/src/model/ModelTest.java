@@ -25,13 +25,6 @@ public class ModelTest {
 			}
 			
 		} //end giant loops
-		
-//		Grade newGrade = new Grade("HW3", 90, 150);
-//		model.getSemesters().get(0).getCourses().get(1).getCategories().get(1).addGrade(newGrade);;
-//
-//		newGrade = new Grade("HW4", 10, 30);
-//		model.getSemesters().get(0).getCourses().get(1).getCategories().get(1).addGrade(newGrade);;
-
 
 		SaveDriver.saveFile(model.getSemesters());
 

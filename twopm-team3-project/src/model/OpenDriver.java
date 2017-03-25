@@ -13,7 +13,7 @@ public class OpenDriver {
 		
 		
 		//add a default semesters with courses, categories, and grades
-		/*if(semesters.isEmpty()) {
+		if(semesters.isEmpty()) {
 			Semester template = new Semester("Default");
 			
 			Category newCategory;
@@ -50,7 +50,7 @@ public class OpenDriver {
 			
 			semesters.add(template);
 		}
-		*/
+		
 		
 		
 	}
