@@ -60,13 +60,12 @@ public class GradeBookView extends JFrame{
 		
 		//menu.addSeparator();	//adds a line in the menu
 
-		saveMenu = new JMenuItem("Save");
-		menu.add(saveMenu);
-		
 		openMenu = new JMenuItem("Open", KeyEvent.VK_O);
 		menu.add(openMenu);
 		
-		
+		saveMenu = new JMenuItem("Save");
+		menu.add(saveMenu);
+
 		quitMenu = new JMenuItem("Quit", KeyEvent.VK_Q);
 		menu.add(quitMenu);
 		mainpanel.add(menuBar, BorderLayout.NORTH);	

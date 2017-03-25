@@ -20,8 +20,10 @@ public class GradeBookController implements ActionListener {
 	public GradeBookController(GradeBookModel model, GradeBookView view) {
 		this.model = model;
 		this.view = view;
+
 		//TODO functions for adding classes to view
 		view.addMenuListener(new MenuListener());
+
 		view.LoadData(model.getSemesters()); //load semester to view
 	}
 	
@@ -54,6 +56,7 @@ public class GradeBookController implements ActionListener {
 	}
 	
 	class TreeListener implements TreeSelectionListener {
+		@Override
 		public void valueChanged(TreeSelectionEvent e) {
 			
 		}
