@@ -9,13 +9,10 @@ import view.*;
 public class GradeBookController implements ActionListener {
 	
 	private GradeBookView view;
-<<<<<<< HEAD
 	private GradeBookModel model;
-=======
 	
 	//view.LoadData(model.getSemesters());
->>>>>>> branch 'master' of https://github.com/UTSA-CS-3443/twopm-team3.git
-	
+
 	public GradeBookController(GradeBookModel model, GradeBookView view) {
 		this.model = model;
 		this.view = view;
@@ -52,6 +49,12 @@ public class GradeBookController implements ActionListener {
 			String command = e.getActionCommand();
 			
 		}
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	
