@@ -8,6 +8,7 @@ import java.awt.event.KeyEvent;
 import java.util.*;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import javax.swing.tree.*;
 
 import main.*;
@@ -19,29 +20,30 @@ public class GradeBookView extends JFrame{
 	private JScrollPane treeView;
 	private JPanel mainpanel;
 	private DefaultMutableTreeNode root;
-	private JTabbedPane tabbedPane;
 	private JMenuBar menuBar;
-	private JMenu menu;
+	private JMenu fileMenu;
 	private JMenuItem saveMenu;
 	private JMenuItem openMenu;
 	private JMenuItem quitMenu;
+	private Dimension scrolldim;
 
 	public GradeBookView(){
 		super("GradeBook Management System");
 
 		//window opens in middle of screen
 		this.setLocationRelativeTo(null);	
-
 		this.setResizable(false);
-
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+		//main panel settings
 		mainpanel = new JPanel(new BorderLayout());
+		mainpanel.setBorder(new EmptyBorder(2, 2, 0, 2));
 
-		//root node gets hidden
-		root = new DefaultMutableTreeNode("Root");
+		
 
 		addMenu();
+		
+		
 		this.setVisible(true);	
 	}
 	
@@ -51,23 +53,23 @@ public class GradeBookView extends JFrame{
 		menuBar = new JMenuBar();
 
 		//Build the first menu.
-		menu = new JMenu("File");
-		menu.setMnemonic(KeyEvent.VK_F);
-		menu.getAccessibleContext().setAccessibleDescription(
+		fileMenu = new JMenu("File");
+		fileMenu.setMnemonic(KeyEvent.VK_F);
+		fileMenu.getAccessibleContext().setAccessibleDescription(
 		        "The only menu in this program that has menu items");
-		menuBar.add(menu);
+		menuBar.add(fileMenu);
 	
 		
 		//menu.addSeparator();	//adds a line in the menu
 
 		openMenu = new JMenuItem("Open", KeyEvent.VK_O);
-		menu.add(openMenu);
+		fileMenu.add(openMenu);
 		
-		saveMenu = new JMenuItem("Save");
-		menu.add(saveMenu);
+		saveMenu = new JMenuItem("Save", KeyEvent.VK_S);
+		fileMenu.add(saveMenu);
 
 		quitMenu = new JMenuItem("Quit", KeyEvent.VK_Q);
-		menu.add(quitMenu);
+		fileMenu.add(quitMenu);
 		mainpanel.add(menuBar, BorderLayout.NORTH);	
 	}
 	
@@ -78,6 +80,7 @@ public class GradeBookView extends JFrame{
 	}
 	
 	public void LoadData(ArrayList<Semester> semdata){
+		root = new DefaultMutableTreeNode("Root");
 		//build semester and add to root
 		for(Semester sem : semdata){
 			DefaultMutableTreeNode semester = new DefaultMutableTreeNode(sem.getName());
@@ -90,7 +93,11 @@ public class GradeBookView extends JFrame{
 		}
 		tree = new JTree(root);
 		tree.setRootVisible(false);
+		tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
 		treeView = new JScrollPane(tree);
+		scrolldim = treeView.getPreferredSize();
+		scrolldim.width = 150;
+		treeView.setPreferredSize(scrolldim);
 		this.add(mainpanel);
 		mainpanel.add(treeView, BorderLayout.WEST);
 
