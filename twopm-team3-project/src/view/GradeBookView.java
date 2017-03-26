@@ -5,10 +5,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.*;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.*;
 
 import main.*;
@@ -26,6 +29,7 @@ public class GradeBookView extends JFrame{
 	private JMenuItem openMenu;
 	private JMenuItem quitMenu;
 	private Dimension scrolldim;
+	private JLabel selected;
 
 	public GradeBookView(){
 		super("GradeBook Management System");
@@ -38,12 +42,13 @@ public class GradeBookView extends JFrame{
 		//main panel settings
 		mainpanel = new JPanel(new BorderLayout());
 		mainpanel.setBorder(new EmptyBorder(2, 2, 0, 2));
-
+		
+		selected = new JLabel("");
 		
 
 		addMenu();
 		
-		
+		mainpanel.add(selected, BorderLayout.EAST);
 		this.setVisible(true);	
 	}
 	
@@ -73,13 +78,8 @@ public class GradeBookView extends JFrame{
 		mainpanel.add(menuBar, BorderLayout.NORTH);	
 	}
 	
-	public void addMenuListener(ActionListener e){
-		quitMenu.addActionListener(e);
-		saveMenu.addActionListener(e);
-		openMenu.addActionListener(e);
-	}
 	
-	public void LoadData(ArrayList<Semester> semdata){
+	public void addTreeData(ArrayList<Semester> semdata){
 		root = new DefaultMutableTreeNode("Root");
 		//build semester and add to root
 		for(Semester sem : semdata){
@@ -94,13 +94,33 @@ public class GradeBookView extends JFrame{
 		tree = new JTree(root);
 		tree.setRootVisible(false);
 		tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
+		
+		
 		treeView = new JScrollPane(tree);
 		scrolldim = treeView.getPreferredSize();
 		scrolldim.width = 150;
 		treeView.setPreferredSize(scrolldim);
 		this.add(mainpanel);
 		mainpanel.add(treeView, BorderLayout.WEST);
-
+		
+	}
+	
+	public void addTreeListener(TreeSelectionListener tsl ){
+		tree.addTreeSelectionListener(tsl);
+	}
+	
+	public void addMenuListener(ActionListener e){
+		quitMenu.addActionListener(e);
+		saveMenu.addActionListener(e);
+		openMenu.addActionListener(e);
+	}
+	
+	public JTree getTree(){
+		return tree;
+	}
+	
+	public void setLable(String lbl){
+		selected.setText(lbl);
 	}
 
 

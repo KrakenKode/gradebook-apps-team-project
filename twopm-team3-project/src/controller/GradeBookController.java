@@ -7,6 +7,7 @@ import javax.swing.JFileChooser;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.tree.DefaultMutableTreeNode;
 
 import model.GradeBookModel;
 import view.GradeBookView;
@@ -23,8 +24,9 @@ public class GradeBookController implements ActionListener {
 
 		//TODO functions for adding classes to view
 		view.addMenuListener(new MenuListener());
-
-		view.LoadData(model.getSemesters()); //load semester to view
+		
+		view.addTreeData(model.getSemesters()); //load semester to view
+		view.addTreeListener(new TreeListener());
 	}
 	
 	class MenuListener implements ActionListener {
@@ -58,7 +60,16 @@ public class GradeBookController implements ActionListener {
 	class TreeListener implements TreeSelectionListener {
 		@Override
 		public void valueChanged(TreeSelectionEvent e) {
+			Object treeObject = view.getTree().getLastSelectedPathComponent();
 			
+			// Cast the Object into a DefaultMutableTreeNode
+			
+			DefaultMutableTreeNode node = (DefaultMutableTreeNode) treeObject;
+			
+			// Returns the object stored in this node and casts it to a string
+				
+			String treeNode = (String) node.getUserObject();
+			view.setLable(treeNode);
 		}
 	}
 	
