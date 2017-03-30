@@ -22,6 +22,7 @@ public class GradeBookView extends JFrame{
 	private JTree tree;
 	private JScrollPane treeView;
 	private JPanel mainpanel;
+	private JPanel coursePanel;
 	private DefaultMutableTreeNode root;
 	private JMenuBar menuBar;
 	private JMenu fileMenu;
@@ -46,8 +47,9 @@ public class GradeBookView extends JFrame{
 		selected = new JLabel("");
 		
 		addMenu();
+		addCourseView();
 		
-		mainpanel.add(selected, BorderLayout.EAST);
+		//mainpanel.add(selected, BorderLayout.EAST);
 		this.setVisible(true);	
 	}
 	
@@ -77,6 +79,13 @@ public class GradeBookView extends JFrame{
 		mainpanel.add(menuBar, BorderLayout.NORTH);	
 	}
 	
+	public void addCourseView(){
+		coursePanel = new JPanel(new BorderLayout());
+		selected.setFont(new Font(selected.getFont().getName(), Font.PLAIN, 20));
+		selected.setHorizontalAlignment(JLabel.CENTER);
+		coursePanel.add(selected, BorderLayout.NORTH);
+		mainpanel.add(coursePanel, BorderLayout.CENTER);
+	}
 	
 	public void addTreeData(ArrayList<Semester> semdata){
 		root = new DefaultMutableTreeNode("Root");
