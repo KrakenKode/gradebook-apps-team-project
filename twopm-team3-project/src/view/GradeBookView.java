@@ -45,7 +45,6 @@ public class GradeBookView extends JFrame{
 		
 		selected = new JLabel("");
 		
-
 		addMenu();
 		
 		mainpanel.add(selected, BorderLayout.EAST);
