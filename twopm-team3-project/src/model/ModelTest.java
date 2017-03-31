@@ -24,9 +24,9 @@ public class ModelTest {
 				
 			}
 			
-		} //end giant loops
+		} // end giant loops
 
-		SaveDriver.saveFile(model.getSemesters());
+		model.saveFile();
 
 	}
 
