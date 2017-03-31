@@ -36,20 +36,25 @@ public class GradeBookController implements ActionListener {
 			if (command.equals("Open")){
 				JFileChooser fileChooser = new JFileChooser();
 				fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
-				FileNameExtensionFilter filter = new FileNameExtensionFilter("ser");
+				//FileNameExtensionFilter filter = new FileNameExtensionFilter("ser");
 				int result = fileChooser.showOpenDialog(null);
 				if (result == JFileChooser.OPEN_DIALOG) {
 				    File selectedFile = fileChooser.getSelectedFile();
 				    //TODO open file using open class
+				    model.setOpenFile(selectedFile.getAbsolutePath());
+				    model.openFile();
+				    view.addTreeData(model.getSemesters());
 				}
 			} else if (command.equals("Save")){
 				JFileChooser fileChooser = new JFileChooser();
 				fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
-				FileNameExtensionFilter filter = new FileNameExtensionFilter("ser");
+				//FileNameExtensionFilter filter = new FileNameExtensionFilter("ser");
 				int result = fileChooser.showSaveDialog(null);
 				if (result == JFileChooser.SAVE_DIALOG) {
 				    File selectedFile = fileChooser.getSelectedFile();
 				    //TODO save file using save class
+				    model.setSaveFile(selectedFile.getAbsolutePath());
+				    model.saveFile();
 				}
 			}else if( command.equals("Quit")){
 				System.exit(0);
