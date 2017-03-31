@@ -7,10 +7,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.nio.ByteOrder;
 import java.util.*;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.*;
 
@@ -23,6 +25,7 @@ public class GradeBookView extends JFrame{
 	private JScrollPane treeView;
 	private JPanel mainpanel;
 	private JPanel coursePanel;
+	private JPanel scorePanel;
 	private DefaultMutableTreeNode root;
 	private JMenuBar menuBar;
 	private JMenu fileMenu;
@@ -31,7 +34,8 @@ public class GradeBookView extends JFrame{
 	private JMenuItem quitMenu;
 	private Dimension scrolldim;
 	private JLabel selected;
-
+	private JLabel totalScore;
+	private JLabel pcntScore;
 	public GradeBookView(){
 		super("GradeBook Management System");
 
@@ -83,6 +87,7 @@ public class GradeBookView extends JFrame{
 		coursePanel = new JPanel(new BorderLayout());
 		selected.setFont(new Font(selected.getFont().getName(), Font.PLAIN, 20));
 		selected.setHorizontalAlignment(JLabel.CENTER);
+		
 		coursePanel.add(selected, BorderLayout.NORTH);
 		mainpanel.add(coursePanel, BorderLayout.CENTER);
 	}
@@ -114,13 +119,17 @@ public class GradeBookView extends JFrame{
 	}
 	
 	public void addTreeListener(TreeSelectionListener tsl ){
+		
 		tree.addTreeSelectionListener(tsl);
+		
 	}
 	
 	public void addMenuListener(ActionListener e){
+		
 		quitMenu.addActionListener(e);
 		saveMenu.addActionListener(e);
 		openMenu.addActionListener(e);
+		
 	}
 	
 	public JTree getTree(){
