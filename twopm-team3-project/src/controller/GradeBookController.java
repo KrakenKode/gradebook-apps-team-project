@@ -78,7 +78,9 @@ public class GradeBookController implements ActionListener {
 			// Returns the object stored in this node and casts it to a string
 				
 			String treeNode = (String) node.getUserObject();
-			view.setLable(treeNode);
+			if (node.isLeaf()) {
+				view.setLable(treeNode);
+			}
 		}
 	}
 	
