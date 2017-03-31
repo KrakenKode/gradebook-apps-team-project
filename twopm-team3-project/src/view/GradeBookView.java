@@ -11,6 +11,7 @@ import java.nio.ByteOrder;
 import java.util.*;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.TreeSelectionListener;
@@ -25,7 +26,7 @@ public class GradeBookView extends JFrame{
 	private JScrollPane treeView;
 	private JPanel mainpanel;
 	private JPanel coursePanel;
-	private JPanel scorePanel;
+	private JPanel summaryPanel;
 	private DefaultMutableTreeNode root;
 	private JMenuBar menuBar;
 	private JMenu fileMenu;
@@ -33,7 +34,7 @@ public class GradeBookView extends JFrame{
 	private JMenuItem openMenu;
 	private JMenuItem quitMenu;
 	private Dimension scrolldim;
-	private JLabel selected;
+	private JLabel courseLbl;
 	private JLabel totalScore;
 	private JLabel pcntScore;
 	public GradeBookView(){
@@ -48,7 +49,7 @@ public class GradeBookView extends JFrame{
 		mainpanel = new JPanel(new BorderLayout());
 		mainpanel.setBorder(new EmptyBorder(2, 2, 0, 2));
 		
-		selected = new JLabel("");
+		
 		
 		addMenu();
 		addCourseView();
@@ -84,15 +85,77 @@ public class GradeBookView extends JFrame{
 	}
 	
 	public void addCourseView(){
-		coursePanel = new JPanel(new BorderLayout());
-		selected.setFont(new Font(selected.getFont().getName(), Font.PLAIN, 20));
-		selected.setHorizontalAlignment(JLabel.CENTER);
 		
-		coursePanel.add(selected, BorderLayout.NORTH);
+		
+		//title and grade summary 
+		courseLbl = new JLabel("Course Name");
+		coursePanel = new JPanel(new GridLayout(0, 1, 2, 2));
+		courseLbl.setFont(new Font(courseLbl.getFont().getName(), Font.PLAIN, 18));
+		courseLbl.setAlignmentX(Component.CENTER_ALIGNMENT);
+		
+		TitledBorder tlb = new TitledBorder("Course Name");
+		JPanel totalPanel = new JPanel();
+		totalPanel.setBackground(Color.pink);
+		totalPanel.setBorder(tlb);
+		
+		summaryPanel = new JPanel(new GridLayout(0 , 1, 0, 0));
+		summaryPanel.setBackground(Color.RED);
+		
+		Box summaryBox = Box.createVerticalBox();
+		summaryBox.add(courseLbl);
+		summaryBox.add(Box.createVerticalStrut(8));
+		summaryBox.add(totalPanel);
+		summaryPanel.add(summaryBox, BorderLayout.CENTER);
+		coursePanel.add(summaryPanel);
+			
+		//first category selection
+		JPanel categoryPanel = new JPanel();
+		categoryPanel.setBackground(Color.GREEN);
+		
+		JLabel categoryLbl = new JLabel("Homework");
+		JLabel runningLbl = new JLabel("Running %");
+		JLabel totalpLbl = new JLabel ("Total %");
+		
+		Box categoryBox = Box.createHorizontalBox();
+		categoryBox.add(categoryLbl);
+		categoryBox.add(Box.createHorizontalStrut(130));
+		categoryBox.add(runningLbl);
+		categoryBox.add(Box.createHorizontalStrut(150));
+		categoryBox.add(totalpLbl);
+		
+		JPanel results = new JPanel();
+		results.setBackground(Color.GREEN);
+		
+		JLabel hw1 = new JLabel("HW1");
+		JLabel run1 = new JLabel("80%");
+		JLabel total1 = new JLabel ("100%");
+		
+		Box categoryBox1 = Box.createHorizontalBox();
+		categoryBox1.add(hw1);
+		categoryBox1.add(Box.createHorizontalStrut(190));
+		categoryBox1.add(run1);
+		categoryBox1.add(Box.createHorizontalStrut(190));
+		categoryBox1.add(total1);
+		
+		results.add(categoryBox1);
+		categoryPanel.add(categoryBox);
+		categoryPanel.add(results);
+		coursePanel.add(categoryPanel);
+		
+		JPanel scorePanel2 = new JPanel();
+		scorePanel2.setBackground(Color.blue);
+		
+		JPanel scorePanel3 = new JPanel();
+		scorePanel3.setBackground(Color.orange);
+		
+		
+		coursePanel.add(scorePanel2);
+		coursePanel.add(scorePanel3);
 		mainpanel.add(coursePanel, BorderLayout.CENTER);
 	}
 	
 	public void addTreeData(ArrayList<Semester> semdata){
+		
 		root = new DefaultMutableTreeNode("Root");
 		//build semester and add to root
 		for(Semester sem : semdata){
@@ -137,7 +200,7 @@ public class GradeBookView extends JFrame{
 	}
 	
 	public void setLable(String lbl){
-		selected.setText(lbl);
+		courseLbl.setText(lbl);
 	}
 
 

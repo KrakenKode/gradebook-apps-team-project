@@ -20,7 +20,7 @@ public class GradeBook {
 		view.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		view.setSize(800, 600);
 		view.setVisible(true);
-
+		view.setLocationRelativeTo(null); //center JFrame
 	}
 
 }
