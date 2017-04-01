@@ -12,8 +12,15 @@ public class Grade implements Serializable {
 		this.name = name;
 		this.points = points;	
 		this.maxPoints = maxPoints;
+		}
+	
+//	Returns grade as a String in %
+	public String gradeRun(){
+		double total = 0;
+		total = (double) getPoints() / (double) getMaxPoints();
+		total = total*100;
+		return total + "%";
 	}
-
 	
 	/////////////Getters and Setters///////////////////
 	
