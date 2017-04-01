@@ -12,7 +12,7 @@ public class GradeBookModel {
 		semesters = new ArrayList<Semester>();
 		openFile = "defaultTemplate.ser";
 		saveFile = "defaultTemplate.ser";
-		
+
 //		SaveOpenDriver.readSemesters(semesters, openFile);
 //		
 //		if(semesters.isEmpty()) {

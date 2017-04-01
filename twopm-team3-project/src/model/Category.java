@@ -27,6 +27,18 @@ public class Category implements Serializable {
 		return name;
 	}
 	
+	//returns the % of earned points in the category as a double
+	public double catRun(){
+		double total = 0;
+		int i = 0;
+		for(Grade grade: getGrades()){
+			total +=  grade.gradeRun();
+			i = i + 100;
+		}
+		total = total/i;
+		total = total * 100;
+		return total;
+	}
 	/////////////Getters and Setters///////////////////
 
 	public String getName() {
