@@ -101,7 +101,8 @@ public class GradeBookController implements ActionListener {
 			String treeNode = (String) node.getUserObject();
 			if (treeNode == null) {return;}
 			if (node.isLeaf()) {
-				view.setLable(treeNode);
+//				view.setLable(treeNode);
+				
 			}
 		}
 
