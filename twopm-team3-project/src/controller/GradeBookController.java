@@ -6,8 +6,12 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
 import javax.swing.JFileChooser;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
 import javax.swing.Popup;
 import javax.swing.SwingUtilities;
+import javax.swing.event.PopupMenuEvent;
+import javax.swing.event.PopupMenuListener;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.filechooser.FileFilter;
@@ -18,11 +22,14 @@ import javax.swing.JTree;
 import model.*;
 import view.EditOptionView;
 import view.GradeBookView;
+import view.NewGradeInputPopUp;
 
 public class GradeBookController implements ActionListener {
 	
 	private GradeBookView view;
 	private GradeBookModel model;
+	private Course currCourse;
+	private Semester currSem;
 	
 
 	public GradeBookController(GradeBookModel model, GradeBookView view) {
@@ -116,29 +123,37 @@ public class GradeBookController implements ActionListener {
 				 tree.setSelectionRow(row);
 				 TreePath selPath = tree.getPathForLocation(e.getX(), e.getY());
 				 if (selPath == null) {return;}
-				 Object obj = model.determineTreeObject(selPath.getLastPathComponent().toString());
+				 Object obj = model.determineTreeObject(selPath.getLastPathComponent().toString()); //get the object mouse was closest to
+				 ActionListener ra = new JPopupMenuListener();
+				 //if the object was a semester object
 				 if (obj instanceof Semester) {
-					 Semester sem = (Semester) obj;
-					 EditOptionView ev = new EditOptionView(view, "Add Course");
-					 String courseString = ev.addPopUp();
-					 if (courseString== null) {return;}
-					 Course newCourse = new Course(courseString);
-					 sem.addCourse(newCourse);
-					 view.updateTreeData(model.getSemesters());			
-					 ev.showSuccess("Success!");		 
+					 //Make JPopupMenu for right click context
+					 currSem = (Semester) obj;
+					 JPopupMenu rc = new JPopupMenu();
+					 JMenuItem couradd = new JMenuItem();
+					 couradd.setText("Add Course");
+					 couradd.addActionListener(ra);
+					 rc.add(couradd);
+					 rc.show(e.getComponent(), e.getX(), e.getY());
+				 //if the object was a course object
 				 } else if (obj instanceof Course) {
-					 Course course = (Course) obj;
-					 EditOptionView ev = new EditOptionView(view, "Add Category");
-					 String categoryString = ev.addPopUp();
-					 if (categoryString == null) {return;}
-					 Category newCategory = new Category(categoryString);
-					 course.addCategory(newCategory);
-					 view.updateTreeData(model.getSemesters());			
-					 ev.showSuccess("Success!");
+					 //Make JPopupMenu for right click context
+					 currCourse = (Course) obj;
+					 JPopupMenu rc = new JPopupMenu();
+					 JMenuItem catadd = new JMenuItem();
+					 catadd.setText("Add Category");
+					 catadd.addActionListener(ra);
+					 rc.add(catadd);
+					 JMenuItem gradeadd = new JMenuItem();
+					 gradeadd.setText("Add Grade");
+					 gradeadd.addActionListener(ra);
+					 rc.add(gradeadd);
+					 rc.show(e.getComponent(), e.getX(), e.getY());
+					 
 				 }
 			 }
 		}
-
+		
 		@Override
 		public void mousePressed(MouseEvent e) {
 			// TODO Auto-generated method stub
@@ -162,6 +177,34 @@ public class GradeBookController implements ActionListener {
 			// TODO Auto-generated method stub
 			
 		}		
+	}
+	
+	class JPopupMenuListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			String command = e.getActionCommand();
+			if(command.equals("Add Category")){
+				EditOptionView ev = new EditOptionView(view, "Add Category");
+				String categoryString = ev.addPopUp();
+				if (categoryString == null) {return;}
+				Category newCategory = new Category(categoryString);
+				currCourse.addCategory(newCategory);
+				view.updateTreeData(model.getSemesters());			
+				ev.showSuccess("Success!");
+			} else if(command.equals("Add Grade")){
+				NewGradeInputPopUp ngrade = new NewGradeInputPopUp(currCourse);
+				ngrade.newGradePopUp();
+			} else if (command.equals("Add Course")){
+				EditOptionView ev = new EditOptionView(view, "Add Course");
+				String courseString = ev.addPopUp();
+				if (courseString== null) {return;}
+				Course newCourse = new Course(courseString);
+				currSem.addCourse(newCourse);
+				view.updateTreeData(model.getSemesters());			
+				ev.showSuccess("Success!");
+			}
+		}
 	}
 	
 	
