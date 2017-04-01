@@ -118,7 +118,7 @@ public class GradeBookController implements ActionListener {
 				 if (selPath == null) {return;}
 				 Object obj = model.determineTreeObject(selPath.getLastPathComponent().toString()); //get the object mouse was closest to
 				 ActionListener ra = new JPopupMenuListener();
-				 //if the object was a semester
+				 //if the object was a semester object
 				 if (obj instanceof Semester) {
 					 //Make JPopupMenu for right click context
 					 currSem = (Semester) obj;
@@ -128,7 +128,7 @@ public class GradeBookController implements ActionListener {
 					 couradd.addActionListener(ra);
 					 rc.add(couradd);
 					 rc.show(e.getComponent(), e.getX(), e.getY());
-				 //if the object was a course
+				 //if the object was a course object
 				 } else if (obj instanceof Course) {
 					 //Make JPopupMenu for right click context
 					 currCourse = (Course) obj;
