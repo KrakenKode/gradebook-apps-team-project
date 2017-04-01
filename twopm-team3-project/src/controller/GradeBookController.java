@@ -45,8 +45,8 @@ public class GradeBookController implements ActionListener {
 				    File selectedFile = fileChooser.getSelectedFile();
 				    //TODO open file using open class
 				    model.setOpenFile(selectedFile.getAbsolutePath());
-				    model.openFile();
-				    view.addTreeData(model.getSemesters());
+				    model.openFile();				 
+				    view.addTreeData(model.getSemesters());				   
 				}
 			} else if (command.equals("Save")){
 				JFileChooser fileChooser = new JFileChooser();

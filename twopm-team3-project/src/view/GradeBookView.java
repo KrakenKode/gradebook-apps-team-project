@@ -187,7 +187,6 @@ public class GradeBookView extends JFrame{
 		tree.addTreeSelectionListener(tsl);
 		
 	}
-	
 	public void addMenuListener(ActionListener e){
 		
 		quitMenu.addActionListener(e);
