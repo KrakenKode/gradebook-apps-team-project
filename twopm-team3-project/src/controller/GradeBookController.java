@@ -12,6 +12,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.tree.DefaultMutableTreeNode;
 
 import model.GradeBookModel;
+import model.Semester;
 import view.EditOptionView;
 import view.GradeBookView;
 
@@ -63,6 +64,8 @@ public class GradeBookController implements ActionListener {
 			}else if(command.equals("Add Semester")){
 				EditOptionView ev = new EditOptionView(view, "Add Semester");
 				String sem = ev.addView();
+				Semester semester = new Semester(sem);
+				model.addSemester(semester);
 				System.out.println(sem);
 			}else if( command.equals("Quit")){
 				System.exit(0);
