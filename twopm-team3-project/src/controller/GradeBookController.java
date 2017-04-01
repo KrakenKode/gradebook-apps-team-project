@@ -89,6 +89,7 @@ public class GradeBookController implements ActionListener {
 			
 			Object treeObject = view.getTree().getLastSelectedPathComponent();
 			
+			if (treeObject == null) {return;}
 			// Cast the Object into a DefaultMutableTreeNode
 			
 			DefaultMutableTreeNode node = (DefaultMutableTreeNode) treeObject;
@@ -96,6 +97,7 @@ public class GradeBookController implements ActionListener {
 			// Returns the object stored in this node and casts it to a string
 				
 			String treeNode = (String) node.getUserObject();
+			if (treeNode == null) {return;}
 			if (node.isLeaf()) {
 				view.setLable(treeNode);
 			}
