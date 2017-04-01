@@ -110,6 +110,11 @@ public class GradeBookView extends JFrame{
 		coursePanel = new JPanel(new GridLayout(0, 1, 2, 2));
 		courseLbl.setFont(new Font(courseLbl.getFont().getName(), Font.PLAIN, 18));
 		courseLbl.setAlignmentX(Component.CENTER_ALIGNMENT);
+		
+		TitledBorder tlb = new TitledBorder("Gradebook Summary");
+		JPanel totalPanel = new JPanel();
+		totalPanel.setBackground(Color.pink);
+		totalPanel.setBorder(tlb);
 
 		summaryPanel = new JPanel(new GridLayout(0 , 1, 0, 0));
 		summaryPanel.setBackground(Color.RED);
@@ -159,7 +164,6 @@ public class GradeBookView extends JFrame{
 				categoryPanel.add(categoryBox);
 				coursePanel.add(categoryPanel);
 			}
-		}
 
 		
 //		
