@@ -11,7 +11,7 @@ import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.tree.DefaultMutableTreeNode;
 
-import model.GradeBookModel;
+import model.*;
 import view.EditOptionView;
 import view.GradeBookView;
 
@@ -62,8 +62,12 @@ public class GradeBookController implements ActionListener {
 				}
 			}else if(command.equals("Add Semester")){
 				EditOptionView ev = new EditOptionView(view, "Add Semester");
-				String sem = ev.addView();
-				System.out.println(sem);
+				String semString = ev.addPopUp();
+				if (semString== null) {return;}
+				Semester sem = new Semester(semString);
+				model.addSemester(sem);
+				view.updateTreeData(model.getSemesters());			
+				ev.showSuccess("Success!");
 			}else if( command.equals("Quit")){
 				System.exit(0);
 			}

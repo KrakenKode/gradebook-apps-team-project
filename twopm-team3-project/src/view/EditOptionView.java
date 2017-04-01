@@ -14,21 +14,8 @@ public class EditOptionView{
 		this.msg = msg;
 	}
 	
-	public String addView(){
+	public String addPopUp(){
 		String input = JOptionPane.showInputDialog(msg);
-		if(input == null)
-			showError("Null Input");
-		
-		showSuccess("Success!");
-		return input;
-	}
-	public String EditView(){
-		String input = JOptionPane.showInputDialog(msg);
-		
-		if(input == null)
-			showError("Null Input");
-		
-		showSuccess("Update Success!");
 		return input;
 	}
 	
