@@ -116,9 +116,11 @@ public class GradeBookController implements ActionListener {
 				 tree.setSelectionRow(row);
 				 TreePath selPath = tree.getPathForLocation(e.getX(), e.getY());
 				 if (selPath == null) {return;}
-				 Object obj = model.determineTreeObject(selPath.getLastPathComponent().toString());
+				 Object obj = model.determineTreeObject(selPath.getLastPathComponent().toString()); //get the object mouse was closest to
 				 ActionListener ra = new JPopupMenuListener();
+				 //if the object was a semester
 				 if (obj instanceof Semester) {
+					 //Make JPopupMenu for right click context
 					 currSem = (Semester) obj;
 					 JPopupMenu rc = new JPopupMenu();
 					 JMenuItem couradd = new JMenuItem();
@@ -126,8 +128,9 @@ public class GradeBookController implements ActionListener {
 					 couradd.addActionListener(ra);
 					 rc.add(couradd);
 					 rc.show(e.getComponent(), e.getX(), e.getY());
-					 
+				 //if the object was a course
 				 } else if (obj instanceof Course) {
+					 //Make JPopupMenu for right click context
 					 currCourse = (Course) obj;
 					 JPopupMenu rc = new JPopupMenu();
 					 JMenuItem catadd = new JMenuItem();
