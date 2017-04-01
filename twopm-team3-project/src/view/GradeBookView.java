@@ -107,7 +107,7 @@ public class GradeBookView extends JFrame{
 		courseLbl.setFont(new Font(courseLbl.getFont().getName(), Font.PLAIN, 18));
 		courseLbl.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
-		TitledBorder tlb = new TitledBorder("Course Name");
+		TitledBorder tlb = new TitledBorder("Gradebook Summary");
 		JPanel totalPanel = new JPanel();
 		totalPanel.setBackground(Color.pink);
 		totalPanel.setBorder(tlb);
