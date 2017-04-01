@@ -4,8 +4,8 @@ public class ModelTest {
 
 	public static void main(String[] args) {
 		GradeBookModel model = new GradeBookModel();
-		
-		
+		System.out.println("HELLLOOOO");
+		System.out.println("But why");//hjfgbn
 		for(Semester semester : model.getSemesters()) {
 			System.out.println(semester.getName());
 			
