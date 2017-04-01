@@ -23,10 +23,7 @@ public class GradeBookModel {
 	}
 	
 	public void openFile() {
-		// remove all semesters in list
-		for(Semester curr : semesters) {
-			semesters.remove(curr);
-		}
+		semesters = new ArrayList<Semester>();
 		
 		SaveOpenDriver.readSemesters(semesters, openFile);	
 	}

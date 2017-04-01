@@ -27,7 +27,7 @@ public class GradeBookController implements ActionListener {
 		view.addMenuListener(new MenuListener());
 		
 		
-		view.addTreeData(model.getSemesters()); //load semester to view
+		view.initializeTreeData(model.getSemesters()); //load semester to view
 		view.addTreeListener(new TreeListener());
 	}
 	
@@ -45,8 +45,11 @@ public class GradeBookController implements ActionListener {
 				    File selectedFile = fileChooser.getSelectedFile();
 				    //TODO open file using open class
 				    model.setOpenFile(selectedFile.getAbsolutePath());
-				    model.openFile();				 
-				    view.addTreeData(model.getSemesters());				   
+//				    model.openFile();				 
+//				    view.addTreeData(model.getSemesters());				   
+
+				    model.openFile();
+				    view.updateTreeData(model.getSemesters());
 				}
 			} else if (command.equals("Save")){
 				JFileChooser fileChooser = new JFileChooser();
@@ -78,7 +81,9 @@ public class GradeBookController implements ActionListener {
 			// Returns the object stored in this node and casts it to a string
 				
 			String treeNode = (String) node.getUserObject();
-			view.setLable(treeNode);
+			if (node.isLeaf()) {
+				view.setLable(treeNode);
+			}
 		}
 	}
 	
