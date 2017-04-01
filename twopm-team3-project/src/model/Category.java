@@ -3,7 +3,7 @@ package model;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Category implements Serializable {
+public class Category implements Serializable {	
 
 	private String name;
 	private ArrayList<Grade> grades;
@@ -22,7 +22,10 @@ public class Category implements Serializable {
 		grades.remove(grade);
 	}
 
-	
+	@Override
+	public String toString() {
+		return name;
+	}
 	
 	/////////////Getters and Setters///////////////////
 
