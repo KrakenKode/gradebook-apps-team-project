@@ -5,6 +5,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -218,13 +220,13 @@ public class GradeBookView extends JFrame{
 	}
 	
 	
-	public void addTreeListener(TreeSelectionListener tsl ){
+	public void addTreeListener(TreeSelectionListener tsl, MouseListener l){
 		
 		tree.addTreeSelectionListener(tsl);
-		
+		tree.addMouseListener(l);;
 	}
-
 	public void addMenuListener(ActionListener e){		
+	
 		quitMenu.addActionListener(e);
 		saveMenu.addActionListener(e);
 		openMenu.addActionListener(e);	

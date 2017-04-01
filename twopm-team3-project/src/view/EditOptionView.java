@@ -14,7 +14,7 @@ public class EditOptionView{
 		this.msg = msg;
 	}
 	
-	public String addView(){
+	public String addPopUp(){
 		String input = JOptionPane.showInputDialog(msg);
 		return input;
 	}
