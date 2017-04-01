@@ -41,7 +41,7 @@ public class GradeBookView extends JFrame{
 		super("GradeBook Management System");
 
 		//window opens in middle of screen
-		this.setSize(800, 600);
+		this.setSize(1000, 800);
 		this.setLocationRelativeTo(null);	
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -191,7 +191,7 @@ public class GradeBookView extends JFrame{
 		tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
 				
 		scrolldim = treeView.getPreferredSize();
-		scrolldim.width = 150;
+		scrolldim.width = 200;
 		treeView.setPreferredSize(scrolldim);
 		this.add(mainpanel);
 		mainpanel.add(treeView, BorderLayout.WEST);
