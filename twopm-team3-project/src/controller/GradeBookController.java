@@ -18,6 +18,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.*;
 import javax.swing.JTree;
 
+
 import model.*;
 import view.EditOptionView;
 import view.GradeBookView;
@@ -76,6 +77,7 @@ public class GradeBookController implements ActionListener {
 				model.addSemester(sem);
 				view.updateTreeData(model.getSemesters());			
 				ev.showSuccess("Success!");
+
 			}else if( command.equals("Quit")){
 				System.exit(0);
 			}
