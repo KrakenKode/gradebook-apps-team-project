@@ -38,6 +38,9 @@ public class GradeBookModel {
 		return semesters;
 	}
 	
+	public void addSemester(Semester sem) {
+		semesters.add(sem);
+	}
 	
 	public void makeTemplateSemesters() {
 		Semester template;

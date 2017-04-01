@@ -2,6 +2,7 @@ package view;
 
 import model.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -29,6 +30,8 @@ public class GradeBookView extends JFrame{
 	private JMenuItem saveMenu;
 	private JMenuItem openMenu;
 	private JMenuItem quitMenu;
+	private JMenu editMenu;
+	private JMenuItem addSemester;
 	private Dimension scrolldim;
 	private JLabel courseLbl;
 	private JLabel totalScore;
@@ -40,7 +43,7 @@ public class GradeBookView extends JFrame{
 		super("GradeBook Management System");
 
 		//window opens in middle of screen
-		this.setSize(800, 600);
+		this.setSize(1000, 800);
 		this.setLocationRelativeTo(null);	
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -62,25 +65,36 @@ public class GradeBookView extends JFrame{
 		//Create the menu bar.
 		menuBar = new JMenuBar();
 
-		//Build the first menu.
+		//Build the file menu.
 		fileMenu = new JMenu("File");
-		fileMenu.setMnemonic(KeyEvent.VK_F);
-		fileMenu.getAccessibleContext().setAccessibleDescription(
-		        "The only menu in this program that has menu items");
+		
 		menuBar.add(fileMenu);
-	
-		
-		//menu.addSeparator();	//adds a line in the menu
-
+				
 		openMenu = new JMenuItem("Open", KeyEvent.VK_O);
+		openMenu.setAccelerator(KeyStroke.getKeyStroke(
+		        KeyEvent.VK_O, ActionEvent.CTRL_MASK));
 		fileMenu.add(openMenu);
-		
+				
 		saveMenu = new JMenuItem("Save", KeyEvent.VK_S);
+		saveMenu.setAccelerator(KeyStroke.getKeyStroke(
+		        KeyEvent.VK_S, ActionEvent.CTRL_MASK));
 		fileMenu.add(saveMenu);
 
+		fileMenu.addSeparator();	//adds a line in the menu
+	
 		quitMenu = new JMenuItem("Quit", KeyEvent.VK_Q);
+		quitMenu.setAccelerator(KeyStroke.getKeyStroke(
+		        KeyEvent.VK_Q, ActionEvent.CTRL_MASK));
 		fileMenu.add(quitMenu);
-		mainpanel.add(menuBar, BorderLayout.NORTH);	
+		
+		//Build the edit menu.
+		editMenu = new JMenu("Edit");
+		menuBar.add(editMenu);
+		
+		addSemester = new JMenuItem("Add Semester");
+		editMenu.add(addSemester);	
+		
+		mainpanel.add(menuBar, BorderLayout.NORTH);			
 	}
 	
 	
@@ -179,7 +193,7 @@ public class GradeBookView extends JFrame{
 		tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
 				
 		scrolldim = treeView.getPreferredSize();
-		scrolldim.width = 150;
+		scrolldim.width = 200;
 		treeView.setPreferredSize(scrolldim);
 		this.add(mainpanel);
 		mainpanel.add(treeView, BorderLayout.WEST);
@@ -212,12 +226,13 @@ public class GradeBookView extends JFrame{
 		tree.addMouseListener(l);;
 	}
 	
-	public void addMenuListener(ActionListener e){
-		
+
+	public void addMenuListener(ActionListener e){		
+	
 		quitMenu.addActionListener(e);
 		saveMenu.addActionListener(e);
-		openMenu.addActionListener(e);
-		
+		openMenu.addActionListener(e);	
+		addSemester.addActionListener(e);
 	}
 	
 	

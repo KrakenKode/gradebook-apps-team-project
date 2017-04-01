@@ -1,4 +1,5 @@
 package controller;
+
 import java.awt.event.ActionEvent;
 
 import java.awt.event.ActionListener;
@@ -18,6 +19,7 @@ import javax.swing.tree.*;
 import javax.swing.JTree;
 
 import model.GradeBookModel;
+import view.EditOptionView;
 import view.GradeBookView;
 
 public class GradeBookController implements ActionListener {
@@ -29,6 +31,9 @@ public class GradeBookController implements ActionListener {
 	public GradeBookController(GradeBookModel model, GradeBookView view) {
 		this.model = model;
 		this.view = view;
+
+		
+
 		//TODO functions for adding classes to view
 		view.addMenuListener(new MenuListener());
 		
@@ -42,32 +47,31 @@ public class GradeBookController implements ActionListener {
 			String command = e.getActionCommand();
 			if (command.equals("Open")){
 				JFileChooser fileChooser = new JFileChooser();
-				fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+				fileChooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
 				FileFilter filter = new FileNameExtensionFilter("SER file", "ser");
 				fileChooser.setFileFilter(filter);
 				int result = fileChooser.showOpenDialog(null);
 				if (result == JFileChooser.APPROVE_OPTION) {
 				    File selectedFile = fileChooser.getSelectedFile();
-				    //TODO open file using open class
 				    model.setOpenFile(selectedFile.getAbsolutePath());
-//				    model.openFile();				 
-//				    view.addTreeData(model.getSemesters());				   
-
 				    model.openFile();
 				    view.updateTreeData(model.getSemesters());
 				}
 			} else if (command.equals("Save")){
 				JFileChooser fileChooser = new JFileChooser();
-				fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+				fileChooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
 				FileFilter filter = new FileNameExtensionFilter("SER file", "ser");
 				fileChooser.setFileFilter(filter);
 				int result = fileChooser.showSaveDialog(null);
 				if (result == JFileChooser.APPROVE_OPTION) {
 				    File selectedFile = fileChooser.getSelectedFile();
-				    //TODO save file using save class
 				    model.setSaveFile(selectedFile.getAbsolutePath());
 				    model.saveFile();
 				}
+			}else if(command.equals("Add Semester")){
+				EditOptionView ev = new EditOptionView(view, "Add Semester");
+				String sem = ev.addView();
+				System.out.println(sem);
 			}else if( command.equals("Quit")){
 				System.exit(0);
 			}
