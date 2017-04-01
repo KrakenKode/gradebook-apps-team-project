@@ -22,6 +22,7 @@ import javax.swing.JTree;
 import model.*;
 import view.EditOptionView;
 import view.GradeBookView;
+import view.NewGradeInputPopUp;
 
 public class GradeBookController implements ActionListener {
 	
@@ -186,7 +187,8 @@ public class GradeBookController implements ActionListener {
 				view.updateTreeData(model.getSemesters());			
 				ev.showSuccess("Success!");
 			} else if(command.equals("Add Grade")){
-				
+				NewGradeInputPopUp ngrade = new NewGradeInputPopUp(currCourse);
+				ngrade.newGradePopUp();
 			} else if (command.equals("Add Course")){
 				EditOptionView ev = new EditOptionView(view, "Add Course");
 				String courseString = ev.addPopUp();
