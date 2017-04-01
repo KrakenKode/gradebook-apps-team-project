@@ -36,6 +36,10 @@ public class GradeBookView extends JFrame{
 	private JLabel courseLbl;
 	private JLabel totalScore;
 	private JLabel pcntScore;
+	private TitledBorder tlb;
+	private JPanel totalPanel;
+	private JPanel categoryPanel;
+	private Box categoryBox;
 	
 	
 	
@@ -53,7 +57,7 @@ public class GradeBookView extends JFrame{
 		mainpanel.setBorder(new EmptyBorder(2, 2, 0, 2));
 			
 		addMenu();
-		addCourseView();
+		//addCourseView();
 		
 		//mainpanel.add(selected, BorderLayout.EAST);
 		this.setVisible(true);	
@@ -98,7 +102,7 @@ public class GradeBookView extends JFrame{
 	}
 	
 	
-	public void addCourseView(){
+	public void addCourseView(Course course){
 		
 		
 		//title and grade summary 
@@ -111,61 +115,81 @@ public class GradeBookView extends JFrame{
 		JPanel totalPanel = new JPanel();
 		totalPanel.setBackground(Color.pink);
 		totalPanel.setBorder(tlb);
-		
+
 		summaryPanel = new JPanel(new GridLayout(0 , 1, 0, 0));
 		summaryPanel.setBackground(Color.RED);
-		
+		tlb = new TitledBorder("Grade Summary");
+		totalPanel = new JPanel();
+		totalPanel.setBackground(Color.pink);
+		totalPanel.setBorder(tlb);
+
+		//Grade Summary Box
 		Box summaryBox = Box.createVerticalBox();
 		summaryBox.add(courseLbl);
 		summaryBox.add(Box.createVerticalStrut(8));
 		summaryBox.add(totalPanel);
 		summaryPanel.add(summaryBox, BorderLayout.CENTER);
 		coursePanel.add(summaryPanel);
-			
-		//first category selection
-		JPanel categoryPanel = new JPanel();
+		
+		//category selection
+		courseLbl.setText(course.getName());
+		categoryPanel = new JPanel();
 		categoryPanel.setBackground(Color.GREEN);
+
+
+		ArrayList<Category> categorydata = course.getCategories();
+		for(Category category : categorydata ){
+			categoryBox = Box.createHorizontalBox();
+			JLabel categoryLbl = new JLabel(category.getName());
+
+			Box box1 = Box.createVerticalBox();
+			box1.add(categoryLbl);
+			Box box2 = Box.createVerticalBox();
+			JLabel runningLbl = new JLabel("Running %");
+			box2.add(categoryLbl);
+
+			ArrayList<Grade> gradedata = category.getGrades();
+			for(Grade grade : gradedata ){
+				JLabel categoryName = new JLabel(grade.getName());
+				box1.add(categoryName);
+				box1.add(Box.createVerticalStrut(20));
+				JLabel run1 = new JLabel("80%");
+				box2.add(run1);
+				box2.add(Box.createVerticalStrut(20));
+
+				}
+				categoryBox.add(box1);
+				categoryBox.add(Box.createHorizontalStrut(200));
+				categoryBox.add(box2);
+				categoryPanel.add(categoryBox);
+				coursePanel.add(categoryPanel);
+			}
+
 		
-		JLabel categoryLbl = new JLabel("Homework");
-		JLabel runningLbl = new JLabel("Running %");
-		JLabel totalpLbl = new JLabel ("Total %");
-		
-		Box categoryBox = Box.createHorizontalBox();
-		categoryBox.add(categoryLbl);
-		categoryBox.add(Box.createHorizontalStrut(130));
-		categoryBox.add(runningLbl);
-		categoryBox.add(Box.createHorizontalStrut(150));
-		categoryBox.add(totalpLbl);
-		
-		JPanel results = new JPanel();
-		results.setBackground(Color.GREEN);
-		
-		JLabel hw1 = new JLabel("HW1");
-		JLabel run1 = new JLabel("80%");
-		JLabel total1 = new JLabel ("100%");
-		
-		Box categoryBox1 = Box.createHorizontalBox();
-		categoryBox1.add(hw1);
-		categoryBox1.add(Box.createHorizontalStrut(190));
-		categoryBox1.add(run1);
-		categoryBox1.add(Box.createHorizontalStrut(190));
-		categoryBox1.add(total1);
-		
-		results.add(categoryBox1);
-		categoryPanel.add(categoryBox);
-		categoryPanel.add(results);
-		coursePanel.add(categoryPanel);
-		
-		JPanel scorePanel2 = new JPanel();
-		scorePanel2.setBackground(Color.blue);
-		
-		JPanel scorePanel3 = new JPanel();
-		scorePanel3.setBackground(Color.orange);
-		
-		
-		coursePanel.add(scorePanel2);
-		coursePanel.add(scorePanel3);
-		mainpanel.add(coursePanel, BorderLayout.CENTER);
+//		
+//		
+//		JPanel categoryPanel2 = new JPanel();
+//		categoryPanel2.setBackground(Color.blue);
+//		
+//		
+//		JPanel categoryPanel3 = new JPanel();
+//		categoryPanel3.setBackground(Color.orange);
+//		
+//		JPanel categoryPanel4 = new JPanel();
+//		categoryPanel4.setBackground(Color.orange);
+//		JPanel categoryPanel5 = new JPanel();
+//		categoryPanel5.setBackground(Color.orange);
+//		JPanel categoryPanel6 = new JPanel();
+//		categoryPanel6.setBackground(Color.orange);
+//		
+//		coursePanel.add(categoryPanel);
+//		coursePanel.add(categoryPanel2);
+//		coursePanel.add(categoryPanel3);
+//		coursePanel.add(categoryPanel4);
+//		coursePanel.add(categoryPanel5);
+//		coursePanel.add(categoryPanel6);
+		JScrollPane coursepane = new JScrollPane(coursePanel);
+		mainpanel.add(coursepane, BorderLayout.CENTER);
 	}
 	
 	
