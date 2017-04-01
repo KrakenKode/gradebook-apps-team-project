@@ -1,12 +1,10 @@
 package controller;
 
 import java.awt.event.ActionEvent;
-
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
-
 import javax.swing.JFileChooser;
 import javax.swing.Popup;
 import javax.swing.SwingUtilities;
@@ -17,8 +15,6 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.*;
 import javax.swing.JTree;
-
-
 import model.*;
 import view.EditOptionView;
 import view.GradeBookView;
@@ -109,8 +105,30 @@ public class GradeBookController implements ActionListener {
 		public void mouseClicked(MouseEvent e) {
 			 if (SwingUtilities.isRightMouseButton(e)) {
 				 int row = tree.getClosestRowForLocation(e.getX(), e.getY());
+				 if (row == -1) {return;}	// no node was selected
 				 tree.setSelectionRow(row);
-				 System.out.println(row);
+				 TreePath selPath = tree.getPathForLocation(e.getX(), e.getY());
+				 if (selPath == null) {return;}
+				 Object obj = model.determineTreeObject(selPath.getLastPathComponent().toString());
+				 if (obj instanceof Semester) {
+					 Semester sem = (Semester) obj;
+					 EditOptionView ev = new EditOptionView(view, "Add Course");
+					 String courseString = ev.addPopUp();
+					 if (courseString== null) {return;}
+					 Course newCourse = new Course(courseString);
+					 sem.addCourse(newCourse);
+					 view.updateTreeData(model.getSemesters());			
+					 ev.showSuccess("Success!");		 
+				 } else if (obj instanceof Course) {
+					 Course course = (Course) obj;
+					 EditOptionView ev = new EditOptionView(view, "Add Category");
+					 String categoryString = ev.addPopUp();
+					 if (categoryString == null) {return;}
+					 Category newCategory = new Category(categoryString);
+					 course.addCategory(newCategory);
+					 view.updateTreeData(model.getSemesters());			
+					 ev.showSuccess("Success!");
+				 }
 			 }
 		}
 

@@ -42,6 +42,30 @@ public class GradeBookModel {
 		semesters.add(sem);
 	}
 	
+	
+	public Object determineTreeObject(String objectName) {
+		Object obj = null;
+		
+		// if the name matches a semester return the semester
+		for(Semester sem: semesters) {
+			if (sem.getName().equals(objectName)) {
+				return sem;
+			}
+		}
+			
+		// if the name matches a course return the course
+		for(Semester sem: semesters) {
+			for(Course curr: sem.getCourses()) {
+				if (curr.getName().equals(objectName)) {
+					return curr;
+				}
+			}
+		}
+			
+		return obj;
+	}
+	
+	
 	public void makeTemplateSemesters() {
 		Semester template;
 		Category newCategory;
