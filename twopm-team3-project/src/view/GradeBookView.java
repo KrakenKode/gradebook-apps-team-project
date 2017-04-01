@@ -161,6 +161,7 @@ public class GradeBookView extends JFrame{
 
 		JScrollPane coursepane = new JScrollPane(coursePanel);
 		mainpanel.add(coursepane, BorderLayout.CENTER);
+		this.revalidate();
 	}
 	
 	

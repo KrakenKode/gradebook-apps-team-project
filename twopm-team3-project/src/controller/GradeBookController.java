@@ -36,8 +36,6 @@ public class GradeBookController implements ActionListener {
 		this.model = model;
 		this.view = view;
 
-		
-
 		//TODO functions for adding classes to view
 		view.addMenuListener(new MenuListener());
 		
@@ -104,12 +102,10 @@ public class GradeBookController implements ActionListener {
 			String treeNode = (String) node.getUserObject();
 			if (treeNode == null) {return;}
 			if (node.isLeaf()) {
-				//view.setLable(treeNode);
 				Object obj = model.determineTreeObject(treeNode);
 				if( obj instanceof Course){
 					Course course = (Course) obj;
 					view.addCourseView(course);
-					System.out.println(treeNode);
 				}
 				
 			}
@@ -192,9 +188,12 @@ public class GradeBookController implements ActionListener {
 				currCourse.addCategory(newCategory);
 				view.updateTreeData(model.getSemesters());			
 				ev.showSuccess("Success!");
+				view.addCourseView(currCourse);
 			} else if(command.equals("Add Grade")){
 				NewGradeInputPopUp ngrade = new NewGradeInputPopUp(currCourse);
 				ngrade.newGradePopUp();
+				view.addCourseView(currCourse);
+
 			} else if (command.equals("Add Course")){
 				EditOptionView ev = new EditOptionView(view, "Add Course");
 				String courseString = ev.addPopUp();
