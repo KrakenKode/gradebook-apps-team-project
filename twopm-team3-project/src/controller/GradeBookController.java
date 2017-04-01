@@ -1,4 +1,5 @@
 package controller;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -11,6 +12,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.tree.DefaultMutableTreeNode;
 
 import model.GradeBookModel;
+import view.EditOptionView;
 import view.GradeBookView;
 
 public class GradeBookController implements ActionListener {
@@ -22,7 +24,7 @@ public class GradeBookController implements ActionListener {
 	public GradeBookController(GradeBookModel model, GradeBookView view) {
 		this.model = model;
 		this.view = view;
-
+		
 		//TODO functions for adding classes to view
 		view.addMenuListener(new MenuListener());
 		
@@ -63,6 +65,10 @@ public class GradeBookController implements ActionListener {
 				    model.setSaveFile(selectedFile.getAbsolutePath());
 				    model.saveFile();
 				}
+			}else if(command.equals("Add Semester")){
+				EditOptionView ev = new EditOptionView(view, "Add Semester");
+				String sem = ev.addView();
+				System.out.println(sem);
 			}else if( command.equals("Quit")){
 				System.exit(0);
 			}
