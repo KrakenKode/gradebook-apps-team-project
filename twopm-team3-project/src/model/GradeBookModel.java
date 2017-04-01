@@ -12,8 +12,6 @@ public class GradeBookModel {
 		semesters = new ArrayList<Semester>();
 		openFile = "defaultTemplate.ser";
 		saveFile = "defaultTemplate.ser";
-		Grade newGrade = new Grade("HW 1", 75, 100);
-		System.out.println(newGrade.gradeRun());
 		
 //		SaveOpenDriver.readSemesters(semesters, openFile);
 //		
