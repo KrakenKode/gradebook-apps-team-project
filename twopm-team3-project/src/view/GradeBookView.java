@@ -57,6 +57,7 @@ public class GradeBookView extends JFrame{
 		
 		//mainpanel.add(selected, BorderLayout.EAST);
 		this.setVisible(true);	
+
 	}
 	
 	
