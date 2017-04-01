@@ -27,7 +27,7 @@ public class GradeBookController implements ActionListener {
 		view.addMenuListener(new MenuListener());
 		
 		
-		view.addTreeData(model.getSemesters()); //load semester to view
+		view.initializeTreeData(model.getSemesters()); //load semester to view
 		view.addTreeListener(new TreeListener());
 	}
 	
@@ -46,7 +46,7 @@ public class GradeBookController implements ActionListener {
 				    //TODO open file using open class
 				    model.setOpenFile(selectedFile.getAbsolutePath());
 				    model.openFile();
-				    view.addTreeData(model.getSemesters());
+				    view.updateTreeData(model.getSemesters());
 				}
 			} else if (command.equals("Save")){
 				JFileChooser fileChooser = new JFileChooser();
