@@ -5,7 +5,6 @@ import java.awt.Dimension;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.HashMap;
-
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
@@ -81,15 +80,16 @@ public class TreeView {
 
 		treeModel.reload(root);
 	}
-	
-	
+
+
 	public void addSemesterNode(Semester sem) {
 		DefaultMutableTreeNode semester = new DefaultMutableTreeNode(sem.getName());
+		semesterMap.put(sem.getName(), semester);
 		root.add(semester);
 		treeModel.reload(root);
 	}
-	
-	
+
+
 	public void addCourseNode(Semester sem, Course course) {
 		//get the semester node from the hashmap
 		DefaultMutableTreeNode semester = semesterMap.get(sem.getName());	
