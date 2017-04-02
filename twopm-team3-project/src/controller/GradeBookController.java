@@ -58,7 +58,7 @@ public class GradeBookController implements ActionListener {
 					File selectedFile = fileChooser.getSelectedFile();
 					model.setOpenFile(selectedFile.getAbsolutePath());
 					model.openFile();
-					view.getTreeView().updateTreeData(model.getSemesters());
+					view.getTreeView().rebuildTree(model.getSemesters());
 				}
 			} else if (command.equals("Save")){
 				JFileChooser fileChooser = new JFileChooser();
@@ -77,8 +77,7 @@ public class GradeBookController implements ActionListener {
 				if (semString== null) {return;}
 				Semester sem = new Semester(semString);
 				model.addSemester(sem);
-				view.getTreeView().updateTreeData(model.getSemesters());
-				ev.showSuccess("Success!");
+				view.getTreeView().addSemester(sem);
 			}else if( command.equals("Quit")){
 				System.exit(0);
 			}
@@ -146,8 +145,7 @@ public class GradeBookController implements ActionListener {
 					gradeadd.setText("Add Grade");
 					gradeadd.addActionListener(ra);
 					rc.add(gradeadd);
-					//					 rc.show(e.getComponent(), e.getX(), e.getY());
-
+					//rc.show(e.getComponent(), e.getX(), e.getY());
 					rc.addSeparator();
 
 					JMenuItem gradeRemove = new JMenuItem();
@@ -202,9 +200,6 @@ public class GradeBookController implements ActionListener {
 				if (categoryString == null) {return;}
 				Category newCategory = new Category(categoryString);
 				currCourse.addCategory(newCategory);
-				view.getTreeView().updateTreeData(model.getSemesters());
-				ev.showSuccess("Success!");
-				//view.addCourseView(currCourse); no longer needed
 				view.addCategoryView(newCategory.getName());
 			} else if(command.equals("Add Grade")){
 				NewGradeInputPopUp ngrade = new NewGradeInputPopUp(currCourse);
@@ -217,8 +212,7 @@ public class GradeBookController implements ActionListener {
 				if (courseString== null) {return;}
 				Course newCourse = new Course(courseString);
 				currSem.addCourse(newCourse);
-				view.getTreeView().updateTreeData(model.getSemesters());
-				ev.showSuccess("Success!");
+				view.getTreeView().addCourse(currSem, newCourse);
 			} else if (command.equals("Remove Grade")){
 				DeleteGradePopUp ngrade = new DeleteGradePopUp(currCourse);
 				ngrade.deleteGradePopUp();
