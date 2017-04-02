@@ -45,7 +45,10 @@ public class ReportPopUp {
 			Object obj = comboBox.getSelectedItem();
 			if (obj instanceof Semester) {
 				Semester semCard = (Semester) obj;
-				
+				SemesterReportCard chart = new SemesterReportCard(semCard);
+			    chart.pack( );        
+			    RefineryUtilities.centerFrameOnScreen( chart );        
+			    chart.setVisible( true );
 			}
 
 		}
