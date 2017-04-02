@@ -14,7 +14,7 @@ public class Grade implements Serializable {
 		this.maxPoints = maxPoints;
 		}
 	
-//	Returns grade as a double in %
+	//Returns grade as a double in %
 	public double gradeRun(){
 		double total = 0;
 		total = (double) getPoints() / (double) getMaxPoints();
