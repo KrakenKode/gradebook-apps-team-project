@@ -11,7 +11,6 @@ import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeSelectionModel;
-
 import model.Course;
 import model.Semester;
 
@@ -22,12 +21,12 @@ public class TreeView {
 	private DefaultMutableTreeNode root;
 	private DefaultTreeModel treeModel;
 
-	
+
 	public TreeView(JPanel mainpanel) {
 		this.mainpanel = mainpanel;
 	}
 
-	
+
 	public void initializeTreeData(ArrayList<Semester> semdata) {
 
 		root = new DefaultMutableTreeNode("Root");
@@ -57,11 +56,11 @@ public class TreeView {
 		mainpanel.add(treeScrollPane, BorderLayout.WEST);
 
 	}
-	
-	
+
+
 	public void updateTreeData(ArrayList<Semester> semdata) {
 		root.removeAllChildren();
-		
+
 		//build semester and add to root
 		for(Semester sem : semdata){
 			DefaultMutableTreeNode semester = new DefaultMutableTreeNode(sem.getName());
@@ -72,17 +71,17 @@ public class TreeView {
 			}
 			root.add(semester);
 		}
-				
+
 		treeModel.reload(root);
 	}
-	
-	
+
+
 	public void addTreeListener(TreeSelectionListener tsl, MouseListener l) {	
 		tree.addTreeSelectionListener(tsl);
 		tree.addMouseListener(l);
 	}
 
-	
+
 	public JTree getTree() {
 		return tree;
 	}
