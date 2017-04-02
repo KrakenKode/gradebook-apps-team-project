@@ -27,6 +27,8 @@ public class GradeBookView extends JFrame{
 	private JMenuItem openMenu;
 	private JMenuItem quitMenu;
 	private JMenuItem addSemester;
+	private JMenuItem semesterReport;
+	private JMenuItem courseReport;
 	private JLabel courseLbl;
 	private JLabel totalScore;
 	private JLabel pcntScore;
@@ -97,7 +99,16 @@ public class GradeBookView extends JFrame{
 		menuBar.add(editMenu);
 		
 		addSemester = new JMenuItem("Add Semester");
-		editMenu.add(addSemester);	
+		editMenu.add(addSemester);
+		
+		//Build the report menu
+		JMenu reportMenu = new JMenu("Report");
+		menuBar.add(reportMenu);
+		
+		semesterReport = new JMenuItem("Semester Report");
+		courseReport = new JMenuItem("Course Report");
+		reportMenu.add(semesterReport);
+		reportMenu.add(courseReport);
 		
 		mainpanel.add(menuBar, BorderLayout.NORTH);			
 	}
