@@ -60,6 +60,36 @@ public class NewGradeInputPopUp {
 		}		
 	}
 	
+	public void deleteGradePopUp(){
+		JPanel panel = new JPanel(new GridLayout(0, 2, 20, 20));
+		
+		DefaultComboBoxModel<Grade> gradeModel = new DefaultComboBoxModel<Grade>();
+
+		for(Category cat : course.getCategories()) {
+			for(Grade grade : cat.getGrades()){
+				gradeModel.addElement(grade); 
+			}
+			
+		}
+		
+		JComboBox<Grade> comboBox = new JComboBox<Grade>(gradeModel);
+
+		panel.add(new JLabel("Grade to Delete:"));
+		panel.add(comboBox);
+
+		int result = JOptionPane.showConfirmDialog(null, panel, 
+				"Remove Grade Information", JOptionPane.OK_CANCEL_OPTION);
+		
+		if (result == JOptionPane.OK_OPTION) {
+			System.out.println("Category: " + comboBox.getSelectedItem());
+			
+			Object obj = comboBox.getSelectedItem();
+			if (obj instanceof Category) {
+				((Category) obj).removeGrade(grade);		// remove the grade from category
+			}
+		}		
+	}
+	
 	public Grade getGrade(){
 		return this.grade;
 	}

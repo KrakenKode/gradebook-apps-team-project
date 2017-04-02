@@ -22,6 +22,10 @@ public class Grade implements Serializable {
 		return total;
 	}
 	
+	@Override
+	public String toString() {
+		return name;
+	}
 	/////////////Getters and Setters///////////////////
 	
 	public String getName() {

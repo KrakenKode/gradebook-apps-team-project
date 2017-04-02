@@ -144,7 +144,16 @@ public class GradeBookController implements ActionListener {
 					 gradeadd.setText("Add Grade");
 					 gradeadd.addActionListener(ra);
 					 rc.add(gradeadd);
+//					 rc.show(e.getComponent(), e.getX(), e.getY());
+					 
+					 rc.addSeparator();
+					 
+					 JMenuItem gradeRemove = new JMenuItem();
+					 gradeRemove.setText("Remove Grade");
+					 gradeRemove.addActionListener(ra);
+					 rc.add(gradeRemove);
 					 rc.show(e.getComponent(), e.getX(), e.getY());
+					
 					 
 				 }
 			 }
@@ -204,6 +213,11 @@ public class GradeBookController implements ActionListener {
 				currSem.addCourse(newCourse);
 				view.updateTreeData(model.getSemesters());			
 				ev.showSuccess("Success!");
+			}else if (command.equals("Remove Grade")){
+				NewGradeInputPopUp ngrade = new NewGradeInputPopUp(currCourse);
+				ngrade.deleteGradePopUp();
+				view.addCourseView(currCourse);
+				System.out.println(command);
 			}
 		}
 	}
