@@ -83,14 +83,14 @@ public class TreeView {
 	}
 	
 	
-	public void addSemester(Semester sem) {
+	public void addSemesterNode(Semester sem) {
 		DefaultMutableTreeNode semester = new DefaultMutableTreeNode(sem.getName());
 		root.add(semester);
 		treeModel.reload(root);
 	}
 	
 	
-	public void addCourse(Semester sem, Course course) {
+	public void addCourseNode(Semester sem, Course course) {
 		//get the semester node from the hashmap
 		DefaultMutableTreeNode semester = semesterMap.get(sem.getName());	
 		semester.add(new DefaultMutableTreeNode(course.getName()));

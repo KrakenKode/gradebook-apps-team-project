@@ -77,7 +77,7 @@ public class GradeBookController implements ActionListener {
 				if (semString== null) {return;}
 				Semester sem = new Semester(semString);
 				model.addSemester(sem);
-				view.getTreeView().addSemester(sem);
+				view.getTreeView().addSemesterNode(sem);
 			}else if( command.equals("Quit")){
 				System.exit(0);
 			}
@@ -212,7 +212,7 @@ public class GradeBookController implements ActionListener {
 				if (courseString== null) {return;}
 				Course newCourse = new Course(courseString);
 				currSem.addCourse(newCourse);
-				view.getTreeView().addCourse(currSem, newCourse);
+				view.getTreeView().addCourseNode(currSem, newCourse);
 			} else if (command.equals("Remove Grade")){
 				DeleteGradePopUp ngrade = new DeleteGradePopUp(currCourse);
 				ngrade.deleteGradePopUp();
