@@ -13,12 +13,12 @@ public class GradeBookModel {
 		openFile = "defaultTemplate.ser";
 		saveFile = "defaultTemplate.ser";
 
-//		SaveOpenDriver.readSemesters(semesters, openFile);
-//		
-//		if(semesters.isEmpty()) {
-//			makeTemplateSemesters();
-//			SaveOpenDriver.saveSemesters(semesters, openFile);
-//		}
+		SaveOpenDriver.readSemesters(semesters, openFile);
+		
+		if(semesters.isEmpty()) {
+			makeTemplateSemesters();
+			SaveOpenDriver.saveSemesters(semesters, openFile);
+		}
 	}
 	
 	public void openFile() {

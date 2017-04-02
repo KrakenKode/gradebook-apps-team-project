@@ -10,6 +10,7 @@ public class NewGradeInputPopUp {
 
 
 	private Course course;
+	private Grade grade;
 	
 	public NewGradeInputPopUp(Course course) {
 		this.course = course;
@@ -48,7 +49,7 @@ public class NewGradeInputPopUp {
 			System.out.println("Grade: " + gradeField.getText());
 			System.out.println("Max Grade: " + maxField.getText());
 					
-			Grade grade = new Grade(nameField.getText(), 
+			this.grade = new Grade(nameField.getText(), 
 					Integer.parseInt(gradeField.getText()), 
 					Integer.parseInt(maxField.getText()));
 			
@@ -57,6 +58,10 @@ public class NewGradeInputPopUp {
 				((Category) obj).addGrade(grade);		// add the grade to category
 			}
 		}		
+	}
+	
+	public Grade getGrade(){
+		return this.grade;
 	}
 	
 	

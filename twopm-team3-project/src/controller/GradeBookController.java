@@ -188,12 +188,14 @@ public class GradeBookController implements ActionListener {
 				currCourse.addCategory(newCategory);
 				view.updateTreeData(model.getSemesters());			
 				ev.showSuccess("Success!");
-				view.addCourseView(currCourse);
+				//view.addCourseView(currCourse); no longer needed
+				view.addCategoryView(newCategory.getName());
 			} else if(command.equals("Add Grade")){
 				NewGradeInputPopUp ngrade = new NewGradeInputPopUp(currCourse);
 				ngrade.newGradePopUp();
 				view.addCourseView(currCourse);
-
+				//view.addGradeView(ngrade.getGrade().getName(), ngrade.getGrade().gradeRun()); //doesn't work
+				
 			} else if (command.equals("Add Course")){
 				EditOptionView ev = new EditOptionView(view, "Add Course");
 				String courseString = ev.addPopUp();
