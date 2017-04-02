@@ -28,8 +28,6 @@ public class GradeBookView extends JFrame{
 	private JMenuItem quitMenu;
 	private JMenuItem addSemester;
 	private JLabel courseLbl;
-	private JLabel totalScore;
-	private JLabel pcntScore;
 	private TitledBorder tlb;
 	private JPanel totalPanel;
 	private JPanel categoryPanel;
@@ -122,6 +120,7 @@ public class GradeBookView extends JFrame{
 		totalBox.add(Box.createHorizontalStrut(100));
 		totalBox.add(new JLabel("Current Grade"));
 		totalBox.add(Box.createHorizontalStrut(100));
+		
 		String[] letterList = { "Desired","A", "B", "C", "D", "E" };
 
 		JComboBox gradeList = new JComboBox(letterList);
@@ -151,9 +150,13 @@ public class GradeBookView extends JFrame{
 		}
 
 		coursepane = new JScrollPane(coursePanel);
-		//coursepane.setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_NEVER);
+//		coursepane.setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_NEVER);
+//		coursepane.setVerticalScrollBarPolicy(VERTICAL_SCROLLBAR_AS_NEEDED);
 		mainpanel.add(coursepane);
 		this.revalidate();
+	}
+	public void addGradeView1(String gradeName, Double grade){
+		
 	}
 	
 	
@@ -180,8 +183,9 @@ public class GradeBookView extends JFrame{
 		this.revalidate();
 	}
 	
+
 	
-	public void addCategoryView(String category) {
+	public void addCategoryView(String category){
 		categoryPanel = new JPanel(new GridLayout(1,3,2,2));
 		categoryPanel.setBackground(Color.lightGray);
 		
