@@ -66,7 +66,6 @@ public class GradeBookView extends JFrame{
 		mainpanel.setBorder(new EmptyBorder(2, 2, 0, 2));
 			
 		addMenu();
-		//addCourseView();
 		
 		//mainpanel.add(selected, BorderLayout.EAST);
 		this.setVisible(true);	
