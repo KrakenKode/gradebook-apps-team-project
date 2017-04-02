@@ -17,6 +17,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.*;
 import javax.swing.JTree;
 import model.*;
+import view.DeleteGradePopUp;
 import view.EditOptionView;
 import view.GradeBookView;
 import view.NewGradeInputPopUp;
@@ -214,8 +215,8 @@ public class GradeBookController implements ActionListener {
 				currSem.addCourse(newCourse);
 				view.updateTreeData(model.getSemesters());			
 				ev.showSuccess("Success!");
-			}else if (command.equals("Remove Grade")){
-				NewGradeInputPopUp ngrade = new NewGradeInputPopUp(currCourse);
+			} else if (command.equals("Remove Grade")){
+				DeleteGradePopUp ngrade = new DeleteGradePopUp(currCourse);
 				ngrade.deleteGradePopUp();
 				view.addCourseView(currCourse);
 				System.out.println(command);
@@ -227,8 +228,7 @@ public class GradeBookController implements ActionListener {
 	class ButtonListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			String command = e.getActionCommand();
-			
+			String command = e.getActionCommand();			
 		}
 	}
 

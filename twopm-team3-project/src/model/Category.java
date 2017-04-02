@@ -39,6 +39,7 @@ public class Category implements Serializable {
 		total = total * 100;
 		return total;
 	}
+	
 	/////////////Getters and Setters///////////////////
 
 	public String getName() {
