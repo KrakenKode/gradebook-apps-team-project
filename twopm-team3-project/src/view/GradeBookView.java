@@ -2,17 +2,10 @@ package view;
 
 import model.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseListener;
 import java.util.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
-import javax.swing.event.TreeSelectionListener;
-import javax.swing.tree.*;
-
 
 
 public class GradeBookView extends JFrame{
@@ -20,12 +13,6 @@ public class GradeBookView extends JFrame{
 	private JPanel mainpanel;
 	private JPanel coursePanel;
 	private JPanel summaryPanel;
-	//	private JMenuItem saveMenu;
-	//	private JMenuItem openMenu;
-	//	private JMenuItem quitMenu;
-	//	private JMenuItem addSemester;
-	//	private JMenuItem semesterReport;
-	//	private JMenuItem courseReport;
 	private JLabel courseLbl;
 	private JLabel totalScore;
 	private JLabel pcntScore;
@@ -42,7 +29,6 @@ public class GradeBookView extends JFrame{
 	private Box totalBox;
 	private TreeView treeView;
 	private MenuView menuView;
-
 
 
 	public GradeBookView() {
