@@ -5,36 +5,28 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.*;
 import javax.swing.*;
-import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.*;
-import static javax.swing.ScrollPaneConstants.*;
 
 
 
 public class GradeBookView extends JFrame{
 
 	private JTree tree;
-	private JScrollPane treeView;
 	private JPanel mainpanel;
 	private JPanel coursePanel;
 	private JPanel summaryPanel;
 	private DefaultMutableTreeNode root;
 	private DefaultTreeModel treeModel;
-	private JMenuBar menuBar;
-	private JMenu fileMenu;
 	private JMenuItem saveMenu;
 	private JMenuItem openMenu;
 	private JMenuItem quitMenu;
-	private JMenu editMenu;
 	private JMenuItem addSemester;
-	private Dimension scrolldim;
 	private JLabel courseLbl;
 	private JLabel totalScore;
 	private JLabel pcntScore;
@@ -52,7 +44,7 @@ public class GradeBookView extends JFrame{
 	
 	
 	
-	public GradeBookView(){
+	public GradeBookView() {
 		super("GradeBook Management System");
 
 		//window opens in middle of screen
@@ -73,13 +65,13 @@ public class GradeBookView extends JFrame{
 	}
 	
 	
-	public void addMenu(){
+	public void addMenu() {
 
 		//Create the menu bar.
-		menuBar = new JMenuBar();
+		JMenuBar menuBar = new JMenuBar();
 
 		//Build the file menu.
-		fileMenu = new JMenu("File");
+		JMenu fileMenu = new JMenu("File");
 		
 		menuBar.add(fileMenu);
 				
@@ -101,7 +93,7 @@ public class GradeBookView extends JFrame{
 		fileMenu.add(quitMenu);
 		
 		//Build the edit menu.
-		editMenu = new JMenu("Edit");
+		JMenu editMenu = new JMenu("Edit");
 		menuBar.add(editMenu);
 		
 		addSemester = new JMenuItem("Add Semester");
@@ -111,14 +103,13 @@ public class GradeBookView extends JFrame{
 	}
 	
 	
-	public void addCourseView(Course course){
+	public void addCourseView(Course course) {
 		
 		//title and grade summary 
 		courseLbl = new JLabel(course.getName());
 		coursePanel = new JPanel(new GridLayout(0, 1, 2, 2));
 		courseLbl.setFont(new Font(courseLbl.getFont().getName(), Font.PLAIN, 18));
 		courseLbl.setAlignmentX(Component.CENTER_ALIGNMENT);
-
 
 		summaryPanel = new JPanel(new GridLayout(0 , 1, 0, 0));
 		summaryPanel.setBackground(Color.RED);
@@ -147,8 +138,7 @@ public class GradeBookView extends JFrame{
 		summaryPanel.add(summaryBox, BorderLayout.CENTER);
 		coursePanel.add(summaryPanel);
 		
-		//category selection
-		
+		//category selection	
 		ArrayList<Category> categorydata = course.getCategories();
 		for(Category category : categorydata ){
 			this.addCategoryView(category.getName());
@@ -166,7 +156,8 @@ public class GradeBookView extends JFrame{
 		this.revalidate();
 	}
 	
-	public void addGradeView(String gradeName, Double grade){
+	
+	public void addGradeView(String gradeName, Double grade) {
 		categoryName = new JLabel(gradeName);
 
 		run1 = new JLabel(Math.round(grade*100.0)/100.0 + "%");
@@ -189,7 +180,8 @@ public class GradeBookView extends JFrame{
 		this.revalidate();
 	}
 	
-	public void addCategoryView(String category){
+	
+	public void addCategoryView(String category) {
 		categoryPanel = new JPanel(new GridLayout(1,3,2,2));
 		categoryPanel.setBackground(Color.lightGray);
 		
@@ -218,12 +210,12 @@ public class GradeBookView extends JFrame{
 	}
 	
 	
-	public void initializeTreeData(ArrayList<Semester> semdata){
+	public void initializeTreeData(ArrayList<Semester> semdata) {
 		
 		root = new DefaultMutableTreeNode("Root");
 		treeModel = new DefaultTreeModel(root);
 		tree = new JTree(treeModel);
-		treeView = new JScrollPane(tree);
+		JScrollPane treeView = new JScrollPane(tree);
 		
 		//build semester and add to root
 		for(Semester sem : semdata){
@@ -241,7 +233,7 @@ public class GradeBookView extends JFrame{
 		tree.setRootVisible(false);
 		tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
 				
-		scrolldim = treeView.getPreferredSize();
+		Dimension scrolldim = treeView.getPreferredSize();
 		scrolldim.width = 200;
 		treeView.setPreferredSize(scrolldim);
 		this.add(mainpanel);
@@ -263,19 +255,18 @@ public class GradeBookView extends JFrame{
 			}
 			root.add(semester);
 		}
-		
-		
+				
 		treeModel.reload(root);
 	}
 	
 	
-	public void addTreeListener(TreeSelectionListener tsl, MouseListener l){
-		
+	public void addTreeListener(TreeSelectionListener tsl, MouseListener l) {	
 		tree.addTreeSelectionListener(tsl);
-		tree.addMouseListener(l);;
+		tree.addMouseListener(l);
 	}
-	public void addMenuListener(ActionListener e){		
 	
+	
+	public void addMenuListener(ActionListener e) {		
 		quitMenu.addActionListener(e);
 		saveMenu.addActionListener(e);
 		openMenu.addActionListener(e);	
@@ -283,12 +274,12 @@ public class GradeBookView extends JFrame{
 	}
 	
 	
-	public JTree getTree(){
+	public JTree getTree() {
 		return tree;
 	}
 	
 	
-	public void setLable(String lbl){
+	public void setLabel(String lbl) {
 		courseLbl.setText(lbl);
 	}
 

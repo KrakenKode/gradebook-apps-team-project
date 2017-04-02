@@ -8,10 +8,7 @@ import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
-import javax.swing.Popup;
 import javax.swing.SwingUtilities;
-import javax.swing.event.PopupMenuEvent;
-import javax.swing.event.PopupMenuListener;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.filechooser.FileFilter;
@@ -37,11 +34,11 @@ public class GradeBookController implements ActionListener {
 		this.view = view;
 
 		//TODO functions for adding classes to view
-		view.addMenuListener(new MenuListener());
-		
+		view.addMenuListener(new MenuListener());	
 		view.initializeTreeData(model.getSemesters()); //load semester to view
 		view.addTreeListener(new TreeListener(), new TreeListener());
 	}
+	
 	
 	class MenuListener implements ActionListener {
 		@Override
@@ -78,12 +75,12 @@ public class GradeBookController implements ActionListener {
 				model.addSemester(sem);
 				view.updateTreeData(model.getSemesters());			
 				ev.showSuccess("Success!");
-
 			}else if( command.equals("Quit")){
 				System.exit(0);
 			}
 		}
 	}
+	
 	
 	class TreeListener implements TreeSelectionListener, MouseListener{
 		JTree tree = view.getTree();
@@ -93,12 +90,11 @@ public class GradeBookController implements ActionListener {
 			Object treeObject = view.getTree().getLastSelectedPathComponent();
 			
 			if (treeObject == null) {return;}
-			// Cast the Object into a DefaultMutableTreeNode
 			
+			// Cast the Object into a DefaultMutableTreeNode		
 			DefaultMutableTreeNode node = (DefaultMutableTreeNode) treeObject;
 			
-			// Returns the object stored in this node and casts it to a string
-				
+			// Returns the object stored in this node and casts it to a string			
 			String treeNode = (String) node.getUserObject();
 			if (treeNode == null) {return;}
 			if (node.isLeaf()) {
@@ -111,6 +107,7 @@ public class GradeBookController implements ActionListener {
 			}
 		}
 
+		
 		@Override
 		public void mouseClicked(MouseEvent e) {
 			 if (SwingUtilities.isRightMouseButton(e)) {
@@ -159,24 +156,28 @@ public class GradeBookController implements ActionListener {
 			 }
 		}
 		
+		
 		@Override
 		public void mousePressed(MouseEvent e) {
 			// TODO Auto-generated method stub
 			
 		}
 
+		
 		@Override
 		public void mouseReleased(MouseEvent e) {
 			// TODO Auto-generated method stub
 			
 		}
 
+		
 		@Override
 		public void mouseEntered(MouseEvent e) {
 			// TODO Auto-generated method stub
 			
 		}
 
+		
 		@Override
 		public void mouseExited(MouseEvent e) {
 			// TODO Auto-generated method stub
@@ -184,7 +185,8 @@ public class GradeBookController implements ActionListener {
 		}		
 	}
 	
-	class JPopupMenuListener implements ActionListener{
+	
+	class JPopupMenuListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -203,8 +205,7 @@ public class GradeBookController implements ActionListener {
 				NewGradeInputPopUp ngrade = new NewGradeInputPopUp(currCourse);
 				ngrade.newGradePopUp();
 				view.addCourseView(currCourse);
-				//view.addGradeView(ngrade.getGrade().getName(), ngrade.getGrade().gradeRun()); //doesn't work
-				
+				//view.addGradeView(ngrade.getGrade().getName(), ngrade.getGrade().gradeRun()); //doesn't work			
 			} else if (command.equals("Add Course")){
 				EditOptionView ev = new EditOptionView(view, "Add Course");
 				String courseString = ev.addPopUp();
@@ -231,6 +232,7 @@ public class GradeBookController implements ActionListener {
 		}
 	}
 
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO 
