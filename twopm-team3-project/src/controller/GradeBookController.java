@@ -14,33 +14,40 @@ import javax.swing.event.TreeSelectionListener;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.tree.DefaultMutableTreeNode;
+
+import org.jfree.ui.RefineryUtilities;
+
 import javax.swing.tree.*;
 import javax.swing.JTree;
 import model.*;
+import view.CourseReportCard;
 import view.DeleteGradePopUp;
 import view.EditOptionView;
 import view.GradeBookView;
 import view.NewGradeInputPopUp;
+import view.ReportPopUp;
 
 public class GradeBookController implements ActionListener {
-	
+
 	private GradeBookView view;
 	private GradeBookModel model;
 	private Course currCourse;
 	private Semester currSem;
-	
+
 
 	public GradeBookController(GradeBookModel model, GradeBookView view) {
 		this.model = model;
 		this.view = view;
 
-		//TODO functions for adding classes to view
-		view.addMenuListener(new MenuListener());	
-		view.initializeTreeData(model.getSemesters()); //load semester to view
-		view.addTreeListener(new TreeListener(), new TreeListener());
+		view.getMenuView().addMenuListener(new MenuListener());
+
+		//set up the treeView
+		view.getTreeView().initializeTreeData(model.getSemesters());
+		view.getTreeView().addTreeListener(new TreeListener(), new TreeListener());		
+		
 	}
-	
-	
+
+
 	class MenuListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -52,10 +59,10 @@ public class GradeBookController implements ActionListener {
 				fileChooser.setFileFilter(filter);
 				int result = fileChooser.showOpenDialog(null);
 				if (result == JFileChooser.APPROVE_OPTION) {
-				    File selectedFile = fileChooser.getSelectedFile();
-				    model.setOpenFile(selectedFile.getAbsolutePath());
-				    model.openFile();
-				    view.updateTreeData(model.getSemesters());
+					File selectedFile = fileChooser.getSelectedFile();
+					model.setOpenFile(selectedFile.getAbsolutePath());
+					model.openFile();
+					view.getTreeView().updateTreeData(model.getSemesters());
 				}
 			} else if (command.equals("Save")){
 				JFileChooser fileChooser = new JFileChooser();
@@ -64,9 +71,9 @@ public class GradeBookController implements ActionListener {
 				fileChooser.setFileFilter(filter);
 				int result = fileChooser.showSaveDialog(null);
 				if (result == JFileChooser.APPROVE_OPTION) {
-				    File selectedFile = fileChooser.getSelectedFile();
-				    model.setSaveFile(selectedFile.getAbsolutePath());
-				    model.saveFile();
+					File selectedFile = fileChooser.getSelectedFile();
+					model.setSaveFile(selectedFile.getAbsolutePath());
+					model.saveFile();
 				}
 			}else if(command.equals("Add Semester")){
 				EditOptionView ev = new EditOptionView(view, "Add Semester");
@@ -74,27 +81,35 @@ public class GradeBookController implements ActionListener {
 				if (semString== null) {return;}
 				Semester sem = new Semester(semString);
 				model.addSemester(sem);
-				view.updateTreeData(model.getSemesters());			
+				view.getTreeView().updateTreeData(model.getSemesters());
 				ev.showSuccess("Success!");
-			}else if( command.equals("Quit")){
+			}else if(command.equals("Semester Report")){
+				ReportPopUp report = new ReportPopUp(model);
+				report.SemesterPopUp();
+			}
+			else if(command.equals("Course Report")){
+				ReportPopUp report = new ReportPopUp(model);
+				report.CoursePopUp();
+			}
+			else if( command.equals("Quit")){
 				System.exit(0);
 			}
 		}
 	}
-	
-	
-	class TreeListener implements TreeSelectionListener, MouseListener{
-		JTree tree = view.getTree();
+
+
+	class TreeListener implements TreeSelectionListener, MouseListener {
+		JTree tree = view.getTreeView().getTree();
 		@Override
 		public void valueChanged(TreeSelectionEvent e) {
-			
-			Object treeObject = view.getTree().getLastSelectedPathComponent();
-			
+
+			Object treeObject = tree.getLastSelectedPathComponent();
+
 			if (treeObject == null) {return;}
-			
+
 			// Cast the Object into a DefaultMutableTreeNode		
 			DefaultMutableTreeNode node = (DefaultMutableTreeNode) treeObject;
-			
+
 			// Returns the object stored in this node and casts it to a string			
 			String treeNode = (String) node.getUserObject();
 			if (treeNode == null) {return;}
@@ -104,89 +119,90 @@ public class GradeBookController implements ActionListener {
 					Course course = (Course) obj;
 					view.addCourseView(course);
 				}
-				
+
 			}
 		}
 
-		
+
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			 if (SwingUtilities.isRightMouseButton(e)) {
-				 int row = tree.getClosestRowForLocation(e.getX(), e.getY());
-				 if (row == -1) {return;}	// no node was selected
-				 tree.setSelectionRow(row);
-				 TreePath selPath = tree.getPathForLocation(e.getX(), e.getY());
-				 if (selPath == null) {return;}
-				 Object obj = model.determineTreeObject(selPath.getLastPathComponent().toString()); //get the object mouse was closest to
-				 ActionListener ra = new JPopupMenuListener();
-				 //if the object was a semester object
-				 if (obj instanceof Semester) {
-					 //Make JPopupMenu for right click context
-					 currSem = (Semester) obj;
-					 JPopupMenu rc = new JPopupMenu();
-					 JMenuItem couradd = new JMenuItem();
-					 couradd.setText("Add Course");
-					 couradd.addActionListener(ra);
-					 rc.add(couradd);
-					 rc.show(e.getComponent(), e.getX(), e.getY());
-				 //if the object was a course object
-				 } else if (obj instanceof Course) {
-					 //Make JPopupMenu for right click context
-					 currCourse = (Course) obj;
-					 JPopupMenu rc = new JPopupMenu();
-					 JMenuItem catadd = new JMenuItem();
-					 catadd.setText("Add Category");
-					 catadd.addActionListener(ra);
-					 rc.add(catadd);
-					 JMenuItem gradeadd = new JMenuItem();
-					 gradeadd.setText("Add Grade");
-					 gradeadd.addActionListener(ra);
-					 rc.add(gradeadd);
-//					 rc.show(e.getComponent(), e.getX(), e.getY());
-					 
-					 rc.addSeparator();
-					 
-					 JMenuItem gradeRemove = new JMenuItem();
-					 gradeRemove.setText("Remove Grade");
-					 gradeRemove.addActionListener(ra);
-					 rc.add(gradeRemove);
-					 rc.show(e.getComponent(), e.getX(), e.getY());
-					
-					 
-				 }
-			 }
+			if (SwingUtilities.isRightMouseButton(e)) {
+				int row = tree.getClosestRowForLocation(e.getX(), e.getY());
+				if (row == -1) {return;}	// no node was selected
+				tree.setSelectionRow(row);
+				TreePath selPath = tree.getPathForLocation(e.getX(), e.getY());
+				if (selPath == null) {return;}
+				//get the object mouse was closest to
+				Object obj = model.determineTreeObject(selPath.getLastPathComponent().toString()); 
+				ActionListener ra = new JPopupMenuListener();
+				//if the object was a semester object
+				if (obj instanceof Semester) {
+					//Make JPopupMenu for right click context
+					currSem = (Semester) obj;
+					JPopupMenu rc = new JPopupMenu();
+					JMenuItem couradd = new JMenuItem();
+					couradd.setText("Add Course");
+					couradd.addActionListener(ra);
+					rc.add(couradd);
+					rc.show(e.getComponent(), e.getX(), e.getY());
+					//if the object was a course object
+				} else if (obj instanceof Course) {
+					//Make JPopupMenu for right click context
+					currCourse = (Course) obj;
+					JPopupMenu rc = new JPopupMenu();
+					JMenuItem catadd = new JMenuItem();
+					catadd.setText("Add Category");
+					catadd.addActionListener(ra);
+					rc.add(catadd);
+					JMenuItem gradeadd = new JMenuItem();
+					gradeadd.setText("Add Grade");
+					gradeadd.addActionListener(ra);
+					rc.add(gradeadd);
+					//					 rc.show(e.getComponent(), e.getX(), e.getY());
+
+					rc.addSeparator();
+
+					JMenuItem gradeRemove = new JMenuItem();
+					gradeRemove.setText("Remove Grade");
+					gradeRemove.addActionListener(ra);
+					rc.add(gradeRemove);
+					rc.show(e.getComponent(), e.getX(), e.getY());
+
+
+				}
+			}
 		}
-		
-		
+
+
 		@Override
 		public void mousePressed(MouseEvent e) {
 			// TODO Auto-generated method stub
-			
+
 		}
 
-		
+
 		@Override
 		public void mouseReleased(MouseEvent e) {
 			// TODO Auto-generated method stub
-			
+
 		}
 
-		
+
 		@Override
 		public void mouseEntered(MouseEvent e) {
 			// TODO Auto-generated method stub
-			
+
 		}
 
-		
+
 		@Override
 		public void mouseExited(MouseEvent e) {
 			// TODO Auto-generated method stub
-			
+
 		}		
 	}
-	
-	
+
+
 	class JPopupMenuListener implements ActionListener {
 
 		@Override
@@ -198,7 +214,7 @@ public class GradeBookController implements ActionListener {
 				if (categoryString == null) {return;}
 				Category newCategory = new Category(categoryString);
 				currCourse.addCategory(newCategory);
-				view.updateTreeData(model.getSemesters());			
+				view.getTreeView().updateTreeData(model.getSemesters());
 				ev.showSuccess("Success!");
 				//view.addCourseView(currCourse); no longer needed
 				view.addCategoryView(newCategory.getName());
@@ -213,7 +229,7 @@ public class GradeBookController implements ActionListener {
 				if (courseString== null) {return;}
 				Course newCourse = new Course(courseString);
 				currSem.addCourse(newCourse);
-				view.updateTreeData(model.getSemesters());			
+				view.getTreeView().updateTreeData(model.getSemesters());
 				ev.showSuccess("Success!");
 			} else if (command.equals("Remove Grade")){
 				DeleteGradePopUp ngrade = new DeleteGradePopUp(currCourse);
@@ -223,8 +239,8 @@ public class GradeBookController implements ActionListener {
 			}
 		}
 	}
-	
-	
+
+
 	class ButtonListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -232,12 +248,12 @@ public class GradeBookController implements ActionListener {
 		}
 	}
 
-	
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO 
-		
+
 	}
-	
-	
+
+
 }

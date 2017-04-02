@@ -40,8 +40,10 @@ public class Course implements Serializable {
 		percentage = (total/max) * 100;
 	}
 	
-	
-	
+	@Override
+	public String toString() {
+		return name;
+	}
 	
 	/////////////Getters and Setters///////////////////
 	
