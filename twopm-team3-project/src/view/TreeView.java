@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
@@ -20,6 +22,7 @@ public class TreeView {
 	private JTree tree;
 	private DefaultMutableTreeNode root;
 	private DefaultTreeModel treeModel;
+	private HashMap<String, DefaultMutableTreeNode> semesterMap;
 
 
 	public TreeView(JPanel mainpanel) {
@@ -33,6 +36,7 @@ public class TreeView {
 		treeModel = new DefaultTreeModel(root);
 		tree = new JTree(treeModel);
 		JScrollPane treeScrollPane = new JScrollPane(tree);
+		semesterMap = new HashMap<String, DefaultMutableTreeNode>();
 
 		//build semester and add to root
 		for(Semester sem : semdata){
@@ -42,6 +46,7 @@ public class TreeView {
 			for(Course course : coursedata){
 				semester.add(new DefaultMutableTreeNode(course.getName()));
 			}
+			semesterMap.put(sem.getName(), semester);
 			root.add(semester);
 		}
 
@@ -58,8 +63,9 @@ public class TreeView {
 	}
 
 
-	public void updateTreeData(ArrayList<Semester> semdata) {
+	public void rebuildTree(ArrayList<Semester> semdata) {
 		root.removeAllChildren();
+		semesterMap.clear();
 
 		//build semester and add to root
 		for(Semester sem : semdata){
@@ -69,10 +75,26 @@ public class TreeView {
 			for(Course course : coursedata){
 				semester.add(new DefaultMutableTreeNode(course.getName()));
 			}
+			semesterMap.put(sem.getName(), semester);
 			root.add(semester);
 		}
 
 		treeModel.reload(root);
+	}
+	
+	
+	public void addSemesterNode(Semester sem) {
+		DefaultMutableTreeNode semester = new DefaultMutableTreeNode(sem.getName());
+		root.add(semester);
+		treeModel.reload(root);
+	}
+	
+	
+	public void addCourseNode(Semester sem, Course course) {
+		//get the semester node from the hashmap
+		DefaultMutableTreeNode semester = semesterMap.get(sem.getName());	
+		semester.add(new DefaultMutableTreeNode(course.getName()));
+		treeModel.reload(semester);
 	}
 
 

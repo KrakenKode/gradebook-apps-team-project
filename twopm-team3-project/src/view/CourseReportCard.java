@@ -19,7 +19,7 @@ import model.*;
 public class CourseReportCard extends ApplicationFrame{
 
 	public CourseReportCard(Course course) {
-		super(course.getName()+"Report Card");
+		super(course.getName()+" Report Card");
 		final PieDataset dataset = createSampleDataset(course.getCategories());
 		
 		final JFreeChart chart = createChart(dataset);
