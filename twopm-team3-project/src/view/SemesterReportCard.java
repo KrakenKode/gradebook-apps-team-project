@@ -34,7 +34,6 @@ public class SemesterReportCard extends ApplicationFrame
 	  ArrayList<Course> courses = sem.getCourses();
 	  DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 	  for (Course course : courses) {
-		  course.setPercentage(70);
 		  System.out.println(course.getPercentage());
 		  dataset.addValue(course.getPercentage(), "Grade", course.getName());
 	  }
