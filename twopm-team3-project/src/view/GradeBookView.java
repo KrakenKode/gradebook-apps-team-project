@@ -17,12 +17,9 @@ import javax.swing.tree.*;
 
 public class GradeBookView extends JFrame{
 
-	private JTree tree;
 	private JPanel mainpanel;
 	private JPanel coursePanel;
 	private JPanel summaryPanel;
-	private DefaultMutableTreeNode root;
-	private DefaultTreeModel treeModel;
 	private JMenuItem saveMenu;
 	private JMenuItem openMenu;
 	private JMenuItem quitMenu;
@@ -41,6 +38,7 @@ public class GradeBookView extends JFrame{
 	private Box gradeBox;
 	private Box predictBox;
 	private Box totalBox;
+	private TreeView treeView;
 	
 	
 	
@@ -56,7 +54,10 @@ public class GradeBookView extends JFrame{
 		//main panel settings
 		mainpanel = new JPanel(new BorderLayout());
 		mainpanel.setBorder(new EmptyBorder(2, 2, 0, 2));
+		this.add(mainpanel);
 			
+		treeView = new TreeView(mainpanel);
+		
 		addMenu();
 		
 		//mainpanel.add(selected, BorderLayout.EAST);
@@ -210,61 +211,6 @@ public class GradeBookView extends JFrame{
 	}
 	
 	
-	public void initializeTreeData(ArrayList<Semester> semdata) {
-		
-		root = new DefaultMutableTreeNode("Root");
-		treeModel = new DefaultTreeModel(root);
-		tree = new JTree(treeModel);
-		JScrollPane treeView = new JScrollPane(tree);
-		
-		//build semester and add to root
-		for(Semester sem : semdata){
-			DefaultMutableTreeNode semester = new DefaultMutableTreeNode(sem.getName());
-
-			ArrayList<Course> coursedata  = sem.getCourses();
-			for(Course course : coursedata){
-				semester.add(new DefaultMutableTreeNode(course.getName()));
-			}
-			root.add(semester);
-		}
-		
-		treeModel.reload(root);
-		tree.setEditable(true);
-		tree.setRootVisible(false);
-		tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
-				
-		Dimension scrolldim = treeView.getPreferredSize();
-		scrolldim.width = 200;
-		treeView.setPreferredSize(scrolldim);
-		this.add(mainpanel);
-		mainpanel.add(treeView, BorderLayout.WEST);
-		
-	}
-	
-	
-	public void updateTreeData(ArrayList<Semester> semdata) {
-		root.removeAllChildren();
-		
-		//build semester and add to root
-		for(Semester sem : semdata){
-			DefaultMutableTreeNode semester = new DefaultMutableTreeNode(sem.getName());
-
-			ArrayList<Course> coursedata  = sem.getCourses();
-			for(Course course : coursedata){
-				semester.add(new DefaultMutableTreeNode(course.getName()));
-			}
-			root.add(semester);
-		}
-				
-		treeModel.reload(root);
-	}
-	
-	
-	public void addTreeListener(TreeSelectionListener tsl, MouseListener l) {	
-		tree.addTreeSelectionListener(tsl);
-		tree.addMouseListener(l);
-	}
-	
 	
 	public void addMenuListener(ActionListener e) {		
 		quitMenu.addActionListener(e);
@@ -272,16 +218,15 @@ public class GradeBookView extends JFrame{
 		openMenu.addActionListener(e);	
 		addSemester.addActionListener(e);
 	}
-	
-	
-	public JTree getTree() {
-		return tree;
-	}
-	
+		
 	
 	public void setLabel(String lbl) {
 		courseLbl.setText(lbl);
 	}
 
 
+	public TreeView getTreeView() {
+		return treeView;
+	}
+	
 }

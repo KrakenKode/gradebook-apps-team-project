@@ -35,9 +35,12 @@ public class GradeBookController implements ActionListener {
 		this.view = view;
 
 		//TODO functions for adding classes to view
-		view.addMenuListener(new MenuListener());	
-		view.initializeTreeData(model.getSemesters()); //load semester to view
-		view.addTreeListener(new TreeListener(), new TreeListener());
+		view.addMenuListener(new MenuListener());
+		
+		//set up the treeView
+		view.getTreeView().initializeTreeData(model.getSemesters());
+		view.getTreeView().addTreeListener(new TreeListener(), new TreeListener());		
+		
 	}
 	
 	
@@ -55,7 +58,7 @@ public class GradeBookController implements ActionListener {
 				    File selectedFile = fileChooser.getSelectedFile();
 				    model.setOpenFile(selectedFile.getAbsolutePath());
 				    model.openFile();
-				    view.updateTreeData(model.getSemesters());
+				    view.getTreeView().updateTreeData(model.getSemesters());
 				}
 			} else if (command.equals("Save")){
 				JFileChooser fileChooser = new JFileChooser();
@@ -74,7 +77,7 @@ public class GradeBookController implements ActionListener {
 				if (semString== null) {return;}
 				Semester sem = new Semester(semString);
 				model.addSemester(sem);
-				view.updateTreeData(model.getSemesters());			
+			    view.getTreeView().updateTreeData(model.getSemesters());
 				ev.showSuccess("Success!");
 			}else if( command.equals("Quit")){
 				System.exit(0);
@@ -83,12 +86,12 @@ public class GradeBookController implements ActionListener {
 	}
 	
 	
-	class TreeListener implements TreeSelectionListener, MouseListener{
-		JTree tree = view.getTree();
+	class TreeListener implements TreeSelectionListener, MouseListener {
+		JTree tree = view.getTreeView().getTree();
 		@Override
 		public void valueChanged(TreeSelectionEvent e) {
 			
-			Object treeObject = view.getTree().getLastSelectedPathComponent();
+			Object treeObject = tree.getLastSelectedPathComponent();
 			
 			if (treeObject == null) {return;}
 			
@@ -198,7 +201,7 @@ public class GradeBookController implements ActionListener {
 				if (categoryString == null) {return;}
 				Category newCategory = new Category(categoryString);
 				currCourse.addCategory(newCategory);
-				view.updateTreeData(model.getSemesters());			
+			    view.getTreeView().updateTreeData(model.getSemesters());
 				ev.showSuccess("Success!");
 				//view.addCourseView(currCourse); no longer needed
 				view.addCategoryView(newCategory.getName());
@@ -213,7 +216,7 @@ public class GradeBookController implements ActionListener {
 				if (courseString== null) {return;}
 				Course newCourse = new Course(courseString);
 				currSem.addCourse(newCourse);
-				view.updateTreeData(model.getSemesters());			
+			    view.getTreeView().updateTreeData(model.getSemesters());
 				ev.showSuccess("Success!");
 			} else if (command.equals("Remove Grade")){
 				DeleteGradePopUp ngrade = new DeleteGradePopUp(currCourse);
