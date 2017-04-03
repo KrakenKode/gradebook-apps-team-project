@@ -17,15 +17,17 @@ import model.*;
 
 
 public class CourseReportCard extends ApplicationFrame{
-
+	private Course course;
 	public CourseReportCard(Course course) {
 		super(course.getName()+" Report Card");
+		this.course = course;
 		final PieDataset dataset = createSampleDataset(course.getCategories());
 		
 		final JFreeChart chart = createChart(dataset);
 		final ChartPanel chartPanel = new ChartPanel(chart);
 		chartPanel.setPreferredSize(new java.awt.Dimension(500, 270));
 		setContentPane(chartPanel);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		
 	}
 
@@ -34,7 +36,7 @@ public class CourseReportCard extends ApplicationFrame{
 		final DefaultPieDataset result = new DefaultPieDataset();
 		
 		for(Category cat: category){
-			result.setValue(cat.getName(), cat.catRun());
+			result.setValue(cat.getName()+":"+Math.round(cat.catRun()*100.0)/100.0, cat.catRun());
 		}
 		return result;
 
@@ -43,10 +45,10 @@ public class CourseReportCard extends ApplicationFrame{
 	private JFreeChart createChart(final PieDataset dataset) {
 
 		final JFreeChart chart = ChartFactory.createPieChart3D(
-				"Pie Chart 3D Demo 4",  // chart title
+				course.getName(),  // chart title
 				dataset,                // data
 				true,                   // include legend
-				true,
+				true,					//tooltips
 				false
 				);
 

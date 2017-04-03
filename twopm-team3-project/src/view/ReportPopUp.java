@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import org.jfree.ui.ApplicationFrame;
 import org.jfree.ui.RefineryUtilities;
 
 import model.Category;
@@ -39,22 +40,22 @@ public class ReportPopUp {
 		panel.add(comboBox);
 
 		int result = JOptionPane.showConfirmDialog(null, panel, 
-				"Select a Semester", JOptionPane.OK_CANCEL_OPTION);
+				"Semester Report Card", JOptionPane.OK_CANCEL_OPTION);
 
 		if (result == JOptionPane.OK_OPTION) {
 			Object obj = comboBox.getSelectedItem();
 			if (obj instanceof Semester) {
 				Semester semCard = (Semester) obj;
 				SemesterReportCard chart = new SemesterReportCard(semCard);
-			    chart.pack( );        
-			    RefineryUtilities.centerFrameOnScreen( chart );        
-			    chart.setVisible( true );
+				chart.pack( );        
+				RefineryUtilities.centerFrameOnScreen( chart );        
+				chart.setVisible( true );
 			}
 
 		}
 	}
 	public void CoursePopUp(){
-		JPanel panel = new JPanel(new GridLayout(0, 2, 10, 5));
+		JPanel panel = new JPanel(new GridLayout(0, 2, 0, 5));
 
 		DefaultComboBoxModel<Course> courseModel = new DefaultComboBoxModel<Course>();
 
@@ -66,7 +67,7 @@ public class ReportPopUp {
 
 		JComboBox<Course> comboBox = new JComboBox<Course>(courseModel);
 
-		panel.add(new JLabel("Course"));
+		panel.add(new JLabel("Select a Course"));
 		panel.add(comboBox);
 
 		int result = JOptionPane.showConfirmDialog(null, panel, 
@@ -78,8 +79,8 @@ public class ReportPopUp {
 				Course courseCard = (Course) obj;
 				final CourseReportCard corCard = new CourseReportCard(courseCard);
 				corCard.pack();
-		        RefineryUtilities.centerFrameOnScreen(corCard);
-		        corCard.setVisible(true);
+				RefineryUtilities.centerFrameOnScreen(corCard);
+				corCard.setVisible(true);
 			}
 
 		}
