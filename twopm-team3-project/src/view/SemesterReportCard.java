@@ -23,7 +23,7 @@ public class SemesterReportCard extends ApplicationFrame
          "Grades",            
          createDataset(sem),          
          PlotOrientation.VERTICAL,           
-         false, true, false);
+         true, true, false);
          
       ChartPanel chartPanel = new ChartPanel( barChart );        
       chartPanel.setPreferredSize(new java.awt.Dimension( 560 , 367 ) );        
@@ -34,8 +34,10 @@ public class SemesterReportCard extends ApplicationFrame
 	  ArrayList<Course> courses = sem.getCourses();
 	  DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 	  for (Course course : courses) {
-		  System.out.println(course.getPercentage());
+		  course.updatePercentage();
 		  dataset.addValue(course.getPercentage(), "Grade", course.getName());
+		  dataset.addValue(85, "Test Average", course.getName());
+		  dataset.addValue(93, "Homework Average", course.getName());
 	  }
 	 
       return dataset; 
