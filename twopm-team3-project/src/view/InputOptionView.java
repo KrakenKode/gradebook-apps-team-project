@@ -4,12 +4,12 @@ package view;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-public class EditOptionView{
+public class InputOptionView{
 	
 	private JFrame mainview;
 	private String msg;
 	
-	public EditOptionView(JFrame mainview, String msg){
+	public InputOptionView(JFrame mainview, String msg){
 		this.mainview = mainview;
 		this.msg = msg;
 	}

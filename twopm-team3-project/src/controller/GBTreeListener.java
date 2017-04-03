@@ -17,7 +17,7 @@ import model.Course;
 import model.GradeBookModel;
 import model.Semester;
 import view.DeleteGradePopUp;
-import view.EditOptionView;
+import view.InputOptionView;
 import view.GradeBookView;
 import view.NewGradeInputPopUp;
 
@@ -112,7 +112,7 @@ class GBTreeListener implements TreeSelectionListener, MouseListener {
 		public void actionPerformed(ActionEvent e) {
 			String command = e.getActionCommand();
 			if(command.equals("Add Category")) {
-				EditOptionView ev = new EditOptionView(view, "Add Category");
+				InputOptionView ev = new InputOptionView(view, "Add Category");
 				String categoryString = ev.addPopUp();
 				if (categoryString == null) {return;}
 				Category newCategory = new Category(categoryString);
@@ -124,7 +124,7 @@ class GBTreeListener implements TreeSelectionListener, MouseListener {
 				view.addCourseView(currSelCourse);
 				//view.addGradeView(ngrade.getGrade().getName(), ngrade.getGrade().gradeRun()); //doesn't work			
 			} else if(command.equals("Add Course")) {
-				EditOptionView ev = new EditOptionView(view, "Add Course");
+				InputOptionView ev = new InputOptionView(view, "Add Course");
 				String courseString = ev.addPopUp();
 				if (courseString== null) {return;}
 				Course newCourse = new Course(courseString);

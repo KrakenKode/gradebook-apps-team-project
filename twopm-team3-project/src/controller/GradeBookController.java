@@ -7,7 +7,7 @@ import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import model.*;
-import view.EditOptionView;
+import view.InputOptionView;
 import view.GradeBookView;
 import view.ReportPopUp;
 
@@ -58,7 +58,7 @@ public class GradeBookController {
 					model.saveFile();
 				}
 			} else if(command.equals("Add Semester")) {
-				EditOptionView ev = new EditOptionView(view, "Add Semester");
+				InputOptionView ev = new InputOptionView(view, "Add Semester");
 				String semString = ev.addPopUp();
 				if (semString== null) {return;}
 				Semester sem = new Semester(semString);
