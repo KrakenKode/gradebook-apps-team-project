@@ -12,14 +12,13 @@ import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
+
 import model.Category;
 import model.Course;
 import model.GradeBookModel;
 import model.Semester;
-import view.DeleteGradePopUp;
-import view.InputOptionView;
-import view.GradeBookView;
-import view.NewGradeInputPopUp;
+import view.*;
+
 
 class GBTreeListener implements TreeSelectionListener, MouseListener {
 
@@ -52,7 +51,11 @@ class GBTreeListener implements TreeSelectionListener, MouseListener {
 			Object obj = model.determineTreeObject(treeNode);
 			if(obj instanceof Course) {
 				Course course = (Course) obj;
-				view.addCourseView(course);
+				//setting up courseView 
+
+				CourseView courseView = view.getCourseView();
+				courseView.addTextActionListener(new JTextFieldListener());
+				courseView.addCourseView(course);			
 			}
 
 		}
@@ -105,6 +108,16 @@ class GBTreeListener implements TreeSelectionListener, MouseListener {
 		}
 	}
 
+	class JTextFieldListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			System.out.println("Text Listener works.");
+		}
+
+	}
+
 
 	class JPopupMenuListener implements ActionListener {
 
@@ -117,12 +130,13 @@ class GBTreeListener implements TreeSelectionListener, MouseListener {
 				if (categoryString == null) {return;}
 				Category newCategory = new Category(categoryString);
 				currSelCourse.addCategory(newCategory);
-				view.addCategoryView(newCategory.getName());
+				view.getCourseView().addCategoryView(newCategory.getName());
+
 			} else if(command.equals("Add Grade")) {
 				NewGradeInputPopUp ngrade = new NewGradeInputPopUp(currSelCourse);
 				ngrade.newGradePopUp();
-				view.addCourseView(currSelCourse);
-				//view.addGradeView(ngrade.getGrade().getName(), ngrade.getGrade().gradeRun()); //doesn't work			
+				view.getCourseView().addCourseView(currSelCourse);
+
 			} else if(command.equals("Add Course")) {
 				InputOptionView ev = new InputOptionView(view, "Add Course");
 				String courseString = ev.addPopUp();
@@ -133,8 +147,7 @@ class GBTreeListener implements TreeSelectionListener, MouseListener {
 			} else if(command.equals("Remove Grade")) {
 				DeleteGradePopUp ngrade = new DeleteGradePopUp(currSelCourse);
 				ngrade.deleteGradePopUp();
-				view.addCourseView(currSelCourse);
-				System.out.println(command);
+				view.getCourseView().addCourseView(currSelCourse);
 			}
 		}
 	}
