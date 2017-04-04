@@ -35,9 +35,10 @@ public class SemesterReportCard extends ApplicationFrame
 	  DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 	  for (Course course : courses) {
 		  course.updatePercentage();
-		  dataset.addValue(course.getPercentage(), "Grade", course.getName());
-		  dataset.addValue(85, "Test Average", course.getName());
-		  dataset.addValue(93, "Homework Average", course.getName());
+		  dataset.addValue(course.getPercentage(), "Course Grade", course.getName());
+		  for (Category cat : course.getCategories()) {
+			  dataset.addValue(cat.catRun(), cat.getName() + " Average", course.getName());
+		  }
 	  }
 	 
       return dataset; 
