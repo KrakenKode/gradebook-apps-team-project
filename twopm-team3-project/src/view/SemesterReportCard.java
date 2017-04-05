@@ -1,6 +1,7 @@
 package view;
 import model.*;
 
+import java.awt.BorderLayout;
 import java.util.ArrayList;
 
 import org.jfree.chart.ChartFactory;
@@ -11,8 +12,8 @@ import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset; 
 import org.jfree.ui.ApplicationFrame; 
 import org.jfree.ui.RefineryUtilities; 
-
-public class SemesterReportCard extends ApplicationFrame
+import javax.swing.JFrame;
+public class SemesterReportCard extends JFrame
 {
    public SemesterReportCard(Semester sem)
    {
@@ -26,7 +27,7 @@ public class SemesterReportCard extends ApplicationFrame
          true, true, false);
          
       ChartPanel chartPanel = new ChartPanel( barChart );        
-      chartPanel.setPreferredSize(new java.awt.Dimension( 560 , 367 ) );        
+      chartPanel.setPreferredSize(new java.awt.Dimension( 560 , 367 ) );
       setContentPane( chartPanel ); 
    }
    private CategoryDataset createDataset(Semester sem)
