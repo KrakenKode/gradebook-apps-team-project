@@ -5,7 +5,6 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.*;
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
 public class CourseView {
@@ -16,10 +15,21 @@ public class CourseView {
 	private JPanel categoryInsidePanel;
 	private JScrollPane courseScroll;
 
+
 	public CourseView(JPanel mainpanel){
 		this.mainpanel = mainpanel;
 	}
 	
+	//added to repaint panel
+	public void refresh() {
+		mainpanel.repaint();
+	}
+	
+	//added to remove previous text boxes
+	public void removeCourseView() throws NullPointerException{
+		mainpanel.remove(courseScroll);
+	}
+
 
 	public void addCourseView(Course course) {
 
@@ -63,18 +73,19 @@ public class CourseView {
 
 			ArrayList<Grade> gradedata = category.getGrades();
 			for(Grade grade : gradedata ){
-				this.addGradeView(grade.getName(), grade.gradeRun());
+				this.addGradeView(grade.getName(), grade.gradeRun(), grade.getComment());
 			}
-
 		}
-
+		
+		
 		courseScroll = new JScrollPane(coursePanel);
 		mainpanel.add(courseScroll);
 		mainpanel.revalidate();	
 	}
 
-	public void addGradeView(String gradeName, Double grade) {
+	public void addGradeView(String gradeName, Double grade, String comment) {
 		JTextField categoryNameTxt = new JTextField(gradeName);
+		JTextField categoryComTxt = new JTextField(comment);
 		categoryNameTxt.setText(gradeName);
 		//categoryNameTxt.setEditable(false);
 		categoryNameTxt.setBorder(javax.swing.BorderFactory.createEmptyBorder());
@@ -92,11 +103,11 @@ public class CourseView {
 		gradeTxt.setBackground(mainpanel.getBackground());
 		gradeTxt.addActionListener(textActionListener);
 		
+		
 		categoryInsidePanel.add(categoryNameTxt);
 		categoryInsidePanel.add(gradeTxt);
-
+		categoryInsidePanel.add(categoryComTxt);
 		categoryInsidePanel.add(new JLabel("--%", JLabel.CENTER));
-		
 		categoryPanel.add(categoryInsidePanel);
 		coursePanel.add(categoryPanel);
 		mainpanel.revalidate();
@@ -104,7 +115,7 @@ public class CourseView {
 
 	public void addCategoryView(String category) {
 
-		categoryPanel = new JPanel(new GridLayout(1,3,2,2));
+		categoryPanel = new JPanel(new GridLayout(1,4,2,2));
 		JTextField categoryTxt = new JTextField(category);
 		//categoryTxt.setEditable(false);
 		categoryTxt.setBorder(javax.swing.BorderFactory.createEmptyBorder());
@@ -114,17 +125,18 @@ public class CourseView {
 		categoryTxt.addActionListener(textActionListener);
 		
 		//categoryBox holds - Homework, Grade - Horizontally
-		categoryInsidePanel = new JPanel(new GridLayout(0,3,60,20));
+		categoryInsidePanel = new JPanel(new GridLayout(0,4,60,20));
 		categoryInsidePanel.add(categoryTxt);
 		categoryInsidePanel.setBorder(BorderFactory.createLineBorder(Color.black));
 		categoryInsidePanel.add(new JLabel("Grade", JLabel.CENTER));
+		categoryInsidePanel.add(new JLabel("Comment", JLabel.CENTER));
 		categoryInsidePanel.add(new JLabel("Predict", JLabel.CENTER));
 
 		categoryPanel.add(categoryInsidePanel);
-
 		categoryPanel.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
 		coursePanel.add(categoryPanel);
 		mainpanel.revalidate();
+
 	}
  
 	public void addTextActionListener(ActionListener al){

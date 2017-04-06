@@ -35,6 +35,12 @@ public class GradeBookController {
 		public void actionPerformed(ActionEvent e) {
 			String command = e.getActionCommand();
 			if (command.equals("Open")) {
+				try {
+					view.getCourseView().removeCourseView();
+				} catch (Exception nPointer) {
+					
+				}
+				view.getCourseView().refresh();
 				JFileChooser fileChooser = new JFileChooser();
 				fileChooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
 				FileFilter filter = new FileNameExtensionFilter("SER file", "ser");

@@ -135,8 +135,13 @@ class GBTreeListener implements TreeSelectionListener, MouseListener {
 			} else if(command.equals("Add Grade")) {
 				NewGradeInputPopUp ngrade = new NewGradeInputPopUp(currSelCourse);
 				ngrade.newGradePopUp();
+				try {
+					view.getCourseView().removeCourseView();
+				} catch (Exception nPointer) {
+					
+				}
 				view.getCourseView().addCourseView(currSelCourse);
-
+				
 			} else if(command.equals("Add Course")) {
 				InputOptionView ev = new InputOptionView(view, "Add Course");
 				String courseString = ev.addPopUp();
@@ -144,6 +149,7 @@ class GBTreeListener implements TreeSelectionListener, MouseListener {
 				Course newCourse = new Course(courseString);
 				currSelSem.addCourse(newCourse);
 				view.getTreeView().addCourseNode(currSelSem, newCourse);
+				
 			} else if(command.equals("Remove Grade")) {
 				DeleteGradePopUp ngrade = new DeleteGradePopUp(currSelCourse);
 				ngrade.deleteGradePopUp();

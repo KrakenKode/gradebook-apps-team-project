@@ -7,12 +7,14 @@ public class Grade implements Serializable {
 	private String name;
 	private int points;
 	private int maxPoints;
+	private String comment;
 	
-	public Grade(String name, int points, int maxPoints) {
+	public Grade(String name, int points, int maxPoints, String comment) {
 		this.name = name;
 		this.points = points;	
 		this.maxPoints = maxPoints;
-		}
+		this.comment = comment;
+	}
 	
 	//Returns grade as a double in %
 	public double gradeRun(){
@@ -50,6 +52,10 @@ public class Grade implements Serializable {
 
 	public void setMaxPoints(int maxPoints) {
 		this.maxPoints = maxPoints;
+	}
+	
+	public String getComment() {
+		return comment;
 	}
 
 	

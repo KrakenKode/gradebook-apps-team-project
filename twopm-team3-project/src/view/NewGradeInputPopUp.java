@@ -21,6 +21,7 @@ public class NewGradeInputPopUp {
 		JTextField nameField = new JTextField(5);
 		JTextField gradeField = new JTextField(5);
 		JTextField maxField = new JTextField(5);
+		JTextField comField = new JTextField(5);
 		DefaultComboBoxModel<Category> categoryModel = new DefaultComboBoxModel<Category>();
 
 		for(Category cat : course.getCategories()) {
@@ -37,6 +38,8 @@ public class NewGradeInputPopUp {
 		panel.add(gradeField);
 		panel.add(new JLabel("Max Points:"));
 		panel.add(maxField);
+		panel.add(new JLabel("Comment:"));
+		panel.add(comField);
 
 
 		int result = JOptionPane.showConfirmDialog(null, panel, 
@@ -47,16 +50,18 @@ public class NewGradeInputPopUp {
 			System.out.println("Grade name: " + nameField.getText());
 			System.out.println("Grade: " + gradeField.getText());
 			System.out.println("Max Grade: " + maxField.getText());
+			System.out.println("Comment: " + comField.getText());
 
 			Grade grade = new Grade(nameField.getText(), 
 					Integer.parseInt(gradeField.getText()), 
-					Integer.parseInt(maxField.getText()));
-
+					Integer.parseInt(maxField.getText()),
+					comField.getText());
+			
 			Object obj = comboBox.getSelectedItem();
 			if (obj instanceof Category) {
 				((Category) obj).addGrade(grade);		// add the grade to category
 			}
-		}		
+		}
 	}
 
 }
