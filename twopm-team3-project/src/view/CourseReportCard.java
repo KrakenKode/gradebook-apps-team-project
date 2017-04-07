@@ -3,6 +3,8 @@ package view;
 import java.text.AttributedString;
 import java.util.ArrayList;
 
+import javax.swing.JFrame;
+
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -16,7 +18,7 @@ import org.jfree.util.Rotation;
 import model.*;
 
 
-public class CourseReportCard extends ApplicationFrame{
+public class CourseReportCard extends JFrame{
 	private Course course;
 	public CourseReportCard(Course course) {
 		super(course.getName()+" Report Card");
