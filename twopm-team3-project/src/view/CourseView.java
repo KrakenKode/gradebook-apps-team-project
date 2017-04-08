@@ -50,7 +50,7 @@ public class CourseView {
 
 
 	public void addCourseView(Course course) {
-
+		//hi
 		//title and grade summary 
 		JLabel courseLbl = new JLabel(course.getName());
 		coursePanel = new JPanel(new GridLayout(0, 1, 5, 5));
