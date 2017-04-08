@@ -185,6 +185,7 @@ class GBTreeListener implements TreeSelectionListener, MouseListener {
 				}
 				view.getCourseView().addCourseView(currSelCourse);
 			} else if (command.equals("Edit Grade Range")) {
+				//Creates new edit grade range pop up
 				EditGradeRangePopUp gradeR = new EditGradeRangePopUp(currSelCourse);
 				gradeR.gradeRangePopUp();
 			}
