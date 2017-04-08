@@ -2,16 +2,20 @@ package model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Course implements Serializable {
 
 	private String name;
 	private ArrayList<Category> categories;
+	private HashMap<String, Integer> gradeRange;
 	private double percentage; 
 	
 	public Course(String name) {
 		this.name = name;
-		categories = new ArrayList<Category>();	
+		categories = new ArrayList<Category>();
+		gradeRange = new HashMap<String, Integer>();
+		defaultGradeRange();
 	}
 
 	public void addCategory(Category newCategory) {
@@ -45,6 +49,14 @@ public class Course implements Serializable {
 		return name;
 	}
 	
+	public void defaultGradeRange() {
+		gradeRange.put("A", 90);
+		gradeRange.put("B", 80);
+		gradeRange.put("C", 70);
+		gradeRange.put("D", 60);
+		
+	}
+	
 	/////////////Getters and Setters///////////////////
 	
 
@@ -72,5 +84,11 @@ public class Course implements Serializable {
 		this.categories = categories;
 	}
 
+	public int getGradeRange(String key) {
+		return gradeRange.get(key);
+	}
 	
+	public void setGradeRange(String key, int grade) {
+		gradeRange.put(key, grade);
+	}
 }
