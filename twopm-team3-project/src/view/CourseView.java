@@ -161,7 +161,4 @@ public class CourseView {
 		this.desiredBoxListener = il;
 	}
 	
-	public int getDesiredGrade() {
-		return gradeList.getSelectedIndex();
-	}
 }
