@@ -11,6 +11,13 @@ public class Course implements Serializable {
 	private HashMap<String, Integer> gradeRange;
 	private double percentage; 
 	
+//	public int predict(String letter){
+//		for(Category cat : categories){
+//			cat.catRun()
+//		}
+//		return 0 ;
+//	}
+	
 	public Course(String name) {
 		this.name = name;
 		categories = new ArrayList<Category>();

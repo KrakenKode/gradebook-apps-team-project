@@ -93,8 +93,9 @@ public class GradeBookController {
 		
 		@Override
 		public void itemStateChanged(ItemEvent i) {
+			String grade = (String) i.getItem();
 			if (i.getStateChange() == i.SELECTED)
-				System.out.println(i.getItem());
+				System.out.println(grade);
 			
 		}
 		

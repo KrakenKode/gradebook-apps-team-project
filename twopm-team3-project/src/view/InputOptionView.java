@@ -1,8 +1,15 @@
 package view;
 
 
+import java.awt.GridLayout;
+
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+import model.Category;
 
 public class InputOptionView{
 	
@@ -17,6 +24,26 @@ public class InputOptionView{
 	public String addPopUp(){
 		String input = JOptionPane.showInputDialog(msg);
 		return input;
+	}
+	
+	public Category addCategory() {
+		JPanel panel = new JPanel(new GridLayout(0, 2, 0, 0));
+		JLabel cat = new JLabel("Name of Category");
+		JLabel weight = new JLabel("Weight of Category");
+		JTextField first = new JTextField(10);
+		JTextField second = new JTextField(10);
+		panel.add(cat);
+		panel.add(first);
+		panel.add(weight);
+		panel.add(second);	
+		Category fail = new Category("fail");
+		int result = JOptionPane.showConfirmDialog(null, panel, "Enter Category Information", JOptionPane.OK_CANCEL_OPTION);
+		if (result == JOptionPane.OK_OPTION){
+			Category newCategory = new Category(first.getText());
+			newCategory.setWeight(Integer.parseInt(second.getText()));
+			return newCategory;
+		}	
+		return fail;
 	}
 	
 	public void showSuccess(String successMsg){

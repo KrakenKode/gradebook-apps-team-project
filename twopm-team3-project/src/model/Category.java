@@ -7,7 +7,7 @@ public class Category implements Serializable {
 
 	private String name;
 	private ArrayList<Grade> grades;
-
+	private int weight; // THIS NEEDS TO BE 0 < X <100
 	
 	public Category(String name) {
 		this.name = name;
@@ -45,7 +45,26 @@ public class Category implements Serializable {
 	public String getName() {
 		return name;
 	}
-
+//Setting weight takes care of decimals with both methods below	
+	public void setWeight(int weight){
+		if (weight > 0 && weight <= 100)
+			this.weight = weight;
+		else{
+			System.out.println("Please enter a weight more than 0 and less than 100 %");
+		}
+	}
+	
+	public void setWeight(double weight){
+		if (weight > 0 && weight <= 100)
+			this.weight = (int) weight;
+		else{
+			System.out.println("Please enter a weight more than 0 and less than 100 %");
+		}
+	}
+	
+	public int getWeight(){
+		return this.weight;
+	}
 	public void setName(String name) {
 		this.name = name;
 	}

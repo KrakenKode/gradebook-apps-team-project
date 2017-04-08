@@ -50,7 +50,6 @@ public class CourseView {
 
 
 	public void addCourseView(Course course) {
-		System.out.println(course.getGradeRange("A"));
 		//title and grade summary 
 		JLabel courseLbl = new JLabel(course.getName());
 		coursePanel = new JPanel(new GridLayout(0, 1, 5, 5));

@@ -151,9 +151,8 @@ class GBTreeListener implements TreeSelectionListener, MouseListener {
 			String command = e.getActionCommand();
 			if(command.equals("Add Category")) {
 				InputOptionView ev = new InputOptionView(view, "Add Category");
-				String categoryString = ev.addPopUp();
-				if (categoryString == null) {return;}
-				Category newCategory = new Category(categoryString);
+				Category newCategory = ev.addCategory();
+				if (newCategory.getName().equals("fail")) {return;}
 				currSelCourse.addCategory(newCategory);
 				view.getCourseView().addCategoryView(newCategory.getName());
 
