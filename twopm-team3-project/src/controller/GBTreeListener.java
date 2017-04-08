@@ -7,6 +7,8 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+
+import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
@@ -43,7 +45,11 @@ class GBTreeListener implements TreeSelectionListener, MouseListener {
 
 		Object treeObject = tree.getLastSelectedPathComponent();
 
-		if (treeObject == null) {return;}
+		if (treeObject == null) {
+			JPanel welcomeView = new JPanel();
+			JLabel welcome = new JLabel();
+			return;
+		}
 
 		// Cast the Object into a DefaultMutableTreeNode		
 		DefaultMutableTreeNode node = (DefaultMutableTreeNode) treeObject;
@@ -128,8 +134,11 @@ class GBTreeListener implements TreeSelectionListener, MouseListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-			
+			String command = e.getActionCommand();
+			int nice = e.hashCode();
+			System.out.println(command);
+			System.out.println(nice);
+
 		}
 
 	}
