@@ -1,10 +1,14 @@
 package controller;
 
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JMenuItem;
+import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JTree;
 import javax.swing.SwingUtilities;
@@ -51,10 +55,15 @@ class GBTreeListener implements TreeSelectionListener, MouseListener {
 			Object obj = model.determineTreeObject(treeNode);
 			if(obj instanceof Course) {
 				Course course = (Course) obj;
-				//setting up courseView 
+				//setting up courseView
 
 				CourseView courseView = view.getCourseView();
 				courseView.addTextActionListener(new JTextFieldListener());
+				try {
+					view.getCourseView().removeCourseView();
+				} catch (Exception nPointer) {
+					System.err.println("CoursePanel does not exist.");
+				}
 				courseView.addCourseView(course);			
 			}
 
@@ -113,7 +122,7 @@ class GBTreeListener implements TreeSelectionListener, MouseListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			System.out.println("Text Listener works.");
+			
 		}
 
 	}
@@ -138,7 +147,7 @@ class GBTreeListener implements TreeSelectionListener, MouseListener {
 				try {
 					view.getCourseView().removeCourseView();
 				} catch (Exception nPointer) {
-					
+					System.err.println("CoursePanel does not exist.");
 				}
 				view.getCourseView().addCourseView(currSelCourse);
 				
@@ -153,6 +162,11 @@ class GBTreeListener implements TreeSelectionListener, MouseListener {
 			} else if(command.equals("Remove Grade")) {
 				DeleteGradePopUp ngrade = new DeleteGradePopUp(currSelCourse);
 				ngrade.deleteGradePopUp();
+				try {
+					view.getCourseView().removeCourseView();
+				} catch (Exception nPointer) {
+					System.err.println("CoursePanel does not exist.");
+				}
 				view.getCourseView().addCourseView(currSelCourse);
 			}
 		}

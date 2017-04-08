@@ -1,10 +1,24 @@
 package view;
 
-import java.awt.GridLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 
-import javax.swing.*;
+import javax.swing.BorderFactory;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
-import model.*;
+import model.Category;
+import model.Course;
+import model.Grade;
 
 public class NewGradeInputPopUp {
 
@@ -17,11 +31,28 @@ public class NewGradeInputPopUp {
 
 
 	public void newGradePopUp() {
-		JPanel panel = new JPanel(new GridLayout(0, 2, 20, 20));
+		JPanel panel = new JPanel(new GridBagLayout());
+		GridBagConstraints jLabels = new GridBagConstraints();
+		GridBagConstraints tFields = new GridBagConstraints();
+		GridBagConstraints aFields = new GridBagConstraints();
+		
 		JTextField nameField = new JTextField(5);
-		JTextField gradeField = new JTextField(5);
-		JTextField maxField = new JTextField(5);
-		JTextField comField = new JTextField(5);
+		JFormattedTextField gradeField = new JFormattedTextField(0);
+		JFormattedTextField maxField = new JFormattedTextField(100);
+		
+		nameField.setPreferredSize(new Dimension(110, 20));
+		gradeField.setPreferredSize(new Dimension(50, 20));
+		maxField.setPreferredSize(new Dimension(50, 20));
+
+		
+		JTextArea comField = new JTextArea("Add a comment", 5, 0);
+		comField.setBorder(BorderFactory.createLineBorder(Color.black));
+		comField.setPreferredSize(new Dimension(100, 100));
+		comField.setColumns(10);
+		comField.setEditable(true);
+		comField.setLineWrap(true);
+		comField.setWrapStyleWord(true);
+		
 		DefaultComboBoxModel<Category> categoryModel = new DefaultComboBoxModel<Category>();
 
 		for(Category cat : course.getCategories()) {
@@ -29,17 +60,38 @@ public class NewGradeInputPopUp {
 		}
 
 		JComboBox<Category> comboBox = new JComboBox<Category>(categoryModel);
-
-		panel.add(new JLabel("Category:"));
-		panel.add(comboBox);
-		panel.add(new JLabel("Grade name:"));
-		panel.add(nameField);
-		panel.add(new JLabel("Points earned:"));
-		panel.add(gradeField);
-		panel.add(new JLabel("Max Points:"));
-		panel.add(maxField);
-		panel.add(new JLabel("Comment:"));
-		panel.add(comField);
+		jLabels.gridx = 0;
+		jLabels.gridy = 0;
+		jLabels.insets = new Insets(10, 0, 10, 0);
+		tFields.insets = new Insets(10, 0, 10, 0);
+		panel.add(new JLabel("Category:"), jLabels);
+		jLabels.gridx = 1;
+		jLabels.gridy = 0;
+		panel.add(comboBox, jLabels);
+		jLabels.gridx = 0;
+		jLabels.gridy = 1;
+		panel.add(new JLabel("Grade name:"), jLabels);
+		tFields.gridx = 1;
+		tFields.gridy = 1;
+		panel.add(nameField, tFields);
+		jLabels.gridx = 0;
+		jLabels.gridy = 2;
+		panel.add(new JLabel("Points earned:"), jLabels);
+		tFields.gridx = 1;
+		tFields.gridy = 2;
+		panel.add(gradeField, tFields);
+		jLabels.gridx = 0;
+		jLabels.gridy = 3;
+		panel.add(new JLabel("Max Points:"), jLabels);
+		tFields.gridx = 1;
+		tFields.gridy = 3;
+		panel.add(maxField, tFields);
+		jLabels.gridx = 0;
+		jLabels.gridy = 4;
+		panel.add(new JLabel("Comment:"), jLabels);
+		aFields.gridx = 1;
+		aFields.gridy = 4;
+		panel.add(comField, aFields);
 
 
 		int result = JOptionPane.showConfirmDialog(null, panel, 

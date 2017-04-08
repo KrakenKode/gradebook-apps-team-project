@@ -27,7 +27,7 @@ public class CourseReportCard extends JFrame{
 		
 		final JFreeChart chart = createChart(dataset);
 		final ChartPanel chartPanel = new ChartPanel(chart);
-		chartPanel.setPreferredSize(new java.awt.Dimension(500, 270));
+		chartPanel.setPreferredSize(new java.awt.Dimension(500, 300));
 		setContentPane(chartPanel);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		

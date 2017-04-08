@@ -27,8 +27,8 @@ public class SemesterReportCard extends JFrame
          true, true, false);
          
       ChartPanel chartPanel = new ChartPanel( barChart );        
-      chartPanel.setPreferredSize(new java.awt.Dimension( 560 , 367 ) );
-      setContentPane( chartPanel ); 
+      chartPanel.setPreferredSize(new java.awt.Dimension( 550 , 400 ) );
+      setContentPane( chartPanel );
    }
    private CategoryDataset createDataset(Semester sem)
    {

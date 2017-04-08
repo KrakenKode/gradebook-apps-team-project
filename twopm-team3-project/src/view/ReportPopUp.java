@@ -50,6 +50,7 @@ public class ReportPopUp {
 				chart.pack( );        
 				RefineryUtilities.centerFrameOnScreen( chart );        
 				chart.setVisible( true );
+				chart.setResizable(false);
 			}
 
 		}
@@ -81,6 +82,7 @@ public class ReportPopUp {
 				corCard.pack();
 				RefineryUtilities.centerFrameOnScreen(corCard);
 				corCard.setVisible(true);
+				corCard.setResizable(false);
 			}
 
 		}

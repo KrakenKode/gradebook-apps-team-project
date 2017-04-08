@@ -1,11 +1,27 @@
 package view;
 
-import model.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionListener;
-import java.util.*;
-import javax.swing.*;
+import java.awt.event.ComponentListener;
+import java.awt.event.ItemListener;
+import java.util.ArrayList;
+
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
+
+import model.Category;
+import model.Course;
+import model.Grade;
 
 public class CourseView {
 	private JPanel mainpanel;
@@ -80,7 +96,6 @@ public class CourseView {
 			}
 		}
 		
-		
 		courseScroll = new JScrollPane(coursePanel);
 		mainpanel.add(courseScroll);
 		mainpanel.revalidate();	
@@ -106,14 +121,12 @@ public class CourseView {
 		gradeTxt.setBackground(mainpanel.getBackground());
 		gradeTxt.addActionListener(textActionListener);
 		
-		
 		categoryInsidePanel.add(categoryNameTxt);
 		categoryInsidePanel.add(gradeTxt);
 		categoryInsidePanel.add(categoryComTxt);
 		categoryInsidePanel.add(new JLabel("--%", JLabel.CENTER));
 		categoryPanel.add(categoryInsidePanel);
 		coursePanel.add(categoryPanel);
-		mainpanel.revalidate();
 	}
 
 	public void addCategoryView(String category) {
@@ -138,8 +151,6 @@ public class CourseView {
 		categoryPanel.add(categoryInsidePanel);
 		categoryPanel.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
 		coursePanel.add(categoryPanel);
-		mainpanel.revalidate();
-
 	}
  
 	public void addTextActionListener(ActionListener al){
