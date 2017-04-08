@@ -54,7 +54,8 @@ public class CourseView {
 		//title and grade summary 
 		JLabel courseLbl = new JLabel(course.getName());
 		coursePanel = new JPanel(new GridLayout(0, 1, 5, 5));
-		courseLbl.setFont(new Font(courseLbl.getFont().getName(), Font.PLAIN, 18));
+		courseLbl.setForeground(Color.BLUE);
+		courseLbl.setFont(new Font("Courier New", Font.PLAIN, 20));
 		courseLbl.setAlignmentX(Component.CENTER_ALIGNMENT);
 
 		JPanel summaryPanel = new JPanel(new GridLayout(0 , 1, 0, 0));
