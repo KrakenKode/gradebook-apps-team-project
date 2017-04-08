@@ -31,20 +31,21 @@ public class NewGradeInputPopUp {
 
 
 	public void newGradePopUp() {
+		//make new panel and constraint objects
 		JPanel panel = new JPanel(new GridBagLayout());
 		GridBagConstraints jLabels = new GridBagConstraints();
 		GridBagConstraints tFields = new GridBagConstraints();
 		GridBagConstraints aFields = new GridBagConstraints();
 		
+		//Create text fields for user to enter their new grade data
 		JTextField nameField = new JTextField(5);
 		JFormattedTextField gradeField = new JFormattedTextField(0);
 		JFormattedTextField maxField = new JFormattedTextField(100);
-		
+		//Set the sizes for the text fields
 		nameField.setPreferredSize(new Dimension(110, 20));
 		gradeField.setPreferredSize(new Dimension(50, 20));
 		maxField.setPreferredSize(new Dimension(50, 20));
-
-		
+		//Make a new comment box for the users comment and edit size
 		JTextArea comField = new JTextArea("Add a comment", 5, 0);
 		comField.setBorder(BorderFactory.createLineBorder(Color.black));
 		comField.setPreferredSize(new Dimension(100, 100));
@@ -52,13 +53,14 @@ public class NewGradeInputPopUp {
 		comField.setEditable(true);
 		comField.setLineWrap(true);
 		comField.setWrapStyleWord(true);
-		
+		//Make a DesiredBox for user to select category for new grade
 		DefaultComboBoxModel<Category> categoryModel = new DefaultComboBoxModel<Category>();
-
+		//Populate DesiredBox
 		for(Category cat : course.getCategories()) {
 			categoryModel.addElement(cat); 
 		}
-
+		//Add Desired box and edit every Label and Field to correctly
+		//display on the NewGradePopUp window
 		JComboBox<Category> comboBox = new JComboBox<Category>(categoryModel);
 		jLabels.gridx = 0;
 		jLabels.gridy = 0;
@@ -93,10 +95,11 @@ public class NewGradeInputPopUp {
 		aFields.gridy = 4;
 		panel.add(comField, aFields);
 
-
+		//Pop up the window for the user
 		int result = JOptionPane.showConfirmDialog(null, panel, 
 				"Enter Grade Information", JOptionPane.OK_CANCEL_OPTION);
-
+		
+		//If OK is clicked get the user data and create the grade
 		if (result == JOptionPane.OK_OPTION) {
 			System.out.println("Category: " + comboBox.getSelectedItem());
 			System.out.println("Grade name: " + nameField.getText());
