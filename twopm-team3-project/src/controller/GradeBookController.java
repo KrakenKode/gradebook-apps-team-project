@@ -2,7 +2,11 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.io.File;
+
+import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -85,13 +89,13 @@ public class GradeBookController {
 		}
 	}
 	
-	class DesiredBoxListener implements ActionListener {
-
+	class DesiredBoxListener implements ItemListener {
+		
 		@Override
-		public void actionPerformed(ActionEvent e) {
-			String grade = view.getCourseView().getDesiredGrade();
-			if (grade != "Desired")
-				System.out.println(grade);
+		public void itemStateChanged(ItemEvent i) {
+			if (i.getStateChange() == i.SELECTED)
+				System.out.println(i.getItem());
+			
 		}
 		
 	}
