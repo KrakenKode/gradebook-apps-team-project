@@ -22,7 +22,10 @@ public class GradeBookController {
 
 		//set up menu listener
 		view.getMenuView().addMenuListener(new MenuListener());
-
+		
+		//set up desired box listener
+		view.getCourseView().addDesiredBoxListener(new DesiredBoxListener());
+		
 		//set up the treeView
 		view.getTreeView().initializeTreeData(model.getSemesters());
 		view.getTreeView().addTreeListener(new GBTreeListener(model, view), new GBTreeListener(model, view));		
@@ -81,6 +84,16 @@ public class GradeBookController {
 			}
 		}
 	}
+	
+	class DesiredBoxListener implements ActionListener {
 
-
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			String grade = view.getCourseView().getDesiredGrade();
+			if (grade != "Desired")
+				System.out.println(grade);
+		}
+		
+	}
+	
 }

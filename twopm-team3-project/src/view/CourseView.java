@@ -10,9 +10,11 @@ import javax.swing.border.TitledBorder;
 public class CourseView {
 	private JPanel mainpanel;
 	private ActionListener textActionListener;
+	private ActionListener desiredBoxListener;
 	private JPanel coursePanel;
 	private JPanel categoryPanel;
 	private JPanel categoryInsidePanel;
+	private JComboBox gradeList;
 	private JScrollPane courseScroll;
 
 
@@ -52,7 +54,8 @@ public class CourseView {
 
 		String[] letterList = { "Desired","A", "B", "C", "D", "E" };
 
-		JComboBox gradeList = new JComboBox(letterList);
+		gradeList = new JComboBox<String>(letterList);
+		gradeList.addActionListener(desiredBoxListener);
 		gradeList.setSelectedIndex(0);
 		totalBox.add(gradeList);
 
@@ -141,5 +144,13 @@ public class CourseView {
  
 	public void addTextActionListener(ActionListener al){
 		this.textActionListener = al;
+	}
+	
+	public void addDesiredBoxListener(ActionListener al) {
+		this.desiredBoxListener = al;
+	}
+	
+	public String getDesiredGrade() {
+		return (String) gradeList.getSelectedItem();
 	}
 }
