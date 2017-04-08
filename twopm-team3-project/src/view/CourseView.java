@@ -6,7 +6,6 @@ import java.awt.Component;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentListener;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
 
@@ -18,7 +17,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
-
+import java.util.*;
+import javax.swing.*;
 import model.Category;
 import model.Course;
 import model.Grade;
@@ -26,11 +26,11 @@ import model.Grade;
 public class CourseView {
 	private JPanel mainpanel;
 	private ActionListener textActionListener;
-	private ActionListener desiredBoxListener;
+	private ItemListener desiredBoxListener;
 	private JPanel coursePanel;
 	private JPanel categoryPanel;
 	private JPanel categoryInsidePanel;
-	private JComboBox gradeList;
+	private JComboBox<String> gradeList;
 	private JScrollPane courseScroll;
 
 
@@ -71,7 +71,7 @@ public class CourseView {
 		String[] letterList = { "Desired","A", "B", "C", "D", "E" };
 
 		gradeList = new JComboBox<String>(letterList);
-		gradeList.addActionListener(desiredBoxListener);
+		gradeList.addItemListener(desiredBoxListener);
 		gradeList.setSelectedIndex(0);
 		totalBox.add(gradeList);
 
@@ -157,11 +157,11 @@ public class CourseView {
 		this.textActionListener = al;
 	}
 	
-	public void addDesiredBoxListener(ActionListener al) {
-		this.desiredBoxListener = al;
+	public void addDesiredBoxListener(ItemListener il) {
+		this.desiredBoxListener = il;
 	}
 	
-	public String getDesiredGrade() {
-		return (String) gradeList.getSelectedItem();
+	public int getDesiredGrade() {
+		return gradeList.getSelectedIndex();
 	}
 }
