@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Dimension;
 import java.awt.GridLayout;
 
 import javax.swing.DefaultComboBoxModel;
@@ -50,7 +51,7 @@ public class ReportPopUp {
 				chart.pack( );        
 				RefineryUtilities.centerFrameOnScreen( chart );        
 				chart.setVisible( true );
-				chart.setResizable(false);
+				chart.setMinimumSize(new Dimension(300, 200));
 			}
 
 		}
@@ -82,7 +83,7 @@ public class ReportPopUp {
 				corCard.pack();
 				RefineryUtilities.centerFrameOnScreen(corCard);
 				corCard.setVisible(true);
-				corCard.setResizable(false);
+				corCard.setMinimumSize(new Dimension(300, 200));
 			}
 
 		}
