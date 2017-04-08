@@ -112,6 +112,13 @@ class GBTreeListener implements TreeSelectionListener, MouseListener {
 				gradeRemove.setText("Remove Grade");
 				gradeRemove.addActionListener(ra);
 				rc.add(gradeRemove);
+				rc.addSeparator();
+				
+				JMenuItem editGradeRange = new JMenuItem();
+				editGradeRange.setText("Edit Grade Range");
+				editGradeRange.addActionListener(ra);
+				rc.add(editGradeRange);
+				
 				rc.show(e.getComponent(), e.getX(), e.getY());
 			}
 		}
@@ -168,6 +175,9 @@ class GBTreeListener implements TreeSelectionListener, MouseListener {
 					System.err.println("CoursePanel does not exist.");
 				}
 				view.getCourseView().addCourseView(currSelCourse);
+			} else if (command.equals("Edit Grade Range")) {
+				EditGradeRangePopUp gradeR = new EditGradeRangePopUp(currSelCourse);
+				gradeR.gradeRangePopUp();
 			}
 		}
 	}
