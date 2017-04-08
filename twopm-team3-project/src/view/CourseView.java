@@ -143,13 +143,13 @@ public class CourseView {
 		//categoryBox holds - Homework, Grade - Horizontally
 		categoryInsidePanel = new JPanel(new GridLayout(0,4,60,20));
 		categoryInsidePanel.add(categoryTxt);
-		categoryInsidePanel.setBorder(BorderFactory.createLineBorder(Color.black));
+		categoryInsidePanel.setBorder(BorderFactory.createLineBorder(Color.blue));
 		categoryInsidePanel.add(new JLabel("Grade", JLabel.CENTER));
 		categoryInsidePanel.add(new JLabel("Comment", JLabel.CENTER));
 		categoryInsidePanel.add(new JLabel("Predict", JLabel.CENTER));
 
 		categoryPanel.add(categoryInsidePanel);
-		categoryPanel.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
+		categoryPanel.setBorder(BorderFactory.createLineBorder(Color.ORANGE));
 		coursePanel.add(categoryPanel);
 	}
  
