@@ -7,10 +7,11 @@ public class Category implements Serializable {
 
 	private String name;
 	private ArrayList<Grade> grades;
-	private int weight; // THIS NEEDS TO BE 0 < X <100
+	private double weight; // THIS NEEDS TO BE 0 < X <100
 	
-	public Category(String name) {
+	public Category(String name, double weight) {
 		this.name = name;
+		this.weight = weight;
 		grades = new ArrayList<Grade>();	
 	}
 
@@ -63,7 +64,7 @@ public class Category implements Serializable {
 		}
 	}
 	
-	public int getWeight(){
+	public double getWeight(){
 		return this.weight;
 	}
 	

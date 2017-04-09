@@ -28,7 +28,7 @@ public class Prediction {
 					totalGrade +=grade.gradeRun();
 				}
 			}
-			System.out.printf("Total Grade for %s (Weight-%d) is %f\n"
+			System.out.printf("Total Grade for %s (Weight-%f) is %f\n"
 					, category.getName()
 					, category.getWeight()
 					, totalGrade);
@@ -62,20 +62,17 @@ public class Prediction {
 		Semester sem = new Semester("Spring 2017");
 		Course course = new Course("Programming", sem);
 
-		Category cat1 = new Category("Test");
-		cat1.setWeight(40);
+		Category cat1 = new Category("Test", 40);
 		Grade test1 = new Grade("Test1", 60, 100, "");
 		Grade test2 = new Grade("Test2", 50, 100, "");
 		cat1.addGrade(test1);
 		cat1.addGrade(test2);
 
-		Category cat2 = new Category("Homework");
-		cat2.setWeight(30);
+		Category cat2 = new Category("Homework", 30);
 		Grade hw1 = new Grade("HW1", 0, 100,"");
 		cat2.addGrade(hw1);
 
-		Category cat3 = new Category("Final");
-		cat3.setWeight(30);
+		Category cat3 = new Category("Final", 30);
 		Grade exam = new Grade("Exam", 0, 100,"");
 		cat3.addGrade(exam);
 

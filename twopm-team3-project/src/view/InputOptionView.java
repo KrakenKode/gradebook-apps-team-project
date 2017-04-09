@@ -36,14 +36,13 @@ public class InputOptionView{
 		panel.add(first);
 		panel.add(weight);
 		panel.add(second);	
-		Category fail = new Category("fail");
+		
 		int result = JOptionPane.showConfirmDialog(null, panel, "Enter Category Information", JOptionPane.OK_CANCEL_OPTION);
 		if (result == JOptionPane.OK_OPTION){
-			Category newCategory = new Category(first.getText());
-			newCategory.setWeight(Integer.parseInt(second.getText()));
+			Category newCategory = new Category(first.getText(), Double.parseDouble(second.getText()));
 			return newCategory;
 		}	
-		return fail;
+		return null;
 	}
 
 }
