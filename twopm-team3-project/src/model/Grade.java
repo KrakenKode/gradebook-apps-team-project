@@ -8,12 +8,14 @@ public class Grade implements Serializable {
 	private int points;
 	private int maxPoints;
 	private String comment;
+	private double predicted;
 	
 	public Grade(String name, int points, int maxPoints, String comment) {
 		this.name = name;
 		this.points = points;	
 		this.maxPoints = maxPoints;
 		this.comment = comment;
+		this.predicted = 0;
 	}
 	
 	//Returns grade as a double in %
@@ -29,6 +31,14 @@ public class Grade implements Serializable {
 		return name;
 	}
 	/////////////Getters and Setters///////////////////
+	
+	public double getPredicted(){
+		return predicted;
+	}
+	
+	public void setPredicted(int predicted){
+		this.predicted = predicted;
+	}
 	
 	public String getName() {
 		return name;

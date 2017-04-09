@@ -91,7 +91,7 @@ public class CourseView {
 
 			ArrayList<Grade> gradedata = category.getGrades();
 			for(Grade grade : gradedata ){
-				this.addGradeView(grade.getName(), grade.gradeRun(), grade.getComment(), gradedata.indexOf(grade));
+				this.addGradeView(grade.getName(), grade.gradeRun(), grade.getComment(), gradedata.indexOf(grade), grade.getPredicted());
 				System.out.println(gradedata.indexOf(grade));
 			}
 		}
@@ -101,8 +101,9 @@ public class CourseView {
 		mainpanel.revalidate();	
 	}
 
-	public void addGradeView(String gradeName, Double grade, String comment, int num) {
+	public void addGradeView(String gradeName, Double grade, String comment, int num, double predicted) {
 		//TODO change JTextField to button to add comment button for popup
+
 		JTextField categoryNameTxt = new JTextField(gradeName);
 		JTextField categoryComTxt = new JTextField(comment);
 		categoryNameTxt.setText(gradeName);
@@ -130,8 +131,11 @@ public class CourseView {
 	
 		categoryInsidePanel.add(categoryNameTxt);
 		categoryInsidePanel.add(gradeTxt);
+
 		categoryInsidePanel.add(categoryComBut);
 		categoryInsidePanel.add(new JLabel("--%", JLabel.CENTER));
+		categoryInsidePanel.add(new JLabel(Math.round(predicted*100.0)/100.0 + "%", JLabel.CENTER));
+
 		categoryPanel.add(categoryInsidePanel);
 		coursePanel.add(categoryPanel);
 	}

@@ -151,6 +151,7 @@ class GBTreeListener implements TreeSelectionListener, MouseListener {
 		public void actionPerformed(ActionEvent e) {
 			//Get current string in textfield
 			String command = e.getActionCommand();
+			
 			//get the object selected
 			Object obj = e.getSource();
 			if (obj instanceof JTextField) {
