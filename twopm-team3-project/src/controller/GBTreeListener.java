@@ -104,6 +104,7 @@ class GBTreeListener implements TreeSelectionListener, MouseListener {
 				currSelCourse = (Course) obj;
 				JPopupMenu rc = new JPopupMenu();
 				JMenuItem catadd = new JMenuItem();
+				
 				catadd.setText("Add Category");
 				catadd.addActionListener(ra);
 				rc.add(catadd);
@@ -153,6 +154,7 @@ class GBTreeListener implements TreeSelectionListener, MouseListener {
 				InputOptionView ev = new InputOptionView(view, "Add Category");
 				Category newCategory = ev.addCategory();
 				if (newCategory.getName().equals("fail")) {return;}
+				
 				currSelCourse.addCategory(newCategory);
 				view.getCourseView().addCategoryView(newCategory.getName());
 

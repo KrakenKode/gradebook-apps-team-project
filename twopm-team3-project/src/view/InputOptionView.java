@@ -45,12 +45,5 @@ public class InputOptionView{
 		}	
 		return fail;
 	}
-	
-	public void showSuccess(String successMsg){
-		JOptionPane.showMessageDialog(mainview, successMsg, "Success", JOptionPane.INFORMATION_MESSAGE);
-	}
-	
-	public void showError(String errMsg){
-		JOptionPane.showMessageDialog(mainview, errMsg, "Error", JOptionPane.ERROR);
-	}
+
 }

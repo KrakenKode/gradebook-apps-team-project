@@ -24,16 +24,19 @@ public class EditGradeRangePopUp {
 		//set up constraints
 		GridBagConstraints jLabelC = new GridBagConstraints();
 		GridBagConstraints tFieldC = new GridBagConstraints();
+		
 		//Set up new labels
 		JLabel Alabel = new JLabel("A");
 		JLabel Blabel = new JLabel("B");
 		JLabel Clabel = new JLabel("C");
 		JLabel Dlabel = new JLabel("D");
+		
 		//Sets text field for grades
 		JTextField Afield = new JTextField(3);
 		JTextField Bfield = new JTextField(3);
 		JTextField Cfield = new JTextField(3);
 		JTextField Dfield = new JTextField(3);
+		
 		//Set fields to current default grade ranges
 		Afield.setText(Integer.toString(course.getGradeRange("A")));
 		Bfield.setText(Integer.toString(course.getGradeRange("B")));

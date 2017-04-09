@@ -151,6 +151,7 @@ public class CourseView {
 		categoryPanel.add(categoryInsidePanel);
 		categoryPanel.setBorder(BorderFactory.createLineBorder(Color.ORANGE));
 		coursePanel.add(categoryPanel);
+		mainpanel.revalidate();	
 	}
  
 	public void addTextActionListener(ActionListener al){
