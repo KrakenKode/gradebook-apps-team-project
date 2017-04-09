@@ -29,6 +29,7 @@ public class CourseView {
 	private JPanel categoryInsidePanel;
 	private JComboBox<String> gradeList;
 	private JScrollPane courseScroll;
+	private Course course;
 
 
 	public CourseView(JPanel mainpanel){
@@ -46,6 +47,9 @@ public class CourseView {
 	}
 
 	public void addCourseView(Course course) {
+		
+		setCurrentSelectedCourse(course);
+		
 		//title and grade summary 
 		JLabel courseLbl = new JLabel(course.getName());
 		coursePanel = new JPanel(new GridLayout(0, 1, 5, 5));
@@ -64,11 +68,11 @@ public class CourseView {
 		totalBox.add(new JLabel("Current Grade"));
 		totalBox.add(Box.createHorizontalStrut(100));
 
-		String[] letterList = { "Desired","A", "B", "C", "D", "E" };
+		String[] letterList = { "Desired","A", "B", "C", "D"};
 
 		gradeList = new JComboBox<String>(letterList);
 		gradeList.addItemListener(desiredBoxListener);
-		gradeList.setSelectedIndex(0);
+		//gradeList.setSelectedItem(course.getDesiredGrade());;
 		totalBox.add(gradeList);
 
 		totalPanel.add(totalBox);
@@ -170,4 +174,11 @@ public class CourseView {
 		this.desiredBoxListener = il;
 	}
 	
+	public void setCurrentSelectedCourse(Course course){
+		this.course = course;
+	}
+	
+	public Course getCurrentSelectedCourse(){
+		return this.course;
+	}
 }

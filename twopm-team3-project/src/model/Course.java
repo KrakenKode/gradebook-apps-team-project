@@ -11,20 +11,17 @@ public class Course implements Serializable {
 	private HashMap<String, Integer> gradeRange;
 	private double percentage;
 	private Semester parentSem;
-	
-//	public int predict(String letter){
-//		for(Category cat : categories){
-//			cat.catRun()
-//		}
-//		return 0 ;
-//	}
-	
+	private String sdesiredGrade;
+
 	public Course(String name, Semester parent) {
 		this.name = name;
 		this.parentSem = parent;
 		categories = new ArrayList<Category>();
 		gradeRange = new HashMap<String, Integer>();
 		defaultGradeRange();
+		
+		// assume student wants A for every course
+		setDesiredGrade("A"); 
 	}
 
 	public void addCategory(Category newCategory) {
@@ -104,5 +101,13 @@ public class Course implements Serializable {
 	
 	public void setGradeRange(String key, int grade) {
 		gradeRange.put(key, grade);
+	}
+	
+	public String getDesiredGrade(){
+		return sdesiredGrade;
+	}
+	
+	public void setDesiredGrade(String desiredGrade){
+		this.sdesiredGrade = desiredGrade;
 	}
 }

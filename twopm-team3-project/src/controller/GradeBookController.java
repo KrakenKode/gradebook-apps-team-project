@@ -91,9 +91,14 @@ public class GradeBookController {
 		
 		@Override
 		public void itemStateChanged(ItemEvent i) {
-			String grade = (String) i.getItem();
-			if (i.getStateChange() == i.SELECTED)
-				System.out.println(grade);
+			String letterGrade = (String) i.getItem();
+			Course course = view.getCourseView().getCurrentSelectedCourse();
+			if (i.getStateChange() == i.SELECTED){
+				System.out.println(letterGrade);
+				int desiredGrade = course.getGradeRange(letterGrade);
+				Prediction predict = new Prediction(course, desiredGrade);
+				predict.initiatePrediction();
+			}
 			
 		}
 		
