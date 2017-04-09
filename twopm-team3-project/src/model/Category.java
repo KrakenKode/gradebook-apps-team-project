@@ -45,6 +45,7 @@ public class Category implements Serializable {
 	public String getName() {
 		return name;
 	}
+	
 	//Setting weight takes care of decimals with both methods below	
 	public void setWeight(int weight){
 		if (weight > 0 && weight <= 100)
@@ -65,6 +66,7 @@ public class Category implements Serializable {
 	public int getWeight(){
 		return this.weight;
 	}
+	
 	public void setName(String name) {
 		this.name = name;
 	}

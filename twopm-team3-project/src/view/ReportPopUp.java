@@ -1,23 +1,15 @@
 package view;
 
+import model.*;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
-import org.jfree.ui.ApplicationFrame;
 import org.jfree.ui.RefineryUtilities;
 
-import model.Category;
-import model.Course;
-import model.Grade;
-import model.GradeBookModel;
-import model.Semester;
 
 public class ReportPopUp {
 	private GradeBookModel model;

@@ -1,11 +1,8 @@
 package view;
 
-import model.*;
 import java.awt.*;
-import java.util.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.TitledBorder;
 
 
 public class GradeBookView extends JFrame{

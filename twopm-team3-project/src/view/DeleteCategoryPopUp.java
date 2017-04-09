@@ -1,15 +1,13 @@
 package view;
-import java.awt.GridLayout;
 
+import java.awt.GridLayout;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
 import model.Category;
 import model.Course;
-import model.Grade;
 
 public class DeleteCategoryPopUp {
 	private Course course;

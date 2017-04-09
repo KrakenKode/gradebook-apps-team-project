@@ -8,7 +8,6 @@ import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
-
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.JComboBox;
@@ -17,11 +16,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
-import java.util.*;
 import javax.swing.*;
-import model.Category;
-import model.Course;
-import model.Grade;
+import model.*;
+
 
 public class CourseView {
 	private JPanel mainpanel;
@@ -133,7 +130,6 @@ public class CourseView {
 		categoryInsidePanel.add(gradeTxt);
 
 		categoryInsidePanel.add(categoryComBut);
-		categoryInsidePanel.add(new JLabel("--%", JLabel.CENTER));
 		categoryInsidePanel.add(new JLabel(Math.round(predicted*100.0)/100.0 + "%", JLabel.CENTER));
 
 		categoryPanel.add(categoryInsidePanel);

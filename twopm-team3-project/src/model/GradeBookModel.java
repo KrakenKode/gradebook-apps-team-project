@@ -15,15 +15,14 @@ public class GradeBookModel {
 
 		SaveOpenDriver.readSemesters(semesters, openFile);
 		
+		//file was empty make template
 		if(semesters.isEmpty()) {
 			makeTemplateSemesters();
-			SaveOpenDriver.saveSemesters(semesters, openFile);
 		}
 	}
 	
 	public void openFile() {
-		semesters = new ArrayList<Semester>();
-		
+		semesters = new ArrayList<Semester>();	
 		SaveOpenDriver.readSemesters(semesters, openFile);	
 	}
 	
@@ -39,6 +38,10 @@ public class GradeBookModel {
 	
 	public void addSemester(Semester sem) {
 		semesters.add(sem);
+	}
+	
+	public void removeSemester(Semester sem) {
+		semesters.remove(sem);
 	}
 	
 	
@@ -72,7 +75,7 @@ public class GradeBookModel {
 				
 		template = new Semester("Fall 2016");
 		
-		newCourse = new Course("Systems Programming");
+		newCourse = new Course("Systems Programming" , template);
 		
 		newCategory = new Category("Test");	
 		newCategory.addGrade(new Grade("Test 1", 235, 250, ""));
@@ -86,7 +89,7 @@ public class GradeBookModel {
 		
 		template.addCourse(newCourse);
 				
-		newCourse = new Course("Analysis of Algorithms");
+		newCourse = new Course("Analysis of Algorithms", template);
 		
 		newCategory = new Category("Test");	
 		newCategory.addGrade(new Grade("Test 1", 235, 250, ""));
@@ -104,7 +107,7 @@ public class GradeBookModel {
 			
 		template = new Semester("Spring 2017");
 				
-		newCourse = new Course("Computer Organization");
+		newCourse = new Course("Computer Organization", template);
 		
 		newCategory = new Category("Test");	
 		newCategory.addGrade(new Grade("Test 1", 235, 250, ""));
@@ -118,7 +121,7 @@ public class GradeBookModel {
 		
 		template.addCourse(newCourse);
 				
-		newCourse = new Course("Application Programming");
+		newCourse = new Course("Application Programming", template);
 		
 		newCategory = new Category("Test");	
 		newCategory.addGrade(new Grade("Test 1", 235, 250, ""));

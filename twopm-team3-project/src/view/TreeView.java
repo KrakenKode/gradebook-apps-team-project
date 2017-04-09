@@ -63,7 +63,6 @@ public class TreeView {
 
 
 	public void rebuildTree(ArrayList<Semester> semdata) {
-		tree.setEditable(true);
 		root.removeAllChildren();
 		semesterMap.clear();
 
@@ -80,28 +79,56 @@ public class TreeView {
 		}
 
 		treeModel.reload(root);
-		tree.setEditable(false);
 	}
 
 
 	public void addSemesterNode(Semester sem) {
-		tree.setEditable(true);
 		DefaultMutableTreeNode semester = new DefaultMutableTreeNode(sem.getName());
 		semesterMap.put(sem.getName(), semester);
 		root.add(semester);
 		treeModel.reload(root);
-		tree.setEditable(false);
+	}
+	
+	public void removeSemesterNode(Semester sem) {
+		//get and remove node from hashmap
+		DefaultMutableTreeNode semester = semesterMap.remove(sem.getName());
+		if(semester == null) {return;}
+		//remove node from tree
+		root.remove(semester);
+		treeModel.reload(root);
 	}
 
 
 	public void addCourseNode(Semester sem, Course course) {
 		//get the semester node from the hashmap
-		tree.setEditable(true);
 		DefaultMutableTreeNode semester = semesterMap.get(sem.getName());	
 		semester.add(new DefaultMutableTreeNode(course.getName()));
 		treeModel.reload(semester);
-		tree.setEditable(false);
 	}
+	
+	public void removeCourseNode(Semester sem, Course course) {
+		//get the semester node from the hashmap
+		DefaultMutableTreeNode semester = semesterMap.get(sem.getName());
+		DefaultMutableTreeNode currChildNode;
+		String courseToBeDel = course.getName();
+		
+		/*
+		 * Cannot simply call a search method to find the course node in
+		 * the Semester node, so we have to traverse all the courses under
+		 * the semester node and get a match by name.
+		 * Warning: This will cause problems if there are courses with the
+		 * same name under the same semester(which shouldn't happen anyways).
+		 */
+		for(int i = 0; i < semester.getChildCount(); i++) {		
+			currChildNode = (DefaultMutableTreeNode) semester.getChildAt(i);
+			if(currChildNode.toString().equals(courseToBeDel)) {
+				semester.remove(currChildNode);			
+				break;
+			}
+		}		
+		treeModel.reload(semester);
+	}
+
 
 
 	public void addTreeListener(TreeSelectionListener tsl, MouseListener l) {	
