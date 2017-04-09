@@ -23,6 +23,7 @@ public final class SaveOpenDriver {
 			}						
 		} catch(Exception e) {
 			e.printStackTrace();		
+			System.out.println("in saveSemesters");
 		}
 		
 		// close the file
@@ -30,6 +31,7 @@ public final class SaveOpenDriver {
 			out.close();
 		} catch (IOException e) {
 			e.printStackTrace();
+			System.out.println("in saveSemesters");
 		}
 
 	}
@@ -53,6 +55,8 @@ public final class SaveOpenDriver {
 		} catch(EOFException e) {
 			return;
 		} catch(Exception e) {
+			System.out.println("in readSemesters");
+
 			e.printStackTrace();
 		}
 		
@@ -61,12 +65,10 @@ public final class SaveOpenDriver {
 			in.close();
 		} catch (IOException e) {
 			e.printStackTrace();
+			System.out.println("in readSemesters");
+
 		}
 				
 	}
-	
-	
-	
-	
-	
+
 }

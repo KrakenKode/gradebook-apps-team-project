@@ -9,7 +9,8 @@ public class Course implements Serializable {
 	private String name;
 	private ArrayList<Category> categories;
 	private HashMap<String, Integer> gradeRange;
-	private double percentage; 
+	private double percentage;
+	private Semester parentSem;
 	
 //	public int predict(String letter){
 //		for(Category cat : categories){
@@ -18,8 +19,9 @@ public class Course implements Serializable {
 //		return 0 ;
 //	}
 	
-	public Course(String name) {
+	public Course(String name, Semester parent) {
 		this.name = name;
+		this.parentSem = parent;
 		categories = new ArrayList<Category>();
 		gradeRange = new HashMap<String, Integer>();
 		defaultGradeRange();
@@ -71,6 +73,11 @@ public class Course implements Serializable {
 		return name;
 	}
 
+	public Semester getParentSem() {
+		return parentSem;
+	}
+	
+	
 	public double getPercentage() {
 		return percentage;
 	}

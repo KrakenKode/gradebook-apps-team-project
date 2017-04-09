@@ -241,7 +241,7 @@ class GBTreeListener implements TreeSelectionListener, MouseListener {
 				InputOptionView nCourse = new InputOptionView(view, "Add Course");
 				String courseString = nCourse.addPopUp();
 				if (courseString== null) {return;}
-				Course newCourse = new Course(courseString);
+				Course newCourse = new Course(courseString, currSelSem);
 				currSelSem.addCourse(newCourse);
 				view.getTreeView().addCourseNode(currSelSem, newCourse);
 				
@@ -282,8 +282,14 @@ class GBTreeListener implements TreeSelectionListener, MouseListener {
 						"Confirmation needed", JOptionPane.YES_NO_OPTION);
 				
 				if(n == JOptionPane.YES_OPTION) {
-					//TODO: Add functionality to delete course.
-					System.out.println("Deleting " + currRSelCourse);
+					//get parent semester for the course
+					Semester parentSem = currRSelCourse.getParentSem();
+					
+					//remove the course from the treeview
+					view.getTreeView().removeCourseNode(parentSem, currRSelCourse);
+									
+					//remove the course from the parent Semester in model	
+					parentSem.removeCourse(currRSelCourse);					
 				}
 							
 			} else if (command.equals("Edit Grade Range")) {

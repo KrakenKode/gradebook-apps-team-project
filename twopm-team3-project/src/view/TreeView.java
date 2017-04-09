@@ -105,6 +105,30 @@ public class TreeView {
 		semester.add(new DefaultMutableTreeNode(course.getName()));
 		treeModel.reload(semester);
 	}
+	
+	public void removeCourseNode(Semester sem, Course course) {
+		//get the semester node from the hashmap
+		DefaultMutableTreeNode semester = semesterMap.get(sem.getName());
+		DefaultMutableTreeNode currChildNode;
+		String courseToBeDel = course.getName();
+		
+		/*
+		 * Cannot simply call a search method to find the course node in
+		 * the Semester node, so we have to traverse all the courses under
+		 * the semester node and get a match by name.
+		 * Warning: This will cause problems if there are courses with the
+		 * same name under the same semester(which shouldn't happen anyways).
+		 */
+		for(int i = 0; i < semester.getChildCount(); i++) {		
+			currChildNode = (DefaultMutableTreeNode) semester.getChildAt(i);
+			if(currChildNode.toString().equals(courseToBeDel)) {
+				semester.remove(currChildNode);			
+				break;
+			}
+		}		
+		treeModel.reload(semester);
+	}
+
 
 
 	public void addTreeListener(TreeSelectionListener tsl, MouseListener l) {	
