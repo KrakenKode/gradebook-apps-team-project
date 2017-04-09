@@ -87,45 +87,49 @@ class GBTreeListener implements TreeSelectionListener, MouseListener {
 			if (selPath == null) {return;}
 			//get the object mouse was closest to
 			Object obj = model.determineTreeObject(selPath.getLastPathComponent().toString()); 
-			ActionListener ra = new JPopupMenuListener();
+			ActionListener ClickAction = new JPopupMenuListener();
 			//if the object was a semester object
 			if (obj instanceof Semester) {
 				//Make JPopupMenu for right click context
 				currSelSem = (Semester) obj;
-				JPopupMenu rc = new JPopupMenu();
+				JPopupMenu RClickMenu = new JPopupMenu();
 				JMenuItem couradd = new JMenuItem();
 				couradd.setText("Add Course");
-				couradd.addActionListener(ra);
-				rc.add(couradd);
-				rc.show(e.getComponent(), e.getX(), e.getY());
+				couradd.addActionListener(ClickAction);
+				RClickMenu.add(couradd);
+				RClickMenu.show(e.getComponent(), e.getX(), e.getY());
 				//if the object was a course object
 			} else if (obj instanceof Course) {
 				//Make JPopupMenu for right click context
 				currSelCourse = (Course) obj;
-				JPopupMenu rc = new JPopupMenu();
+				JPopupMenu RClickMenu = new JPopupMenu();
 				JMenuItem catadd = new JMenuItem();
 				catadd.setText("Add Category");
-				catadd.addActionListener(ra);
-				rc.add(catadd);
+				catadd.addActionListener(ClickAction);
+				RClickMenu.add(catadd);
 				JMenuItem gradeadd = new JMenuItem();
 				gradeadd.setText("Add Grade");
-				gradeadd.addActionListener(ra);
-				rc.add(gradeadd);
+				gradeadd.addActionListener(ClickAction);
+				RClickMenu.add(gradeadd);
 				//rc.show(e.getComponent(), e.getX(), e.getY());
-				rc.addSeparator();
-
+				RClickMenu.addSeparator();
+				//add grade remove option to JPopupMenu
 				JMenuItem gradeRemove = new JMenuItem();
 				gradeRemove.setText("Remove Grade");
-				gradeRemove.addActionListener(ra);
-				rc.add(gradeRemove);
-				rc.addSeparator();
-				
+				gradeRemove.addActionListener(ClickAction);
+				RClickMenu.add(gradeRemove);
+				//add category remove option to JPopupMenu
+				JMenuItem categoryRemove = new JMenuItem();
+				categoryRemove.setText("Remove Category");
+				categoryRemove.addActionListener(ClickAction);
+				RClickMenu.add(categoryRemove);
+				RClickMenu.addSeparator();
 				JMenuItem editGradeRange = new JMenuItem();
 				editGradeRange.setText("Edit Grade Range");
-				editGradeRange.addActionListener(ra);
-				rc.add(editGradeRange);
+				editGradeRange.addActionListener(ClickAction);
+				RClickMenu.add(editGradeRange);
 				
-				rc.show(e.getComponent(), e.getX(), e.getY());
+				RClickMenu.show(e.getComponent(), e.getX(), e.getY());
 			}
 		}
 	}
@@ -177,6 +181,15 @@ class GBTreeListener implements TreeSelectionListener, MouseListener {
 			} else if(command.equals("Remove Grade")) {
 				DeleteGradePopUp ngrade = new DeleteGradePopUp(currSelCourse);
 				ngrade.deleteGradePopUp();
+				try {
+					view.getCourseView().removeCourseView();
+				} catch (Exception nPointer) {
+					System.err.println("CoursePanel does not exist.");
+				}
+				view.getCourseView().addCourseView(currSelCourse);
+			} else if(command.equals("Remove Category")) {
+				DeleteCategoryPopUp rmCat = new DeleteCategoryPopUp(currSelCourse);
+				rmCat.deleteCategoryPopUp();
 				try {
 					view.getCourseView().removeCourseView();
 				} catch (Exception nPointer) {
