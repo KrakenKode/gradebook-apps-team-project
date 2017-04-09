@@ -63,7 +63,6 @@ public class TreeView {
 
 
 	public void rebuildTree(ArrayList<Semester> semdata) {
-		tree.setEditable(true);
 		root.removeAllChildren();
 		semesterMap.clear();
 
@@ -80,27 +79,31 @@ public class TreeView {
 		}
 
 		treeModel.reload(root);
-		tree.setEditable(false);
 	}
 
 
 	public void addSemesterNode(Semester sem) {
-		tree.setEditable(true);
 		DefaultMutableTreeNode semester = new DefaultMutableTreeNode(sem.getName());
 		semesterMap.put(sem.getName(), semester);
 		root.add(semester);
 		treeModel.reload(root);
-		tree.setEditable(false);
+	}
+	
+	public void removeSemesterNode(Semester sem) {
+		//get and remove node from hashmap
+		DefaultMutableTreeNode semester = semesterMap.remove(sem.getName());
+		if(semester == null) {return;}
+		//remove node from tree
+		root.remove(semester);
+		treeModel.reload(root);
 	}
 
 
 	public void addCourseNode(Semester sem, Course course) {
 		//get the semester node from the hashmap
-		tree.setEditable(true);
 		DefaultMutableTreeNode semester = semesterMap.get(sem.getName());	
 		semester.add(new DefaultMutableTreeNode(course.getName()));
 		treeModel.reload(semester);
-		tree.setEditable(false);
 	}
 
 

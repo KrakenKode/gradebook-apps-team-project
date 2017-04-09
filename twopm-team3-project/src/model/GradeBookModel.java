@@ -41,6 +41,10 @@ public class GradeBookModel {
 		semesters.add(sem);
 	}
 	
+	public void removeSemester(Semester sem) {
+		semesters.remove(sem);
+	}
+	
 	
 	public Object determineTreeObject(String objectName) {
 		Object obj = null;
