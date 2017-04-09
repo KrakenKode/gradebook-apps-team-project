@@ -15,15 +15,14 @@ public class GradeBookModel {
 
 		SaveOpenDriver.readSemesters(semesters, openFile);
 		
+		//file was empty make template
 		if(semesters.isEmpty()) {
 			makeTemplateSemesters();
-			SaveOpenDriver.saveSemesters(semesters, openFile);
 		}
 	}
 	
 	public void openFile() {
-		semesters = new ArrayList<Semester>();
-		
+		semesters = new ArrayList<Semester>();	
 		SaveOpenDriver.readSemesters(semesters, openFile);	
 	}
 	
