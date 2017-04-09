@@ -1,17 +1,16 @@
 package controller;
 
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
+import javax.swing.JTextField;
 import javax.swing.JTree;
 import javax.swing.SwingUtilities;
 import javax.swing.event.TreeSelectionEvent;
@@ -21,9 +20,17 @@ import javax.swing.tree.TreePath;
 
 import model.Category;
 import model.Course;
+import model.Grade;
 import model.GradeBookModel;
 import model.Semester;
-import view.*;
+import view.CommentPopUp;
+import view.CourseView;
+import view.DeleteCategoryPopUp;
+import view.DeleteGradePopUp;
+import view.EditGradeRangePopUp;
+import view.GradeBookView;
+import view.InputOptionView;
+import view.NewGradeInputPopUp;
 
 
 class GBTreeListener implements TreeSelectionListener, MouseListener {
@@ -31,7 +38,8 @@ class GBTreeListener implements TreeSelectionListener, MouseListener {
 	private GradeBookView view;
 	private GradeBookModel model;
 	private JTree tree;
-	private Course currSelCourse;
+	private Course currRSelCourse;
+	private Course lastSelCourse;
 	private Semester currSelSem;
 
 	public GBTreeListener(GradeBookModel model, GradeBookView view) {
@@ -61,6 +69,7 @@ class GBTreeListener implements TreeSelectionListener, MouseListener {
 			Object obj = model.determineTreeObject(treeNode);
 			if(obj instanceof Course) {
 				Course course = (Course) obj;
+				lastSelCourse = (Course) obj;
 				//setting up courseView
 
 				CourseView courseView = view.getCourseView();
@@ -101,7 +110,7 @@ class GBTreeListener implements TreeSelectionListener, MouseListener {
 				//if the object was a course object
 			} else if (obj instanceof Course) {
 				//Make JPopupMenu for right click context
-				currSelCourse = (Course) obj;
+				currRSelCourse = (Course) obj;
 				JPopupMenu RClickMenu = new JPopupMenu();
 				JMenuItem catadd = new JMenuItem();
 				
@@ -135,17 +144,49 @@ class GBTreeListener implements TreeSelectionListener, MouseListener {
 		}
 	}
 
+	//View to Model saving functionality
 	class JTextFieldListener implements ActionListener{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			//Get current string in textfield
 			String command = e.getActionCommand();
-			int nice = e.hashCode();
-			System.out.println(command);
-			System.out.println(nice);
-
+			//get the object selected
+			Object obj = e.getSource();
+			if (obj instanceof JTextField) {
+				JTextField curSelField = (JTextField) obj;
+				//Get the name for the selected JTextField to change name or points
+				String selName = curSelField.getName();
+				String split[] = selName.split(" ");
+				String num = split[1];
+				int result = Integer.parseInt(num);
+				//Get the category from the name of the JPanel categoryPanel
+				String selCat = curSelField.getParent().getParent().getName();
+				ArrayList<Grade> gradeList = new ArrayList<Grade>();
+				//Find category that matches currently selected one
+				for (Category cat: lastSelCourse.getCategories()) {
+					if (cat.getName() == selCat) {
+						gradeList = cat.getGrades();
+						break;
+					}
+				}
+				if(selName.contains("GradeName")) {
+					//Set the name of the grade
+					gradeList.get(result).setName(command);
+				} else if (selName.contains("Grade")) {
+					//TODO fix input for grade points
+					//Points is type int and Command is String
+					//Thus "94.0%" needs to be "94" then cast into int
+					gradeList.get(result).setPoints(Integer.parseInt((String) command.subSequence(0, 2)));
+				}
+			}
+			
+			//TODO add comment popup functionality
+			if (command.equals("Comment")) {
+				CommentPopUp comEdit = new CommentPopUp();
+				
+			}
 		}
-
 	}
 
 
@@ -155,53 +196,57 @@ class GBTreeListener implements TreeSelectionListener, MouseListener {
 		public void actionPerformed(ActionEvent e) {
 			String command = e.getActionCommand();
 			if(command.equals("Add Category")) {
-				InputOptionView ev = new InputOptionView(view, "Add Category");
-				Category newCategory = ev.addCategory();
+				InputOptionView nCat = new InputOptionView(view, "Add Category");
+				Category newCategory = nCat.addCategory();
 				if (newCategory.getName().equals("fail")) {return;}
-				
-				currSelCourse.addCategory(newCategory);
+				try {
+					view.getCourseView().removeCourseView();
+				} catch (Exception nPointer) {
+					System.err.println("CoursePanel does not exist.");
+				}
+				currRSelCourse.addCategory(newCategory);
 				view.getCourseView().addCategoryView(newCategory.getName());
 
 			} else if(command.equals("Add Grade")) {
-				NewGradeInputPopUp ngrade = new NewGradeInputPopUp(currSelCourse);
+				NewGradeInputPopUp ngrade = new NewGradeInputPopUp(currRSelCourse);
 				ngrade.newGradePopUp();
 				try {
 					view.getCourseView().removeCourseView();
 				} catch (Exception nPointer) {
 					System.err.println("CoursePanel does not exist.");
 				}
-				view.getCourseView().addCourseView(currSelCourse);
+				view.getCourseView().addCourseView(currRSelCourse);
 				
 			} else if(command.equals("Add Course")) {
-				InputOptionView ev = new InputOptionView(view, "Add Course");
-				String courseString = ev.addPopUp();
+				InputOptionView nCourse = new InputOptionView(view, "Add Course");
+				String courseString = nCourse.addPopUp();
 				if (courseString== null) {return;}
 				Course newCourse = new Course(courseString);
 				currSelSem.addCourse(newCourse);
 				view.getTreeView().addCourseNode(currSelSem, newCourse);
 				
 			} else if(command.equals("Remove Grade")) {
-				DeleteGradePopUp ngrade = new DeleteGradePopUp(currSelCourse);
+				DeleteGradePopUp ngrade = new DeleteGradePopUp(currRSelCourse);
 				ngrade.deleteGradePopUp();
 				try {
 					view.getCourseView().removeCourseView();
 				} catch (Exception nPointer) {
 					System.err.println("CoursePanel does not exist.");
 				}
-				view.getCourseView().addCourseView(currSelCourse);
+				view.getCourseView().addCourseView(currRSelCourse);
 			} else if(command.equals("Remove Category")) {
 				//Call to add a new removal window
-				DeleteCategoryPopUp rmCat = new DeleteCategoryPopUp(currSelCourse);
+				DeleteCategoryPopUp rmCat = new DeleteCategoryPopUp(currRSelCourse);
 				rmCat.deleteCategoryPopUp();
 				try {
 					view.getCourseView().removeCourseView();
 				} catch (Exception nPointer) {
 					System.err.println("CoursePanel does not exist.");
 				}
-				view.getCourseView().addCourseView(currSelCourse);
+				view.getCourseView().addCourseView(currRSelCourse);
 			} else if (command.equals("Edit Grade Range")) {
 				//Creates new edit grade range pop up
-				EditGradeRangePopUp gradeR = new EditGradeRangePopUp(currSelCourse);
+				EditGradeRangePopUp gradeR = new EditGradeRangePopUp(currRSelCourse);
 				gradeR.gradeRangePopUp();
 			}
 		}
