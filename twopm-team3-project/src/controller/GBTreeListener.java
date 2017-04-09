@@ -190,6 +190,7 @@ class GBTreeListener implements TreeSelectionListener, MouseListener {
 				}
 				view.getCourseView().addCourseView(currSelCourse);
 			} else if(command.equals("Remove Category")) {
+				//Call to add a new removal window
 				DeleteCategoryPopUp rmCat = new DeleteCategoryPopUp(currSelCourse);
 				rmCat.deleteCategoryPopUp();
 				try {

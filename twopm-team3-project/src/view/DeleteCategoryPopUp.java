@@ -37,6 +37,7 @@ public class DeleteCategoryPopUp {
 		int result = JOptionPane.showConfirmDialog(null, rmCatPanel, 
 				"Remove Grade Information", JOptionPane.OK_CANCEL_OPTION);
 		//If the user confirms iterate through course and delete selected category
+		
 		if (result == JOptionPane.OK_OPTION) {
 			Object selObj = categoryBox.getSelectedItem();
 			if (selObj instanceof Category) {
