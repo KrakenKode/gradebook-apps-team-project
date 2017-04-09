@@ -27,7 +27,7 @@ public class InputOptionView{
 	}
 	
 	public Category addCategory() {
-		JPanel panel = new JPanel(new GridLayout(0, 2, 0, 0));
+		JPanel panel = new JPanel(new GridLayout(0, 2, 2, 2));
 		JLabel cat = new JLabel("Name of Category");
 		JLabel weight = new JLabel("Weight of Category");
 		JTextField first = new JTextField(10);

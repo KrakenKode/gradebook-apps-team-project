@@ -108,7 +108,6 @@ public class CourseView {
 		JTextField categoryNameTxt = new JTextField(gradeName);
 		JTextField categoryComTxt = new JTextField(comment);
 		categoryNameTxt.setText(gradeName);
-		//categoryNameTxt.setEditable(false);
 		categoryNameTxt.setBorder(javax.swing.BorderFactory.createEmptyBorder());
 		categoryNameTxt.setHorizontalAlignment(JTextField.CENTER);
 		
@@ -118,7 +117,6 @@ public class CourseView {
 		
 		JTextField gradeTxt = new JTextField();
 		gradeTxt.setText(Math.round(grade*100.0)/100.0 + "%");
-		//gradeTxt.setEditable(false);
 		gradeTxt.setBorder(javax.swing.BorderFactory.createEmptyBorder());
 		gradeTxt.setHorizontalAlignment(JTextField.CENTER);
 		gradeTxt.setBackground(mainpanel.getBackground());
@@ -144,7 +142,6 @@ public class CourseView {
 
 		categoryPanel = new JPanel(new GridLayout(1,4,2,2));
 		JTextField categoryTxt = new JTextField(category);
-		//categoryTxt.setEditable(false);
 		categoryTxt.setBorder(javax.swing.BorderFactory.createEmptyBorder());
 		categoryTxt.setHorizontalAlignment(JTextField.CENTER);
 		categoryTxt.setBackground(mainpanel.getBackground());
@@ -163,7 +160,6 @@ public class CourseView {
 		categoryPanel.add(categoryInsidePanel);
 		categoryPanel.setBorder(BorderFactory.createLineBorder(Color.ORANGE));
 		coursePanel.add(categoryPanel);
-		mainpanel.revalidate();	
 	}
  
 	public void addTextActionListener(ActionListener al){

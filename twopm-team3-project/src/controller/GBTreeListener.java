@@ -216,14 +216,14 @@ class GBTreeListener implements TreeSelectionListener, MouseListener {
 			if(command.equals("Add Category")) {
 				InputOptionView nCat = new InputOptionView(view, "Add Category");
 				Category newCategory = nCat.addCategory();
-				if (newCategory.getName().equals("fail")) {return;}
+				if (newCategory == null) {return;}
 				try {
 					view.getCourseView().removeCourseView();
 				} catch (Exception nPointer) {
 					System.err.println("CoursePanel does not exist.");
 				}
 				currRSelCourse.addCategory(newCategory);
-				view.getCourseView().addCategoryView(newCategory.getName());
+				view.getCourseView().addCourseView(currRSelCourse);
 
 			} else if(command.equals("Add Grade")) {
 				NewGradeInputPopUp ngrade = new NewGradeInputPopUp(currRSelCourse);
