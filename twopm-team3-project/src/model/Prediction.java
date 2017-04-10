@@ -22,20 +22,20 @@ public class Prediction {
 		for(Category category : categorydata ){
 			catWeight  = category.getWeight();
 
-//			ArrayList<Grade> gradedata = category.getGrades();
-//			for(Grade grade : gradedata ){
-//				if(grade.getPoints() != 0){
-//					totalGrade +=grade.gradeRun();
-//				}
-//			}
-//			System.out.printf("Total Grade for %s (Weight-%f) is %f\n"
-//					, category.getName()
-//					, category.getWeight()
-//					, totalGrade);
+			ArrayList<Grade> gradedata = category.getGrades();
+			for(Grade grade : gradedata ){
+				if(grade.getPoints() != 0){
+					totalGrade +=grade.gradeRun();
+				}
+			}
+			System.out.printf("Total Grade for %s (Weight-%f) is %f\n"
+					, category.getName()
+					, category.getWeight()
+					, totalGrade);
 			// HW total = (HW1 + HW2) * 20/100
-			//totalCourseGrade += totalGrade * (catWeight/100);
-			totalCourseGrade += category.catRun() * (catWeight/100);
-			//totalGrade = 0; // new value for next cat
+			totalCourseGrade += totalGrade * (catWeight/100);
+		//	totalCourseGrade += category.catRun() * (catWeight/100);
+			totalGrade = 0; // new value for next cat
 		}
 		if(idesiredGrade > totalCourseGrade){
 			System.out.printf("totalCourseGrade: %lf\n", totalCourseGrade);

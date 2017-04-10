@@ -47,18 +47,11 @@ public class Category implements Serializable {
 		return name;
 	}
 	
-	//Setting weight takes care of decimals with both methods below	
-	public void setWeight(int weight){
-		if (weight > 0 && weight <= 100)
-			this.weight = weight;
-		else{
-			System.out.println("Please enter a weight more than 0 and less than 100 %");
-		}
-	}
+	//Setting weight as a double since its already parsed as a double in inputoptionview(addCat)
 	
 	public void setWeight(double weight){
 		if (weight > 0 && weight <= 100)
-			this.weight = (int) weight;
+			this.weight = weight;
 		else{
 			System.out.println("Please enter a weight more than 0 and less than 100 %");
 		}
