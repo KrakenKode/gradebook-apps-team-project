@@ -40,7 +40,7 @@ public class Grade implements Serializable {
 	}
 
 	public int getPoints() {
-		return points;
+		return this.points;
 	}
 
 	public void setPoints(int points) {
