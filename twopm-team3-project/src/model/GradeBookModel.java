@@ -77,12 +77,12 @@ public class GradeBookModel {
 		
 		newCourse = new Course("Systems Programming" , template);
 		
-		newCategory = new Category("Test", 40);	
+		newCategory = new Category("Test");	
 		newCategory.addGrade(new Grade("Test 1", 235, 250, ""));
 		newCategory.addGrade(new Grade("Test 2", 260, 300, ""));
 		newCourse.addCategory(newCategory);
 					
-		newCategory = new Category("Homework", 30 );
+		newCategory = new Category("Homework");
 		newCategory.addGrade(new Grade("HW 1", 75, 100, ""));
 		newCategory.addGrade(new Grade("HW 2", 99, 100, ""));
 		newCourse.addCategory(newCategory);
@@ -91,12 +91,12 @@ public class GradeBookModel {
 				
 		newCourse = new Course("Analysis of Algorithms", template);
 		
-		newCategory = new Category("Test", 50);	
+		newCategory = new Category("Test");	
 		newCategory.addGrade(new Grade("Test 1", 235, 250, ""));
 		newCategory.addGrade(new Grade("Test 2", 260, 300, ""));
 		newCourse.addCategory(newCategory);
 			
-		newCategory = new Category("Homework", 20);
+		newCategory = new Category("Homework");
 		newCategory.addGrade(new Grade("HW 1", 75, 100, ""));
 		newCategory.addGrade(new Grade("HW 2", 99, 100, ""));
 		newCourse.addCategory(newCategory);
@@ -109,12 +109,12 @@ public class GradeBookModel {
 				
 		newCourse = new Course("Computer Organization", template);
 		
-		newCategory = new Category("Test", 40);	
+		newCategory = new Category("Test");	
 		newCategory.addGrade(new Grade("Test 1", 235, 250, ""));
 		newCategory.addGrade(new Grade("Test 2", 260, 300, ""));
 		newCourse.addCategory(newCategory);
 					
-		newCategory = new Category("Homework", 25);
+		newCategory = new Category("Homework");
 		newCategory.addGrade(new Grade("HW 1", 75, 100, ""));
 		newCategory.addGrade(new Grade("HW 2", 99, 100, ""));
 		newCourse.addCategory(newCategory);
@@ -123,12 +123,12 @@ public class GradeBookModel {
 				
 		newCourse = new Course("Application Programming", template);
 		
-		newCategory = new Category("Test", 55);	
+		newCategory = new Category("Test");	
 		newCategory.addGrade(new Grade("Test 1", 235, 250, ""));
 		newCategory.addGrade(new Grade("Test 2", 260, 300, ""));
 		newCourse.addCategory(newCategory);
 				
-		newCategory = new Category("Homework", 30);
+		newCategory = new Category("Homework");
 		newCategory.addGrade(new Grade("HW 1", 75, 100, ""));
 		newCategory.addGrade(new Grade("HW 2", 99, 100, ""));
 		newCourse.addCategory(newCategory);
