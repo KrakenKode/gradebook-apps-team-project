@@ -132,6 +132,7 @@ public class CourseView {
 		categoryInsidePanel.add(gradeTxt);
 
 		categoryInsidePanel.add(categoryComBut);
+		categoryInsidePanel.add(new JLabel("%", JLabel.CENTER));
 
 		categoryPanel.add(categoryInsidePanel);
 		coursePanel.add(categoryPanel);
@@ -153,6 +154,7 @@ public class CourseView {
 		categoryInsidePanel.setBorder(BorderFactory.createLineBorder(Color.blue));
 		categoryInsidePanel.add(new JLabel("Grade", JLabel.CENTER));
 		categoryInsidePanel.add(new JLabel("Comment", JLabel.CENTER));
+		categoryInsidePanel.add(new JLabel("Predict", JLabel.CENTER));
 
 		categoryPanel.setName(category);
 		categoryPanel.add(categoryInsidePanel);
