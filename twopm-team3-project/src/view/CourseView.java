@@ -106,7 +106,7 @@ public class CourseView {
 		//TODO change JTextField to button to add comment button for popup
 
 		JTextField categoryNameTxt = new JTextField(gradeName);
-		JTextField categoryComTxt = new JTextField(comment);
+//		JTextField categoryComTxt = new JTextField(comment);
 		categoryNameTxt.setText(gradeName);
 		categoryNameTxt.setBorder(javax.swing.BorderFactory.createEmptyBorder());
 		categoryNameTxt.setHorizontalAlignment(JTextField.CENTER);
@@ -115,24 +115,50 @@ public class CourseView {
 		categoryNameTxt.setBackground(mainpanel.getBackground());
 		categoryNameTxt.addActionListener(textActionListener);
 		
+		//Text field for the %grade
 		JTextField gradeTxt = new JTextField();
 		gradeTxt.setText(Math.round(grade*100.0)/100.0 + "%");
 		gradeTxt.setBorder(javax.swing.BorderFactory.createEmptyBorder());
 		gradeTxt.setHorizontalAlignment(JTextField.CENTER);
 		gradeTxt.setBackground(mainpanel.getBackground());
 		gradeTxt.addActionListener(textActionListener);
+		//why isnt this committ working
+		//Text field for the earned points
+		JTextField earned = new JTextField();
+		//CHANGE VALUE BELOW(CONTROLLER)
+		earned.setText("earned");
+		earned.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+		earned.setHorizontalAlignment(JTextField.CENTER);
+		earned.setBackground(mainpanel.getBackground());
+		earned.addActionListener(textActionListener);
 		
-		JButton categoryComBut = new JButton();
-		categoryComBut.setText("Comment");
-		categoryComBut.addActionListener(textActionListener);
+		//Text field for the max points
+		JTextField max = new JTextField();
+		//CHANGE VALUE BELOW(CONTROLLER)
+		max.setText("max!");
+		max.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+		max.setHorizontalAlignment(JTextField.CENTER);
+		max.setBackground(mainpanel.getBackground());
+		max.addActionListener(textActionListener);
+		
+
 		categoryNameTxt.setName("GradeName " + num);
 		gradeTxt.setName("Grade " + num);
-	
-		categoryInsidePanel.add(categoryNameTxt);
-		categoryInsidePanel.add(gradeTxt);
 
-		categoryInsidePanel.add(categoryComBut);
+
+	
+
+		//adding text fields to the panel in order
+		categoryInsidePanel.add(categoryNameTxt);
+		categoryInsidePanel.add(earned);
+		categoryInsidePanel.add(max);
+		categoryInsidePanel.add(gradeTxt);
 		categoryInsidePanel.add(new JLabel("%", JLabel.CENTER));
+		
+
+//This down here is giving me an error so i just commented it out for now
+	//	categoryInsidePanel.add(new JLabel(Math.round(predicted*100.0)/100.0 + "%", JLabel.CENTER));
+
 
 		categoryPanel.add(categoryInsidePanel);
 		coursePanel.add(categoryPanel);
@@ -140,6 +166,7 @@ public class CourseView {
 
 	public void addCategoryView(String category) {
 
+		 
 		categoryPanel = new JPanel(new GridLayout(1,4,2,2));
 		JTextField categoryTxt = new JTextField(category);
 		categoryTxt.setBorder(javax.swing.BorderFactory.createEmptyBorder());
@@ -149,11 +176,13 @@ public class CourseView {
 		categoryTxt.addActionListener(textActionListener);
 		
 		//categoryBox holds - Homework, Grade - Horizontally
-		categoryInsidePanel = new JPanel(new GridLayout(0,4,60,20));
+		//changed the second parameter to 5 because of number of columns
+		categoryInsidePanel = new JPanel(new GridLayout(0,5,60,20));
 		categoryInsidePanel.add(categoryTxt);
 		categoryInsidePanel.setBorder(BorderFactory.createLineBorder(Color.blue));
+		categoryInsidePanel.add(new JLabel("Earned", JLabel.CENTER));
+		categoryInsidePanel.add(new JLabel("MaxPts",JLabel.CENTER));
 		categoryInsidePanel.add(new JLabel("Grade", JLabel.CENTER));
-		categoryInsidePanel.add(new JLabel("Comment", JLabel.CENTER));
 		categoryInsidePanel.add(new JLabel("Predict", JLabel.CENTER));
 
 		categoryPanel.setName(category);
