@@ -106,7 +106,6 @@ public class CourseView {
 		//TODO change JTextField to button to add comment button for popup
 
 		JTextField categoryNameTxt = new JTextField(gradeName);
-//		JTextField categoryComTxt = new JTextField(comment);
 		categoryNameTxt.setText(gradeName);
 		categoryNameTxt.setBorder(javax.swing.BorderFactory.createEmptyBorder());
 		categoryNameTxt.setHorizontalAlignment(JTextField.CENTER);
@@ -122,7 +121,7 @@ public class CourseView {
 		gradeTxt.setHorizontalAlignment(JTextField.CENTER);
 		gradeTxt.setBackground(mainpanel.getBackground());
 		gradeTxt.addActionListener(textActionListener);
-		//why isnt this committ working
+		
 		//Text field for the earned points
 		JTextField earned = new JTextField();
 		//CHANGE VALUE BELOW(CONTROLLER)
@@ -148,7 +147,7 @@ public class CourseView {
 
 	
 
-		//adding text fields to the panel in order
+		//adding text fields to the panel in horizontally order
 		categoryInsidePanel.add(categoryNameTxt);
 		categoryInsidePanel.add(earned);
 		categoryInsidePanel.add(max);
