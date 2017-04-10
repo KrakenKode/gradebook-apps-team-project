@@ -92,7 +92,7 @@ public class CourseView {
 
 			ArrayList<Grade> gradedata = category.getGrades();
 			for(Grade grade : gradedata ){
-				this.addGradeView(grade.getName(), grade.gradeRun(), grade.getComment(), gradedata.indexOf(grade), grade.getPredicted());
+				this.addGradeView(grade.getName(), grade.gradeRun(), grade.getComment(), gradedata.indexOf(grade));
 				System.out.println(gradedata.indexOf(grade));
 			}
 		}
@@ -102,7 +102,7 @@ public class CourseView {
 		mainpanel.revalidate();	
 	}
 
-	public void addGradeView(String gradeName, Double grade, String comment, int num, double predicted) {
+	public void addGradeView(String gradeName, Double grade, String comment, int num) {
 		//TODO change JTextField to button to add comment button for popup
 
 		JTextField categoryNameTxt = new JTextField(gradeName);
@@ -132,7 +132,6 @@ public class CourseView {
 		categoryInsidePanel.add(gradeTxt);
 
 		categoryInsidePanel.add(categoryComBut);
-		categoryInsidePanel.add(new JLabel(Math.round(predicted*100.0)/100.0 + "%", JLabel.CENTER));
 
 		categoryPanel.add(categoryInsidePanel);
 		coursePanel.add(categoryPanel);
@@ -154,7 +153,6 @@ public class CourseView {
 		categoryInsidePanel.setBorder(BorderFactory.createLineBorder(Color.blue));
 		categoryInsidePanel.add(new JLabel("Grade", JLabel.CENTER));
 		categoryInsidePanel.add(new JLabel("Comment", JLabel.CENTER));
-		categoryInsidePanel.add(new JLabel("Predict", JLabel.CENTER));
 
 		categoryPanel.setName(category);
 		categoryPanel.add(categoryInsidePanel);
