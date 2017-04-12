@@ -111,10 +111,10 @@ public class CourseView {
 		categoryNameTxt.setHorizontalAlignment(JTextField.CENTER);
 		
 		//set the JTextField background to be same as mainpanel
-		categoryNameTxt.setBackground(mainpanel.getBackground());
+		categoryNameTxt.setBackground(Color.ORANGE);
 		categoryNameTxt.addActionListener(textActionListener);
 		
-		//Text field for the %grade
+		//JLabel for the %grade
 		JLabel gradeTxt = new JLabel();
 		gradeTxt.setText(Math.round(grade*100.0)/100.0 + "%");
 		gradeTxt.setBorder(javax.swing.BorderFactory.createEmptyBorder());
@@ -127,7 +127,7 @@ public class CourseView {
 		earned.setText("earned");
 		earned.setBorder(javax.swing.BorderFactory.createEmptyBorder());
 		earned.setHorizontalAlignment(JTextField.CENTER);
-		earned.setBackground(mainpanel.getBackground());
+		earned.setBackground(Color.ORANGE);
 		earned.addActionListener(textActionListener);
 		
 		//Text field for the max points
@@ -136,7 +136,7 @@ public class CourseView {
 		max.setText("max!");
 		max.setBorder(javax.swing.BorderFactory.createEmptyBorder());
 		max.setHorizontalAlignment(JTextField.CENTER);
-		max.setBackground(mainpanel.getBackground());
+		max.setBackground(Color.ORANGE);
 		max.addActionListener(textActionListener);
 		
 
