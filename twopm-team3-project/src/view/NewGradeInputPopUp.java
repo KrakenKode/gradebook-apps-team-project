@@ -45,14 +45,6 @@ public class NewGradeInputPopUp {
 		nameField.setPreferredSize(new Dimension(110, 20));
 		gradeField.setPreferredSize(new Dimension(50, 20));
 		maxField.setPreferredSize(new Dimension(50, 20));
-		//Make a new comment box for the users comment and edit size
-		JTextArea comField = new JTextArea("Add a comment", 5, 0);
-		comField.setBorder(BorderFactory.createLineBorder(Color.black));
-		comField.setPreferredSize(new Dimension(100, 100));
-		comField.setColumns(10);
-		comField.setEditable(true);
-		comField.setLineWrap(true);
-		comField.setWrapStyleWord(true);
 		//Make a DesiredBox for user to select category for new grade
 		DefaultComboBoxModel<Category> categoryModel = new DefaultComboBoxModel<Category>();
 		//Populate DesiredBox
@@ -88,12 +80,6 @@ public class NewGradeInputPopUp {
 		tFields.gridx = 1;
 		tFields.gridy = 3;
 		panel.add(maxField, tFields);
-		jLabels.gridx = 0;
-		jLabels.gridy = 4;
-		panel.add(new JLabel("Comment:"), jLabels);
-		aFields.gridx = 1;
-		aFields.gridy = 4;
-		panel.add(comField, aFields);
 
 		//Pop up the window for the user
 		int result = JOptionPane.showConfirmDialog(null, panel, 
@@ -105,13 +91,11 @@ public class NewGradeInputPopUp {
 			System.out.println("Grade name: " + nameField.getText());
 			System.out.println("Grade: " + gradeField.getText());
 			System.out.println("Max Grade: " + maxField.getText());
-			System.out.println("Comment: " + comField.getText());
 
 			Grade grade = new Grade(nameField.getText(), 
 					Integer.parseInt(gradeField.getText()), 
-					Integer.parseInt(maxField.getText()),
-					comField.getText());
-			
+					Integer.parseInt(maxField.getText()));
+					
 			Object obj = comboBox.getSelectedItem();
 			if (obj instanceof Category) {
 				((Category) obj).addGrade(grade);		// add the grade to category

@@ -92,8 +92,7 @@ public class CourseView {
 
 			ArrayList<Grade> gradedata = category.getGrades();
 			for(Grade grade : gradedata ){
-				this.addGradeView(grade.getName(), grade.gradeRun(), grade.getComment(), gradedata.indexOf(grade));
-				System.out.println(gradedata.indexOf(grade));
+				this.addGradeView(grade.getName(), grade.gradeRun(), gradedata.indexOf(grade));
 			}
 		}
 		
@@ -102,7 +101,7 @@ public class CourseView {
 		mainpanel.revalidate();	
 	}
 
-	public void addGradeView(String gradeName, Double grade, String comment, int num) {
+	public void addGradeView(String gradeName, Double grade, int num) {
 		//TODO change JTextField to button to add comment button for popup
 
 		JTextField categoryNameTxt = new JTextField(gradeName);

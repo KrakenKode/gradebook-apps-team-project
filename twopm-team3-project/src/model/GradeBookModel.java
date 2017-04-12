@@ -78,13 +78,13 @@ public class GradeBookModel {
 		newCourse = new Course("Systems Programming" , template);
 		
 		newCategory = new Category("Test");	
-		newCategory.addGrade(new Grade("Test 1", 235, 250, ""));
-		newCategory.addGrade(new Grade("Test 2", 260, 300, ""));
+		newCategory.addGrade(new Grade("Test 1", 235, 250));
+		newCategory.addGrade(new Grade("Test 2", 260, 300));
 		newCourse.addCategory(newCategory);
 					
 		newCategory = new Category("Homework");
-		newCategory.addGrade(new Grade("HW 1", 75, 100, ""));
-		newCategory.addGrade(new Grade("HW 2", 99, 100, ""));
+		newCategory.addGrade(new Grade("HW 1", 75, 100));
+		newCategory.addGrade(new Grade("HW 2", 99, 100));
 		newCourse.addCategory(newCategory);
 		
 		template.addCourse(newCourse);
@@ -92,13 +92,13 @@ public class GradeBookModel {
 		newCourse = new Course("Analysis of Algorithms", template);
 		
 		newCategory = new Category("Test");	
-		newCategory.addGrade(new Grade("Test 1", 235, 250, ""));
-		newCategory.addGrade(new Grade("Test 2", 260, 300, ""));
+		newCategory.addGrade(new Grade("Test 1", 235, 250));
+		newCategory.addGrade(new Grade("Test 2", 260, 300));
 		newCourse.addCategory(newCategory);
 			
 		newCategory = new Category("Homework");
-		newCategory.addGrade(new Grade("HW 1", 75, 100, ""));
-		newCategory.addGrade(new Grade("HW 2", 99, 100, ""));
+		newCategory.addGrade(new Grade("HW 1", 75, 100));
+		newCategory.addGrade(new Grade("HW 2", 99, 100));
 		newCourse.addCategory(newCategory);
 
 		template.addCourse(newCourse);	
@@ -110,13 +110,13 @@ public class GradeBookModel {
 		newCourse = new Course("Computer Organization", template);
 		
 		newCategory = new Category("Test");	
-		newCategory.addGrade(new Grade("Test 1", 235, 250, ""));
-		newCategory.addGrade(new Grade("Test 2", 260, 300, ""));
+		newCategory.addGrade(new Grade("Test 1", 235, 250));
+		newCategory.addGrade(new Grade("Test 2", 260, 300));
 		newCourse.addCategory(newCategory);
 					
 		newCategory = new Category("Homework");
-		newCategory.addGrade(new Grade("HW 1", 75, 100, ""));
-		newCategory.addGrade(new Grade("HW 2", 99, 100, ""));
+		newCategory.addGrade(new Grade("HW 1", 75, 100));
+		newCategory.addGrade(new Grade("HW 2", 99, 100));
 		newCourse.addCategory(newCategory);
 		
 		template.addCourse(newCourse);
@@ -124,13 +124,13 @@ public class GradeBookModel {
 		newCourse = new Course("Application Programming", template);
 		
 		newCategory = new Category("Test");	
-		newCategory.addGrade(new Grade("Test 1", 235, 250, ""));
-		newCategory.addGrade(new Grade("Test 2", 260, 300, ""));
+		newCategory.addGrade(new Grade("Test 1", 235, 250));
+		newCategory.addGrade(new Grade("Test 2", 260, 300));
 		newCourse.addCategory(newCategory);
 				
 		newCategory = new Category("Homework");
-		newCategory.addGrade(new Grade("HW 1", 75, 100, ""));
-		newCategory.addGrade(new Grade("HW 2", 99, 100, ""));
+		newCategory.addGrade(new Grade("HW 1", 75, 100));
+		newCategory.addGrade(new Grade("HW 2", 99, 100));
 		newCourse.addCategory(newCategory);
 		
 		template.addCourse(newCourse);

@@ -22,7 +22,6 @@ import model.Course;
 import model.Grade;
 import model.GradeBookModel;
 import model.Semester;
-import view.CommentPopUp;
 import view.CourseView;
 import view.DeleteCategoryPopUp;
 import view.DeleteGradePopUp;
@@ -197,12 +196,6 @@ class GBTreeListener implements TreeSelectionListener, MouseListener {
 					//Thus "94.0%" needs to be "94" then cast into int
 					gradeList.get(result).setPoints(Integer.parseInt((String) command.subSequence(0, 2)));
 				}
-			}
-			
-			//TODO add comment popup functionality
-			if (command.equals("Comment")) {
-				CommentPopUp comEdit = new CommentPopUp();
-				
 			}
 		}
 	}
