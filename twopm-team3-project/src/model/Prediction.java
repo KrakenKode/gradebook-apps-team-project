@@ -55,17 +55,17 @@ public class Prediction {
 		Course course = new Course("Programming", sem);
 
 		Category cat1 = new Category("Test");
-		Grade test1 = new Grade("Test1", 60, 100, "");
-		Grade test2 = new Grade("Test2", 50, 100, "");
+		Grade test1 = new Grade("Test1", 60, 100);
+		Grade test2 = new Grade("Test2", 50, 100);
 		cat1.addGrade(test1);
 		cat1.addGrade(test2);
 
 		Category cat2 = new Category("Homework");
-		Grade hw1 = new Grade("HW1", 0, 100,"");
+		Grade hw1 = new Grade("HW1", 0, 100);
 		cat2.addGrade(hw1);
 
 		Category cat3 = new Category("Final");
-		Grade exam = new Grade("Exam", 0, 100,"");
+		Grade exam = new Grade("Exam", 0, 100);
 		cat3.addGrade(exam);
 
 		course.addCategory(cat1);
