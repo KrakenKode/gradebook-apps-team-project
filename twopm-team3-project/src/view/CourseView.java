@@ -115,12 +115,11 @@ public class CourseView {
 		categoryNameTxt.addActionListener(textActionListener);
 		
 		//Text field for the %grade
-		JTextField gradeTxt = new JTextField();
+		JLabel gradeTxt = new JLabel();
 		gradeTxt.setText(Math.round(grade*100.0)/100.0 + "%");
 		gradeTxt.setBorder(javax.swing.BorderFactory.createEmptyBorder());
-		gradeTxt.setHorizontalAlignment(JTextField.CENTER);
+		gradeTxt.setHorizontalAlignment(JLabel.CENTER);
 		gradeTxt.setBackground(mainpanel.getBackground());
-		gradeTxt.addActionListener(textActionListener);
 		
 		//Text field for the earned points
 		JTextField earned = new JTextField();
