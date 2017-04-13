@@ -16,7 +16,7 @@ public class Grade implements Serializable {
 		this.points = points;	
 		this.maxPoints = maxPoints;
 
-		if(this.points == 0){
+		if(this.points == -1){
 			numOfGradeToPredict++;
 		}
 	}

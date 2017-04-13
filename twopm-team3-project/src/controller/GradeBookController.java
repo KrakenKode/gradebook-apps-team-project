@@ -6,11 +6,10 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.io.File;
 import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-import controller.GBTreeListener.JTextFieldListener;
+import controller.GBTreeListener;
 import model.*;
 import view.InputOptionView;
 import view.CourseView;
@@ -121,7 +120,7 @@ public class GradeBookController {
 						if(predict.initiatePrediction() == true){
 							System.out.println("Desired Grade Met."
 									+ "\nYour grade will be "+ course.getPredicted() + " with our predictions below:");
-							CourseView courseView = view.getCourseView();
+							CourseView courseView = view.getCourseView();	
 							//courseView.addTextActionListener(new JTextFieldListener());
 							try {
 								view.getCourseView().removeCourseView();
@@ -141,7 +140,7 @@ public class GradeBookController {
 					}else{						
 						showPopUp.showError("Insufficent grades to predict.");
 					}
-						
+					//needs to be removed before final submission 
 					predict.showPredictions();
 				}
 				else{

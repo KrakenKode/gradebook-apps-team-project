@@ -146,7 +146,13 @@ public class CourseView {
 		
 		//JLabel for the % total grade
 		JLabel totalGradeLbl = new JLabel();
-		totalGradeLbl.setText(Math.round(totalGrade*100.0)/100.0 + "%");
+		
+		if( totalGrade < 0){
+			totalGradeLbl.setText("P");
+		}else{
+			totalGradeLbl.setText(Math.round(totalGrade*100.0)/100.0 + "%");
+		}
+		
 		totalGradeLbl.setBorder(javax.swing.BorderFactory.createEmptyBorder());
 		totalGradeLbl.setHorizontalAlignment(JLabel.CENTER);
 		totalGradeLbl.setBackground(mainpanel.getBackground());
@@ -180,11 +186,6 @@ public class CourseView {
 		categoryInsidePanel.add(totalGradeLbl);
 		categoryInsidePanel.add(new JLabel(predictedPoints+"", JLabel.CENTER));
 		
-
-//This down here is giving me an error so i just commented it out for now
-	//	categoryInsidePanel.add(new JLabel(Math.round(predicted*100.0)/100.0 + "%", JLabel.CENTER));
-
-
 		categoryPanel.add(categoryInsidePanel);
 		coursePanel.add(categoryPanel);
 	}
@@ -196,6 +197,7 @@ public class CourseView {
 		JTextField categoryTxt = new JTextField(category);
 		categoryTxt.setBorder(javax.swing.BorderFactory.createEmptyBorder());
 		categoryTxt.setHorizontalAlignment(JTextField.CENTER);
+		categoryTxt.setBackground(Color.ORANGE);
 		categoryTxt.setBackground(mainpanel.getBackground());
 		categoryTxt.setFont(new Font(categoryTxt.getFont().getName(), Font.BOLD, 13));
 		categoryTxt.addActionListener(textActionListener);
