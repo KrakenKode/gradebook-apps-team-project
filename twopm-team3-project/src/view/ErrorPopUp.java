@@ -13,10 +13,10 @@ public class ErrorPopUp {
 	}
 	
 	public void showSuccess(String successMsg){
-		JOptionPane.showMessageDialog(mainview, successMsg, "Success", JOptionPane.INFORMATION_MESSAGE);
+		JOptionPane.showMessageDialog(mainview, successMsg, msg, JOptionPane.INFORMATION_MESSAGE);
 	}
 	
 	public void showError(String errMsg){
-		JOptionPane.showMessageDialog(mainview, errMsg, "Error", JOptionPane.ERROR);
+		JOptionPane.showMessageDialog(mainview, errMsg, msg, JOptionPane.WARNING_MESSAGE);
 	}
 }

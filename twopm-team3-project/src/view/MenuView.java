@@ -18,6 +18,8 @@ public class MenuView {
 	private JMenuItem addSemester;
 	private JMenuItem semesterReport;
 	private JMenuItem courseReport;
+	private JMenuItem helpMenu;
+	private JMenuItem aboutMenuItem;
 
 
 	public MenuView(JPanel mainpanel) {
@@ -63,6 +65,15 @@ public class MenuView {
 		reportMenu.add(semesterReport);
 		reportMenu.add(courseReport);
 
+		//Build the Help menu
+		JMenu aboutMenu = new JMenu("Help");
+		menuBar.add(aboutMenu);
+		helpMenu = new JMenuItem("Help");
+		aboutMenu.add(helpMenu);
+		aboutMenu.addSeparator();
+		aboutMenuItem = new JMenuItem("About Us");
+		aboutMenu.add(aboutMenuItem);
+		
 		mainpanel.add(menuBar, BorderLayout.NORTH);
 	}
 
@@ -74,5 +85,7 @@ public class MenuView {
 		addSemester.addActionListener(e);
 		semesterReport.addActionListener(e);
 		courseReport.addActionListener(e);
+		helpMenu.addActionListener(e);
+		aboutMenuItem.addActionListener(e);
 	}
 }

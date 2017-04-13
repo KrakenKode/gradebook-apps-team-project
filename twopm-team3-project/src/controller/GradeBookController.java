@@ -6,10 +6,12 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.io.File;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import model.*;
 import view.InputOptionView;
+import view.ErrorPopUp;
 import view.GradeBookView;
 import view.ReportPopUp;
 
@@ -81,7 +83,11 @@ public class GradeBookController {
 			} else if(command.equals("Course Report")) {
 				ReportPopUp report = new ReportPopUp(model);
 				report.CoursePopUp();
-			} else if( command.equals("Quit")) {
+			} else if(command.equals("Help")){
+				System.out.println("Help Menu is pressed");
+			}else if(command.equals("About Us")){
+				System.out.println("About Us is pressed.");
+			}else if( command.equals("Quit")) {
 				System.exit(0);
 			}
 		}
@@ -95,9 +101,44 @@ public class GradeBookController {
 			Course course = view.getCourseView().getCurrentSelectedCourse();
 			if (i.getStateChange() == i.SELECTED){
 				System.out.println(letterGrade);
-				int desiredGrade = course.getGradeRange(letterGrade);
-				Prediction predict = new Prediction(course, desiredGrade);
-				predict.initiatePrediction();
+				if(letterGrade.equals("Desired")){return;}
+				int idesiredGrade = course.getGradeRange(letterGrade);
+				course.updatePercentage();
+				double coursePercent = course.getPercentage();
+				
+				//check if user already have desiredGrade
+				if(coursePercent < idesiredGrade){
+					Prediction predict = new Prediction(course, idesiredGrade);
+					
+					//check if there are zero grades for predictions
+					if(predict.testPredictability() == true){
+						
+						//start predicting 
+						if(predict.initiatePrediction() == true){
+							System.out.println("Desired Grade Met."
+									+ "\nYour grade will be "+ course.getPredicted() + " with our predictions below:");
+							
+						}else{
+							course.updatePercentage();
+							System.out.println("Desired Grade Not Met.\n"
+									+ "Your grade will be  limited to "+ course.getPercentage());
+						}
+					}else{
+						System.out.println("Insufficent grades to predict.");
+					}
+						
+					predict.showPredictions();
+				}
+				else{
+					System.out.println("You already have a desired grade.");
+					ErrorPopUp showError = new ErrorPopUp(view, "Grade Prediction");
+					showError.showError("You already have a desired grade of "+ letterGrade +".");
+				}
+				
+				//just initiatePrediction, 
+				//call view.setCoursePredictionView (not defined yet) 
+				//to display it to the user. For now, as follows 
+				
 			}
 			
 		}

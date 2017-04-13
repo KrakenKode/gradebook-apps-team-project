@@ -13,7 +13,7 @@ public class Course implements Serializable {
 	private double percentage;
 	private Semester parentSem;
 	private String sdesiredGrade;
-	private double predicted;
+	private double predictedGrade;
 
 	public Course(String name, Semester parent) {
 		this.name = name;
@@ -68,11 +68,11 @@ public class Course implements Serializable {
 	/////////////Getters and Setters///////////////////
 	
 	public double getPredicted(){
-		return predicted;
+		return predictedGrade;
 	}
 	
-	public void setPredicted(int predicted){
-		this.predicted = predicted;
+	public void setPredicted(double predictedGrade){
+		this.predictedGrade = predictedGrade;
 	}
 	
 	public String getName() {

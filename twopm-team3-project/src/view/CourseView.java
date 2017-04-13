@@ -172,8 +172,6 @@ public class CourseView {
 
 		categoryNameTxt.setName("GradeName " + num);
 		gradeTxt.setName("Grade " + num);
-
-
 	
 
 		//adding text fields to the panel in horizontally order

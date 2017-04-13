@@ -16,7 +16,7 @@ public class GradeBookView extends JFrame{
 		super("GradeBook Management System");
 
 		//window opens in middle of screen
-		this.setSize(800, 600);
+		this.setSize(900, 600);
 		this.setLocationRelativeTo(null);	
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
