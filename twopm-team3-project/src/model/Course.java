@@ -121,7 +121,9 @@ public class Course implements Serializable {
 	}
 	
 	public String getLetterGrade(double value) {
-		if (value < gradeRange.get("D"))
+		if (value <= 0)
+			return "N/A";
+		else if (value < gradeRange.get("D"))
 			return "F";
 		else if (value < gradeRange.get("C"))
 			return "D";

@@ -9,8 +9,11 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
+
+import controller.GBTreeListener.JTextFieldListener;
 import model.*;
 import view.InputOptionView;
+import view.CourseView;
 import view.ErrorPopUp;
 import view.GradeBookView;
 import view.ReportPopUp;
@@ -106,6 +109,7 @@ public class GradeBookController {
 				course.updatePercentage();
 				double coursePercent = course.getPercentage();
 				
+				ErrorPopUp showPopUp = new ErrorPopUp(view, "Grade Prediction");
 				//check if user already have desiredGrade
 				if(coursePercent < idesiredGrade){
 					Prediction predict = new Prediction(course, idesiredGrade);
@@ -117,27 +121,32 @@ public class GradeBookController {
 						if(predict.initiatePrediction() == true){
 							System.out.println("Desired Grade Met."
 									+ "\nYour grade will be "+ course.getPredicted() + " with our predictions below:");
-							
+							CourseView courseView = view.getCourseView();
+							//courseView.addTextActionListener(new JTextFieldListener());
+							try {
+								view.getCourseView().removeCourseView();
+							} catch (Exception nPointer) {
+								System.err.println("CoursePanel does not exist.");
+							}
+							courseView.addCourseView(course);
+						
+							showPopUp.showSuccess("Desired Grade Met. Your prediction grades are now adjusted.");
 						}else{
 							course.updatePercentage();
 							System.out.println("Desired Grade Not Met.\n"
 									+ "Your grade will be  limited to "+ course.getPercentage());
+							
+							showPopUp.showError("Desired Grade Not Met. Try adjusting your desired grade.");
 						}
-					}else{
-						System.out.println("Insufficent grades to predict.");
+					}else{						
+						showPopUp.showError("Insufficent grades to predict.");
 					}
 						
 					predict.showPredictions();
 				}
 				else{
-					System.out.println("You already have a desired grade.");
-					ErrorPopUp showError = new ErrorPopUp(view, "Grade Prediction");
-					showError.showError("You already have a desired grade of "+ letterGrade +".");
+					showPopUp.showError("You already have a desired grade of "+ letterGrade +" or above.");
 				}
-				
-				//just initiatePrediction, 
-				//call view.setCoursePredictionView (not defined yet) 
-				//to display it to the user. For now, as follows 
 				
 			}
 			

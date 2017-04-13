@@ -84,9 +84,9 @@ public class CourseView {
 		predictedHeaderBox.add(Box.createHorizontalStrut(165));
 		
 		Box predictedUserGrades = Box.createHorizontalBox();
-		predictedUserGrades.add(new JLabel("90.0%"));
+		predictedUserGrades.add(new JLabel((new DecimalFormat("#.#").format(course.getPredicted()))+"%"));
 		predictedUserGrades.add(Box.createHorizontalStrut(155));
-		predictedUserGrades.add(new JLabel("A"));
+		predictedUserGrades.add(new JLabel(course.getLetterGrade(course.getPredicted())));
 		predictedUserGrades.add(Box.createHorizontalStrut(185));
 		
 		Box totalBox = Box.createVerticalBox();
@@ -123,7 +123,7 @@ public class CourseView {
 
 			ArrayList<Grade> gradedata = category.getGrades();
 			for(Grade grade : gradedata ){
-				this.addGradeView(grade.getName(), grade.getPoints(), grade.getMaxPoints() ,grade.gradeRun(), grade.getPredictedGrade());
+				this.addGradeView(grade.getName(), grade.getPoints(), grade.getMaxPoints() ,grade.gradeRun(), grade.getPredictedGrade(),gradedata.indexOf(grade));
 			}
 		}
 		
@@ -132,7 +132,7 @@ public class CourseView {
 		mainpanel.revalidate();	
 	}
 
-	public void addGradeView(String gradeName, int points, double maxPoints, double totalGrade, double predictedPoints) {
+	public void addGradeView(String gradeName, int points, double maxPoints, double totalGrade, double predictedPoints, int num) {
 		//TODO change JTextField to button to add comment button for popup
 
 		JTextField categoryNameTxt = new JTextField(gradeName);
@@ -163,15 +163,14 @@ public class CourseView {
 		//Text field for the max points
 		JTextField maxPointsTxt = new JTextField();
 		//CHANGE VALUE BELOW(CONTROLLER)
-		maxPointsTxt.setText("max!");
+		maxPointsTxt.setText(maxPoints+"");
 		maxPointsTxt.setBorder(javax.swing.BorderFactory.createEmptyBorder());
 		maxPointsTxt.setHorizontalAlignment(JTextField.CENTER);
 		maxPointsTxt.setBackground(Color.ORANGE);
 		maxPointsTxt.addActionListener(textActionListener);
 		
-
-		categoryNameTxt.setName("GradeName ");
-		totalGradeLbl.setName("Grade ");
+		categoryNameTxt.setName("GradeName " + num);
+		totalGradeLbl.setName("Grade " + num);
 	
 
 		//adding text fields to the panel in horizontally order
@@ -179,7 +178,7 @@ public class CourseView {
 		categoryInsidePanel.add(pointsEarnedTxt);
 		categoryInsidePanel.add(maxPointsTxt);
 		categoryInsidePanel.add(totalGradeLbl);
-		categoryInsidePanel.add(new JLabel("%", JLabel.CENTER));
+		categoryInsidePanel.add(new JLabel(predictedPoints+"", JLabel.CENTER));
 		
 
 //This down here is giving me an error so i just commented it out for now
@@ -206,8 +205,8 @@ public class CourseView {
 		categoryInsidePanel = new JPanel(new GridLayout(0,5,60,20));
 		categoryInsidePanel.add(categoryTxt);
 		categoryInsidePanel.setBorder(BorderFactory.createLineBorder(Color.blue));
-		categoryInsidePanel.add(new JLabel("Earned", JLabel.CENTER));
-		categoryInsidePanel.add(new JLabel("MaxPts",JLabel.CENTER));
+		categoryInsidePanel.add(new JLabel("Points", JLabel.CENTER));
+		categoryInsidePanel.add(new JLabel("Max Points",JLabel.CENTER));
 		categoryInsidePanel.add(new JLabel("Grade", JLabel.CENTER));
 		categoryInsidePanel.add(new JLabel("Predict", JLabel.CENTER));
 

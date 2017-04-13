@@ -40,7 +40,11 @@ public class Prediction {
 
 		if( coursePercent < idesiredGrade){
 			requiredGrade = idesiredGrade - coursePercent;
-			return setPredictionGrades(idesiredGrade);
+			//return setPredictionGrades(idesiredGrade);
+			
+			if(setPredictionGrades(idesiredGrade) == true){
+				return testPredictions();
+			}
 		}
 
 		return false;
