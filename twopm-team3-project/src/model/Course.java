@@ -3,6 +3,7 @@ package model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map.Entry;
 
 public class Course implements Serializable {
 
@@ -118,4 +119,17 @@ public class Course implements Serializable {
 	public void setDesiredGrade(String desiredGrade){
 		this.sdesiredGrade = desiredGrade;
 	}
+	
+	public String getLetterGrade(double value) {
+		if (value < gradeRange.get("D"))
+			return "F";
+		else if (value < gradeRange.get("C"))
+			return "D";
+		else if (value < gradeRange.get("B"))
+			return "C";
+		else if (value < gradeRange.get("A"))
+			return "B";
+		else
+			return "A";
+		}
 }

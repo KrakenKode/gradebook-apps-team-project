@@ -7,6 +7,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemListener;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -47,8 +48,10 @@ public class CourseView {
 	}
 
 	public void addCourseView(Course course) {
-		
+
 		setCurrentSelectedCourse(course);
+		course.updatePercentage();
+	    
 		
 		//title and grade summary 
 		JLabel courseLbl = new JLabel(course.getName());
@@ -62,18 +65,46 @@ public class CourseView {
 		JPanel totalPanel = new JPanel();
 		totalPanel.setBorder(tlb);
 		
-		Box totalBox = Box.createHorizontalBox();
-		totalBox.add(new JLabel("Total"));
-		totalBox.add(Box.createHorizontalStrut(100));
-		totalBox.add(new JLabel("Current Grade"));
-		totalBox.add(Box.createHorizontalStrut(100));
+		Box currentHeaderBox = Box.createHorizontalBox();
+		currentHeaderBox.add(new JLabel("Current Total"));
+		currentHeaderBox.add(Box.createHorizontalStrut(100));
+		currentHeaderBox.add(new JLabel("Current Grade"));
+		currentHeaderBox.add(Box.createHorizontalStrut(100));
+		
+		Box currentUserGrades = Box.createHorizontalBox();
+		currentUserGrades.add(new JLabel((new DecimalFormat("#.#").format(course.getPercentage()))+"%"));
+		currentUserGrades.add(Box.createHorizontalStrut(155));
+		currentUserGrades.add(new JLabel(course.getLetterGrade(course.getPercentage())));
+		currentUserGrades.add(Box.createHorizontalStrut(185));
+		
+		Box predictedHeaderBox = Box.createHorizontalBox();
+		predictedHeaderBox.add(new JLabel("Predicted Total"));
+		predictedHeaderBox.add(Box.createHorizontalStrut(90));
+		predictedHeaderBox.add(new JLabel("Predicted Grade"));
+		predictedHeaderBox.add(Box.createHorizontalStrut(165));
+		
+		Box predictedUserGrades = Box.createHorizontalBox();
+		predictedUserGrades.add(new JLabel("90.0%"));
+		predictedUserGrades.add(Box.createHorizontalStrut(155));
+		predictedUserGrades.add(new JLabel("A"));
+		predictedUserGrades.add(Box.createHorizontalStrut(185));
+		
+		Box totalBox = Box.createVerticalBox();
+		totalBox.add(currentHeaderBox);
+		totalBox.add(Box.createVerticalStrut(5));
+		totalBox.add(currentUserGrades);
+		totalBox.add(Box.createVerticalStrut(20));
+		totalBox.add(predictedHeaderBox);
+		totalBox.add(Box.createVerticalStrut(5));
+		totalBox.add(predictedUserGrades);
+		
 
 		String[] letterList = { "Desired","A", "B", "C", "D"};
 
 		gradeList = new JComboBox<String>(letterList);
 		gradeList.addItemListener(desiredBoxListener);
 		//gradeList.setSelectedItem(course.getDesiredGrade());;
-		totalBox.add(gradeList);
+	    currentHeaderBox.add(gradeList);
 
 		totalPanel.add(totalBox);
 
