@@ -123,7 +123,7 @@ public class CourseView {
 
 			ArrayList<Grade> gradedata = category.getGrades();
 			for(Grade grade : gradedata ){
-				this.addGradeView(grade.getName(), grade.gradeRun(), gradedata.indexOf(grade));
+				this.addGradeView(grade.getName(), grade.getPoints(), grade.getMaxPoints() ,grade.gradeRun(), grade.getPredictedGrade());
 			}
 		}
 		
@@ -132,7 +132,7 @@ public class CourseView {
 		mainpanel.revalidate();	
 	}
 
-	public void addGradeView(String gradeName, Double grade, int num) {
+	public void addGradeView(String gradeName, int points, double maxPoints, double totalGrade, double predictedPoints) {
 		//TODO change JTextField to button to add comment button for popup
 
 		JTextField categoryNameTxt = new JTextField(gradeName);
@@ -144,41 +144,41 @@ public class CourseView {
 		categoryNameTxt.setBackground(Color.ORANGE);
 		categoryNameTxt.addActionListener(textActionListener);
 		
-		//JLabel for the %grade
-		JLabel gradeTxt = new JLabel();
-		gradeTxt.setText(Math.round(grade*100.0)/100.0 + "%");
-		gradeTxt.setBorder(javax.swing.BorderFactory.createEmptyBorder());
-		gradeTxt.setHorizontalAlignment(JLabel.CENTER);
-		gradeTxt.setBackground(mainpanel.getBackground());
+		//JLabel for the % total grade
+		JLabel totalGradeLbl = new JLabel();
+		totalGradeLbl.setText(Math.round(totalGrade*100.0)/100.0 + "%");
+		totalGradeLbl.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+		totalGradeLbl.setHorizontalAlignment(JLabel.CENTER);
+		totalGradeLbl.setBackground(mainpanel.getBackground());
 		
 		//Text field for the earned points
-		JTextField earned = new JTextField();
+		JTextField pointsEarnedTxt = new JTextField();
 		//CHANGE VALUE BELOW(CONTROLLER)
-		earned.setText("earned");
-		earned.setBorder(javax.swing.BorderFactory.createEmptyBorder());
-		earned.setHorizontalAlignment(JTextField.CENTER);
-		earned.setBackground(Color.ORANGE);
-		earned.addActionListener(textActionListener);
+		pointsEarnedTxt.setText(points+"");
+		pointsEarnedTxt.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+		pointsEarnedTxt.setHorizontalAlignment(JTextField.CENTER);
+		pointsEarnedTxt.setBackground(Color.ORANGE);
+		pointsEarnedTxt.addActionListener(textActionListener);
 		
 		//Text field for the max points
-		JTextField max = new JTextField();
+		JTextField maxPointsTxt = new JTextField();
 		//CHANGE VALUE BELOW(CONTROLLER)
-		max.setText("max!");
-		max.setBorder(javax.swing.BorderFactory.createEmptyBorder());
-		max.setHorizontalAlignment(JTextField.CENTER);
-		max.setBackground(Color.ORANGE);
-		max.addActionListener(textActionListener);
+		maxPointsTxt.setText("max!");
+		maxPointsTxt.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+		maxPointsTxt.setHorizontalAlignment(JTextField.CENTER);
+		maxPointsTxt.setBackground(Color.ORANGE);
+		maxPointsTxt.addActionListener(textActionListener);
 		
 
-		categoryNameTxt.setName("GradeName " + num);
-		gradeTxt.setName("Grade " + num);
+		categoryNameTxt.setName("GradeName ");
+		totalGradeLbl.setName("Grade ");
 	
 
 		//adding text fields to the panel in horizontally order
 		categoryInsidePanel.add(categoryNameTxt);
-		categoryInsidePanel.add(earned);
-		categoryInsidePanel.add(max);
-		categoryInsidePanel.add(gradeTxt);
+		categoryInsidePanel.add(pointsEarnedTxt);
+		categoryInsidePanel.add(maxPointsTxt);
+		categoryInsidePanel.add(totalGradeLbl);
 		categoryInsidePanel.add(new JLabel("%", JLabel.CENTER));
 		
 
