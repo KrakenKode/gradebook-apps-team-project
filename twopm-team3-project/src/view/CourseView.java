@@ -3,6 +3,7 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
@@ -103,7 +104,6 @@ public class CourseView {
 
 		gradeList = new JComboBox<String>(letterList);
 		gradeList.addItemListener(desiredBoxListener);
-		//gradeList.setSelectedItem(course.getDesiredGrade());;
 	    currentHeaderBox.add(gradeList);
 
 		totalPanel.add(totalBox);
@@ -132,18 +132,19 @@ public class CourseView {
 		mainpanel.revalidate();	
 	}
 
-	public void addGradeView(String gradeName, int points, double maxPoints, double totalGrade, double predictedPoints, int num) {
-		//TODO change JTextField to button to add comment button for popup
-
+	public void addGradeView(String gradeName, int points, int maxPoints, double totalGrade, double predictedPoints, int num) {
+	
 		JTextField categoryNameTxt = new JTextField(gradeName);
 		categoryNameTxt.setText(gradeName);
 		categoryNameTxt.setBorder(javax.swing.BorderFactory.createEmptyBorder());
 		categoryNameTxt.setHorizontalAlignment(JTextField.CENTER);
-		
-		//set the JTextField background to be same as mainpanel
-		categoryNameTxt.setBackground(Color.ORANGE);
+		categoryNameTxt.setPreferredSize(new Dimension(50, 25));
+		categoryNameTxt.setMaximumSize(new Dimension(50, 25));
 		categoryNameTxt.addActionListener(textActionListener);
 		
+		Box categoryNameBox = Box.createHorizontalBox();
+		categoryNameBox.add(Box.createHorizontalStrut(60));
+		categoryNameBox.add(categoryNameTxt);
 		//JLabel for the % total grade
 		JLabel totalGradeLbl = new JLabel();
 		
@@ -163,7 +164,8 @@ public class CourseView {
 		pointsEarnedTxt.setText(points+"");
 		pointsEarnedTxt.setBorder(javax.swing.BorderFactory.createEmptyBorder());
 		pointsEarnedTxt.setHorizontalAlignment(JTextField.CENTER);
-		pointsEarnedTxt.setBackground(Color.ORANGE);
+		pointsEarnedTxt.setPreferredSize(new Dimension(50, 20));
+		pointsEarnedTxt.setMaximumSize(new Dimension(50, 20));
 		pointsEarnedTxt.addActionListener(textActionListener);
 		
 		//Text field for the max points
@@ -172,17 +174,24 @@ public class CourseView {
 		maxPointsTxt.setText(maxPoints+"");
 		maxPointsTxt.setBorder(javax.swing.BorderFactory.createEmptyBorder());
 		maxPointsTxt.setHorizontalAlignment(JTextField.CENTER);
-		maxPointsTxt.setBackground(Color.ORANGE);
+		maxPointsTxt.setPreferredSize(new Dimension(50, 20));
+		maxPointsTxt.setMaximumSize(new Dimension(50, 20));
 		maxPointsTxt.addActionListener(textActionListener);
 		
 		categoryNameTxt.setName("GradeName " + num);
 		totalGradeLbl.setName("Grade " + num);
 	
+		Box pointsBox = Box.createHorizontalBox();
+		pointsBox.add(Box.createHorizontalStrut(20));
+		pointsBox.add(pointsEarnedTxt);
+		JLabel dividerLbl = new JLabel("/");
+		dividerLbl.setFont(new Font("Courier New", Font.PLAIN, 18));
+		pointsBox.add(dividerLbl);
+		pointsBox.add(maxPointsTxt);
 
 		//adding text fields to the panel in horizontally order
-		categoryInsidePanel.add(categoryNameTxt);
-		categoryInsidePanel.add(pointsEarnedTxt);
-		categoryInsidePanel.add(maxPointsTxt);
+		categoryInsidePanel.add(categoryNameBox);
+		categoryInsidePanel.add(pointsBox);
 		categoryInsidePanel.add(totalGradeLbl);
 		categoryInsidePanel.add(new JLabel(predictedPoints+"", JLabel.CENTER));
 		
@@ -193,28 +202,30 @@ public class CourseView {
 	public void addCategoryView(String category) {
 
 		 
-		categoryPanel = new JPanel(new GridLayout(1,4,2,2));
+		categoryPanel = new JPanel(new GridLayout(1,4,5,5));
 		JTextField categoryTxt = new JTextField(category);
 		categoryTxt.setBorder(javax.swing.BorderFactory.createEmptyBorder());
 		categoryTxt.setHorizontalAlignment(JTextField.CENTER);
-		categoryTxt.setBackground(Color.ORANGE);
-		categoryTxt.setBackground(mainpanel.getBackground());
 		categoryTxt.setFont(new Font(categoryTxt.getFont().getName(), Font.BOLD, 13));
+		categoryTxt.setPreferredSize(new Dimension(90, 30));
+		categoryTxt.setMaximumSize(new Dimension(90, 30));
 		categoryTxt.addActionListener(textActionListener);
 		
+		Box catBox = Box.createHorizontalBox();
+		catBox.add(Box.createHorizontalStrut(40));
+		catBox.add(categoryTxt);
+		
 		//categoryBox holds - Homework, Grade - Horizontally
-		//changed the second parameter to 5 because of number of columns
-		categoryInsidePanel = new JPanel(new GridLayout(0,5,60,20));
-		categoryInsidePanel.add(categoryTxt);
+		//changed the second parameter to 4 because of number of columns
+		categoryInsidePanel = new JPanel(new GridLayout(0,4,20,20));
+		categoryInsidePanel.add(catBox);
 		categoryInsidePanel.setBorder(BorderFactory.createLineBorder(Color.blue));
-		categoryInsidePanel.add(new JLabel("Points", JLabel.CENTER));
-		categoryInsidePanel.add(new JLabel("Max Points",JLabel.CENTER));
+		categoryInsidePanel.add(new JLabel("Points / Max Points", JLabel.CENTER));
 		categoryInsidePanel.add(new JLabel("Grade", JLabel.CENTER));
 		categoryInsidePanel.add(new JLabel("Predict", JLabel.CENTER));
 
 		categoryPanel.setName(category);
 		categoryPanel.add(categoryInsidePanel);
-		categoryPanel.setBorder(BorderFactory.createLineBorder(Color.ORANGE));
 		coursePanel.add(categoryPanel);
 	}
  
