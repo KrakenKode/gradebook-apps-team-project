@@ -40,7 +40,8 @@ public class CourseView {
 	
 	//added to repaint panel
 	public void refresh() {
-		mainpanel.repaint();
+		mainpanel.remove(courseScroll);
+		addCourseView(course);
 	}
 	
 	//added to remove previous text boxes
@@ -140,6 +141,7 @@ public class CourseView {
 		categoryNameTxt.setHorizontalAlignment(JTextField.CENTER);
 		categoryNameTxt.setPreferredSize(new Dimension(50, 25));
 		categoryNameTxt.setMaximumSize(new Dimension(50, 25));
+		categoryNameTxt.setName("catName");
 		categoryNameTxt.addActionListener(textActionListener);
 		
 		Box categoryNameBox = Box.createHorizontalBox();
@@ -166,6 +168,7 @@ public class CourseView {
 		pointsEarnedTxt.setHorizontalAlignment(JTextField.CENTER);
 		pointsEarnedTxt.setPreferredSize(new Dimension(50, 20));
 		pointsEarnedTxt.setMaximumSize(new Dimension(50, 20));
+		pointsEarnedTxt.setName("earnedP " + num);
 		pointsEarnedTxt.addActionListener(textActionListener);
 		
 		//Text field for the max points
@@ -176,6 +179,7 @@ public class CourseView {
 		maxPointsTxt.setHorizontalAlignment(JTextField.CENTER);
 		maxPointsTxt.setPreferredSize(new Dimension(50, 20));
 		maxPointsTxt.setMaximumSize(new Dimension(50, 20));
+		maxPointsTxt.setName("maxP " + num);
 		maxPointsTxt.addActionListener(textActionListener);
 		
 		categoryNameTxt.setName("GradeName " + num);
@@ -209,11 +213,14 @@ public class CourseView {
 		categoryTxt.setFont(new Font(categoryTxt.getFont().getName(), Font.BOLD, 13));
 		categoryTxt.setPreferredSize(new Dimension(90, 30));
 		categoryTxt.setMaximumSize(new Dimension(90, 30));
+		categoryTxt.setName("category");
 		categoryTxt.addActionListener(textActionListener);
+
 		
 		Box catBox = Box.createHorizontalBox();
 		catBox.add(Box.createHorizontalStrut(40));
 		catBox.add(categoryTxt);
+		catBox.setName("category");
 		
 		//categoryBox holds - Homework, Grade - Horizontally
 		//changed the second parameter to 4 because of number of columns

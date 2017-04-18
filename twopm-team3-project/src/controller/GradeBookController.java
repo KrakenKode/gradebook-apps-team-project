@@ -5,7 +5,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.io.File;
+import java.util.ArrayList;
+
 import javax.swing.JFileChooser;
+import javax.swing.JTextField;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -31,6 +34,9 @@ public class GradeBookController {
 		
 		//set up desired box listener
 		view.getCourseView().addDesiredBoxListener(new DesiredBoxListener());
+		
+		//set up the text box listener
+		view.getCourseView().addTextActionListener(new JTextFieldListener());
 		
 		//set up the treeView
 		view.getTreeView().initializeTreeData(model.getSemesters());
@@ -91,6 +97,50 @@ public class GradeBookController {
 				System.out.println("About Us is pressed.");
 			}else if( command.equals("Quit")) {
 				System.exit(0);
+			}
+		}
+	}
+	
+	//View to Model saving functionality
+	class JTextFieldListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			String command = e.getActionCommand();
+			Object selField = e.getSource();
+			if (selField instanceof JTextField) {
+				int result;
+				JTextField textBox = (JTextField) selField;
+				String boxName = textBox.getName();
+				String[] splitName = boxName.split(" ");
+				if (splitName[0] != "category") {
+					result = Integer.parseInt(splitName[1]);
+				} else {
+					result = 0;
+				}
+				//Get the category from the name of the JPanel categoryPanel
+				String selCat = textBox.getParent().getParent().getParent().getName();
+				ArrayList<Grade> gradeList = new ArrayList<Grade>();
+				Category currSelCat = null;
+				//Find category that matches currently selected one
+				for (Category cat: view.getCourseView().getCurrentSelectedCourse().getCategories()) {
+					if (cat.getName() == selCat) {
+						gradeList = cat.getGrades();
+						currSelCat = cat;
+						break;
+					}
+				}
+				if(boxName.contains("GradeName")) {
+					//Set the name of the grade
+					gradeList.get(result).setName(command);
+				} else if (boxName.contains("maxP")) {
+					gradeList.get(result).setMaxPoints(Integer.parseInt(command));
+				} else if (boxName.contains("earnedP")) {
+					gradeList.get(result).setPoints(Integer.parseInt(command));
+				} else if (boxName.contains("category")) {
+					currSelCat.setName(command);
+				}
+				view.getCourseView().refresh();
 			}
 		}
 	}

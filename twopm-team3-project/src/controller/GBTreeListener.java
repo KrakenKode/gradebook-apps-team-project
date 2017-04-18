@@ -71,7 +71,6 @@ class GBTreeListener implements TreeSelectionListener, MouseListener {
 				//setting up courseView
 
 				CourseView courseView = view.getCourseView();
-				courseView.addTextActionListener(new JTextFieldListener());
 				try {
 					view.getCourseView().removeCourseView();
 				} catch (Exception nPointer) {
@@ -159,47 +158,6 @@ class GBTreeListener implements TreeSelectionListener, MouseListener {
 			}
 		}
 	}
-
-	//View to Model saving functionality
-	class JTextFieldListener implements ActionListener{
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			//Get current string in textfield
-			String command = e.getActionCommand();
-			
-			//get the object selected
-			Object obj = e.getSource();
-			if (obj instanceof JTextField) {
-				JTextField curSelField = (JTextField) obj;
-				//Get the name for the selected JTextField to change name or points
-				String selName = curSelField.getName();
-				String split[] = selName.split(" ");
-				String num = split[1];
-				int result = Integer.parseInt(num);
-				//Get the category from the name of the JPanel categoryPanel
-				String selCat = curSelField.getParent().getParent().getName();
-				ArrayList<Grade> gradeList = new ArrayList<Grade>();
-				//Find category that matches currently selected one
-				for (Category cat: lastSelCourse.getCategories()) {
-					if (cat.getName() == selCat) {
-						gradeList = cat.getGrades();
-						break;
-					}
-				}
-				if(selName.contains("GradeName")) {
-					//Set the name of the grade
-					gradeList.get(result).setName(command);
-				} else if (selName.contains("Grade")) {
-					//TODO fix input for grade points
-					//Points is type int and Command is String
-					//Thus "94.0%" needs to be "94" then cast into int
-					gradeList.get(result).setPoints(Integer.parseInt((String) command.subSequence(0, 2)));
-				}
-			}
-		}
-	}
-
 
 	class JPopupMenuListener implements ActionListener {
 
@@ -318,4 +276,9 @@ class GBTreeListener implements TreeSelectionListener, MouseListener {
 		// TODO Auto-generated method stub
 
 	}		
+	
+	public Course getLastSelCourse() {
+		return lastSelCourse;
+		
+	}
 }
