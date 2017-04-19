@@ -191,7 +191,7 @@ public class GradeBookController {
 						showPopUp.showError("Insufficent grades to predict.");
 					}
 					//needs to be removed before final submission 
-					predict.showPredictions();
+					//predict.showPredictions(); 
 				}
 				else{
 					showPopUp.showError("You already have a desired grade of "+ letterGrade +" or above.");

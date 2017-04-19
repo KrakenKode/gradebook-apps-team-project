@@ -117,42 +117,4 @@ public class Prediction {
 		}
 	}
 
-
-
-	public static void main(String[] args){
-		Semester sem = new Semester("Spring 2017");
-		Course course = new Course("Programming", sem);
-
-		Category cat1 = new Category("Test");
-		Grade test1 = new Grade("Test1", 60, 100);
-		Grade test2 = new Grade("Test2", 50, 100);
-		Grade test3 = new Grade("Test3", -1, 100);
-		cat1.addGrade(test1);
-		cat1.addGrade(test2);
-		cat1.addGrade(test3);
-
-		Category cat2 = new Category("Homework");
-		Grade hw1 = new Grade("HW1", -1, 100);
-		cat2.addGrade(hw1);
-
-		Category cat3 = new Category("Final");
-		Grade exam = new Grade("Exam", -1, 100);
-		cat3.addGrade(exam);
-
-		course.addCategory(cat1);
-		course.addCategory(cat2);
-		course.addCategory(cat3);
-
-		int desiredGrade = course.getGradeRange("B");
-
-		Prediction predict = new Prediction(course, desiredGrade);
-		if( predict.initiatePrediction() == true){
-			System.out.println("Prediction Success");
-			predict.showPredictions();
-			System.out.println("Course Prediction grade " + course.getPredicted());
-		}else{
-			System.out.println("No Prediction available to meet your desired grade");
-		}
-
-	}
 }
