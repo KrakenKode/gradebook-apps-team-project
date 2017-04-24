@@ -201,7 +201,7 @@ public class CourseView {
 		categoryInsidePanel.add(categoryNameBox);
 		categoryInsidePanel.add(pointsBox);
 		categoryInsidePanel.add(totalGradeLbl);
-		categoryInsidePanel.add(new JLabel(predictedPoints+"", JLabel.CENTER));
+		categoryInsidePanel.add(new JLabel(Math.round(predictedPoints)+"", JLabel.CENTER));
 		
 		categoryPanel.add(categoryInsidePanel);
 		coursePanel.add(categoryPanel);

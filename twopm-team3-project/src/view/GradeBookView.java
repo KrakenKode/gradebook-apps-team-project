@@ -38,7 +38,6 @@ public class GradeBookView extends JFrame{
 
 	}
 
-
 	public TreeView getTreeView() {
 		return treeView;
 	}

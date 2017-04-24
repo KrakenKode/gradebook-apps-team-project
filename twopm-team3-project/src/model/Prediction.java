@@ -47,7 +47,7 @@ public class Prediction {
 			requiredGrade = idesiredGrade - coursePercent;
 			//return setPredictionGrades(idesiredGrade);
 			
-			if(setPredictionGrades(idesiredGrade) == true){
+			if(setPredictionGrades(requiredGrade) == true){
 				return testPredictions();
 			}
 		}
@@ -72,7 +72,9 @@ public class Prediction {
 		boolean predictState = testPredictions();
 
 		if( predictState == false && requiredPrecent < 100){
-			setPredictionGrades(requiredPrecent+5);
+			setPredictionGrades(requiredPrecent+1); 
+			// if the desired grade is still not met, it would increase
+			//the requiredPercent 
 		}
 		else if(predictState == false && requiredPrecent >= 100){
 			return false;

@@ -47,7 +47,9 @@ public class Course implements Serializable {
 		
 		for(Category cat : categories) {
 			for(Grade grade : cat.getGrades()) {
-				total += grade.getPoints();
+				if(grade.getPoints() > 0){
+					total += grade.getPoints();
+				}
 				max += grade.getMaxPoints();
 			}
 		}
