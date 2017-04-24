@@ -38,7 +38,7 @@ public class Category implements Serializable {
 		for(Grade grade: getGrades()){
 			total +=  grade.gradeRun();
 			i = i + 100;
-		}
+		} 
 		total = total/i;
 		total = total * 100;
 		return total;
@@ -62,5 +62,14 @@ public class Category implements Serializable {
 		this.grades = grades;
 	}
 	
+	public int getNumOfGradeToPredict(){
+		int numOfGradeToPredict = 0;
+		for(Grade grade: getGrades()){
+			if(grade.getPoints()<0){
+				numOfGradeToPredict++;
+			}
+		}
+		return numOfGradeToPredict;
+	}
 	
 }

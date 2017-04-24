@@ -45,6 +45,7 @@ public class CourseView {
 	//added to repaint panel
 	public void refresh() {
 		mainpanel.remove(courseScroll);
+		course.updatePredicted();
 		addCourseView(course);
 	}
 	
@@ -54,10 +55,10 @@ public class CourseView {
 	}
 
 	public void addCourseView(Course course) {
-
+		
 		setCurrentSelectedCourse(course);
 		course.updatePercentage();
-	    
+	   
 		
 		//title and grade summary 
 		JLabel courseLbl = new JLabel(course.getName());

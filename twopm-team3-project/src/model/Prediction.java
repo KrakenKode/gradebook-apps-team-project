@@ -24,11 +24,10 @@ public class Prediction {
 	 */
 	public boolean testPredictability(){
 		//if there are any zero value grades 
+		//int NumOfGradeToPredict = 0;
 		for(Category category : course.getCategories()){
-			for(Grade grade : category.getGrades()){
-				if(grade.getNumOfGradeToPredict() > 0){
-					return true;
-				}
+			if(category.getNumOfGradeToPredict() > 0){
+				return true;
 			}
 		}
 		return false;

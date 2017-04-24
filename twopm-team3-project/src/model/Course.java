@@ -83,7 +83,18 @@ public class Course implements Serializable {
 	public void setPredicted(double predictedGrade){
 		this.predictedGrade = predictedGrade;
 	}
-	
+	public void updatePredicted(){
+		for(Category category: getCategories()){
+			if(category.getNumOfGradeToPredict() <= 0){
+				this.setPredicted(0);
+			}
+				for(Grade grade : category.getGrades()){
+					if(grade.getPoints() >= 0){
+						grade.setPredictedGrade(0);
+					}
+				}
+		}
+	}
 	public String getName() {
 		return name;
 	}
