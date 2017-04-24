@@ -20,6 +20,12 @@ import view.ErrorPopUp;
 import view.GradeBookView;
 import view.ReportPopUp;
 
+/**
+ * GradeBookController links the treeView with the GBTreeListener,
+ * adds listeners for the jMenu(top menu bar),
+ * and adds listeners for the text fields so the user can
+ * edit their information.
+ */
 public class GradeBookController {
 
 	private GradeBookView view;

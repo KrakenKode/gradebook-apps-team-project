@@ -5,6 +5,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
+/**
+ * Course class is the container for
+ * all the user's grades in that particular
+ * course. It stores things such as their
+ * current grade percentage and their desired
+ * grade. 
+ */
 public class Course implements Serializable {
 
 	private String name;

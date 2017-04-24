@@ -11,6 +11,9 @@ import javax.swing.JTextField;
 
 import model.Course;
 
+/**
+ * Pop up used to edit the user's grade ranges
+ */
 public class EditGradeRangePopUp {
 	
 	private Course course;

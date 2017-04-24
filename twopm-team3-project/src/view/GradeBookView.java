@@ -4,7 +4,12 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
-
+/**
+ * GradeBookview is the head of the view portion.
+ * It creates a jFrame and main panel then passes
+ * the main panel to other classes so they can add themselves
+ * to it.
+ */
 public class GradeBookView extends JFrame{
 
 	private JPanel mainpanel;

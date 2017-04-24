@@ -10,7 +10,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import org.jfree.ui.RefineryUtilities;
 
-
+/**
+ * ReportPopUp gives the user the option to select
+ * the appropriate semester or course they wish
+ * to see a graph for.
+ */
 public class ReportPopUp {
 	private GradeBookModel model;
 

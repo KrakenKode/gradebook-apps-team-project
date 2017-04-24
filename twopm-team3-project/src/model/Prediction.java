@@ -2,6 +2,11 @@ package model;
 
 import java.util.ArrayList;
 
+/**
+ * Prediction class is used to perform the
+ * minimum score calculations for the user's
+ * target grade.
+ */
 public class Prediction {
 	private Course course;
 	private int idesiredGrade;

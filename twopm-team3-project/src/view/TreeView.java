@@ -15,6 +15,13 @@ import javax.swing.tree.TreeSelectionModel;
 import model.Course;
 import model.Semester;
 
+/**
+ * TreeView class is used to build the jTree based
+ * off what data is in the model. Gives functionality
+ * to add and remove nodes from the tree. TreeView 
+ * receives the mainpanel from the GradeBookView class
+ * and adds its treeview to the mainpanel.
+ */
 public class TreeView {
 
 	private JPanel mainpanel;

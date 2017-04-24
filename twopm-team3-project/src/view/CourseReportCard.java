@@ -12,7 +12,10 @@ import org.jfree.util.Rotation;
 
 import model.*;
 
-
+/**
+ * CourseReportCard displays the pie chart for
+ * the selected course.
+ */
 public class CourseReportCard extends JFrame {
 	
 	private Course course;

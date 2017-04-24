@@ -8,6 +8,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+/**
+ * Static class that reads and writes serialized semester 
+ * objects in the file provided.
+ */
 public final class SaveOpenDriver {
 
 	private SaveOpenDriver() {}

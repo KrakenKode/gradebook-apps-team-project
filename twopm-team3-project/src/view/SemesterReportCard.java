@@ -1,13 +1,10 @@
 package view;
 
 import model.*;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.math.BigDecimal;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel; 
@@ -19,6 +16,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+/**
+ * SemesterReportCard displays a bar chart for the
+ * selected semester.
+ */
 public class SemesterReportCard extends JFrame
 {
    public SemesterReportCard(Semester sem)

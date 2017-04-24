@@ -10,7 +10,11 @@ import model.Category;
 import model.Course;
 import model.Grade;
 
-
+/**
+ * Pop up used give the user options on which
+ * grade they wish to delete.
+ *
+ */
 public class DeleteGradePopUp {
 
 	private Course course;

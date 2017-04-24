@@ -21,7 +21,11 @@ import javax.swing.border.TitledBorder;
 import javax.swing.*;
 import model.*;
 
-
+/**
+ * Builds the main course view panel from the
+ * information in the selected course then
+ * add it to the main panel to be displayed.
+ */
 public class CourseView {
 	private JPanel mainpanel;
 	private ActionListener textActionListener;

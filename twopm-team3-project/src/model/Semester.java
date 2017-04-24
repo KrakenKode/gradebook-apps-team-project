@@ -3,6 +3,11 @@ package model;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * Semester class is the container for
+ * all the user's courses. Semester is the main
+ * object that gets written and read from save files.
+ */
 public class Semester implements Serializable {
 	
 	private String name;

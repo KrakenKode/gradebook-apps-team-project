@@ -30,7 +30,12 @@ import view.GradeBookView;
 import view.InputOptionView;
 import view.NewGradeInputPopUp;
 
-
+/**
+ * GBTreeListener contains all the controller
+ * functionality pertaining to the jTree. It allows the
+ * tree to add and delete nodes, as well as a right click
+ * pop up menu to perform actions.
+ */
 class GBTreeListener implements TreeSelectionListener, MouseListener {
 
 	private GradeBookView view;

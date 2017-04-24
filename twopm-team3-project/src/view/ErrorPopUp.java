@@ -3,6 +3,10 @@ package view;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+/**
+ * Pop up that notifies the user that
+ * an error has occurred.
+ */
 public class ErrorPopUp {
 	private JFrame mainview;
 	private String msg;

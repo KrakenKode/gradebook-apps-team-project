@@ -2,6 +2,12 @@ package model;
 
 import java.util.ArrayList;
 
+/**
+ * GradeBookModel is the head of the model portion.
+ * It contains all the semesters and methods to
+ * save and open files containing serialized
+ * semester objects.
+ */
 public class GradeBookModel {
 	
 	private ArrayList<Semester> semesters;

@@ -11,6 +11,10 @@ import javax.swing.JTextField;
 
 import model.Category;
 
+/**
+ * Pop up to add a category to a course.
+ *
+ */
 public class InputOptionView{
 	
 	private JFrame mainview;

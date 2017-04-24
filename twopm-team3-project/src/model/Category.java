@@ -3,6 +3,11 @@ package model;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * Category class is the container for
+ * all the grades that pertain to its 
+ * particular section.
+ */
 public class Category implements Serializable {	
 
 	private String name;

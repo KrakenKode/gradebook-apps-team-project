@@ -1,27 +1,27 @@
 package view;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-
-import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
-
 import model.Category;
 import model.Course;
 import model.Grade;
 
-public class NewGradeInputPopUp {
 
+/**
+ * Pop up that has fields to enter grade information.
+ * -1 in the points earned section will set the grade
+ * up for prediction.
+ */
+public class NewGradeInputPopUp {
 
 	private Course course;
 

@@ -10,6 +10,10 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
+/**
+ * MenuView class builds the top menu bar
+ * and then adds it to the main panel.
+ */
 public class MenuView {
 
 	private JMenuItem saveMenu;

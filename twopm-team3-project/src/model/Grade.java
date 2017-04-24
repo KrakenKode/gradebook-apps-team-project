@@ -2,6 +2,10 @@ package model;
 
 import java.io.Serializable;
 
+/**
+ * Grade object contains the name and
+ * point information of a particular grade.
+ */
 public class Grade implements Serializable {
 
 	private String name;

@@ -9,6 +9,11 @@ import javax.swing.JPanel;
 import model.Category;
 import model.Course;
 
+/**
+ * Pop up used give the user options on which
+ * category they wish to delete.
+ *
+ */
 public class DeleteCategoryPopUp {
 	private Course course;
 	
