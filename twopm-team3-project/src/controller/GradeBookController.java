@@ -191,6 +191,7 @@ public class GradeBookController {
 	 */
 	class DesiredBoxListener implements ItemListener {
 		
+		@SuppressWarnings("static-access")
 		@Override
 		public void itemStateChanged(ItemEvent i) {
 			String letterGrade = (String) i.getItem();
