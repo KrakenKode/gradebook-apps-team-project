@@ -4,13 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.ArrayList;
-import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
-import javax.swing.JTextField;
 import javax.swing.JTree;
 import javax.swing.SwingUtilities;
 import javax.swing.event.TreeSelectionEvent;
@@ -19,7 +15,6 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
 import model.Category;
 import model.Course;
-import model.Grade;
 import model.GradeBookModel;
 import model.Semester;
 import view.CourseView;
@@ -45,22 +40,23 @@ class GBTreeListener implements TreeSelectionListener, MouseListener {
 	private Course lastSelCourse;
 	private Semester currSelSem;
 
+	/**
+	 * This constructor method adds all the listener subclasses to the view
+	 * for the tree swing component.
+	 * @param model
+	 * @param view
+	 */
 	public GBTreeListener(GradeBookModel model, GradeBookView view) {
 		this.model = model;
 		this.view = view;
 		tree = view.getTreeView().getTree();
 	}
 
+	
 	@Override
 	public void valueChanged(TreeSelectionEvent e) {
 
 		Object treeObject = tree.getLastSelectedPathComponent();
-
-		if (treeObject == null) {
-			JPanel welcomeView = new JPanel();
-			JLabel welcome = new JLabel();
-			return;
-		}
 
 		// Cast the Object into a DefaultMutableTreeNode		
 		DefaultMutableTreeNode node = (DefaultMutableTreeNode) treeObject;
@@ -79,7 +75,7 @@ class GBTreeListener implements TreeSelectionListener, MouseListener {
 				try {
 					view.getCourseView().removeCourseView();
 				} catch (Exception nPointer) {
-					System.err.println("CoursePanel does not exist.");
+					System.err.println("CoursePanel not found.");
 				}
 				courseView.addCourseView(course);			
 			}
@@ -164,6 +160,12 @@ class GBTreeListener implements TreeSelectionListener, MouseListener {
 		}
 	}
 
+	/**
+	 *	JPopupMenuListener is a subclass is a part of the GBTreeListener
+	 *  and uses ActionEvent objects getActionCommand to interpret
+	 *  which RightClick option the user has selected. It populates
+	 *  said option Menu to the user as well.
+	 */
 	class JPopupMenuListener implements ActionListener {
 
 		@Override

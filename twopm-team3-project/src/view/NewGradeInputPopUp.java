@@ -35,7 +35,6 @@ public class NewGradeInputPopUp {
 		JPanel panel = new JPanel(new GridBagLayout());
 		GridBagConstraints jLabels = new GridBagConstraints();
 		GridBagConstraints tFields = new GridBagConstraints();
-		GridBagConstraints aFields = new GridBagConstraints();
 		
 		//Create text fields for user to enter their new grade data
 		JTextField nameField = new JTextField(5);

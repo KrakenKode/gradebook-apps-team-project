@@ -8,6 +8,9 @@ import java.io.File;
 import java.util.ArrayList;
 
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -31,6 +34,15 @@ public class GradeBookController {
 	private GradeBookView view;
 	private GradeBookModel model;
 
+	/**
+	 * This constructor method adds all the listener subclasses to the view
+	 * for all interaction enabled swing components except for the tree component.
+	 * 
+	 * @param model
+	 * Global model object from the main method.
+	 * @param view
+	 * Global view object from the main method.
+	 */
 	public GradeBookController(GradeBookModel model, GradeBookView view) {
 		this.model = model;
 		this.view = view;
@@ -46,11 +58,26 @@ public class GradeBookController {
 		
 		//set up the treeView
 		view.getTreeView().initializeTreeData(model.getSemesters());
-		view.getTreeView().addTreeListener(new GBTreeListener(model, view), new GBTreeListener(model, view));		
-
+		view.getTreeView().addTreeListener(new GBTreeListener(model, view), new GBTreeListener(model, view));	
+		
+		//set up the welcome menu
+		JLabel welcome = new JLabel();
+		welcome.setText("Welcome to the GradeBook Management System");
+		JPanel welcomeView = new JPanel();
+		welcomeView.add(welcome);
+		JScrollPane courseScroll = new JScrollPane(welcomeView);
+		view.getCourseView().setCourseScroll(courseScroll);
+		view.getCourseView().getMainPanel().add(courseScroll);
+		view.getCourseView().getMainPanel().revalidate();
 	}
 
 
+	/**
+	 * The MenuListener subclass is a part of the GradeBookController
+	 * and uses ActionEvent objects getActionCommand to interpret
+	 * which JMenu option the user has selected. It populates
+	 * said option Menu to the user as well.
+	 */
 	class MenuListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -108,6 +135,13 @@ public class GradeBookController {
 	}
 	
 	//View to Model saving functionality
+	/**
+	 * The JTextFieldListener subclass is a part of the GradeBookController
+	 * and uses ActionEvent objects getActionCommand to interpret
+	 * which JTextField (Max Points, Points, GradeName, Category Name) the user
+	 * has edited upon the enter button being pressed. It then updates said field
+	 * to the correct Grade ArrayList.
+	 */
 	class JTextFieldListener implements ActionListener{
 
 		@Override
@@ -150,9 +184,14 @@ public class GradeBookController {
 			}
 		}
 	}
-	
+	/**
+	 * The DesiredBoxListener subclass is a part of the GradeBookController
+	 * and uses ItemEvent objects to determine which grade the user desires 
+	 * and predict the desired grade if possible.
+	 */
 	class DesiredBoxListener implements ItemListener {
 		
+		@SuppressWarnings("static-access")
 		@Override
 		public void itemStateChanged(ItemEvent i) {
 			String letterGrade = (String) i.getItem();

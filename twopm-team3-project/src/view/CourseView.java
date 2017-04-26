@@ -18,7 +18,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
-import javax.swing.*;
 import model.*;
 
 /**
@@ -255,5 +254,13 @@ public class CourseView {
 	
 	public Course getCurrentSelectedCourse(){
 		return this.course;
+	}
+	
+	public JPanel getMainPanel(){
+		return mainpanel;	
+	}
+	
+	public void setCourseScroll(JScrollPane scroll){
+		courseScroll = scroll;
 	}
 }
