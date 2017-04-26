@@ -63,15 +63,6 @@ class GBTreeListener implements TreeSelectionListener, MouseListener {
 
 		Object treeObject = tree.getLastSelectedPathComponent();
 
-		if (treeObject == null) {
-			JLabel welcome = new JLabel();
-			JPanel welcomeView = new JPanel();
-			welcomeView.add(welcome);
-			view.getCourseView().getMainPanel().add(welcomeView);
-			view.getCourseView().getMainPanel().revalidate();
-			return;
-		}
-
 		// Cast the Object into a DefaultMutableTreeNode		
 		DefaultMutableTreeNode node = (DefaultMutableTreeNode) treeObject;
 
@@ -89,7 +80,7 @@ class GBTreeListener implements TreeSelectionListener, MouseListener {
 				try {
 					view.getCourseView().removeCourseView();
 				} catch (Exception nPointer) {
-					System.err.println("CoursePanel does not exist.");
+					System.err.println("CoursePanel not found.");
 				}
 				courseView.addCourseView(course);			
 			}

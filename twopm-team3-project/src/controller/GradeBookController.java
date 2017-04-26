@@ -8,6 +8,9 @@ import java.io.File;
 import java.util.ArrayList;
 
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -55,8 +58,17 @@ public class GradeBookController {
 		
 		//set up the treeView
 		view.getTreeView().initializeTreeData(model.getSemesters());
-		view.getTreeView().addTreeListener(new GBTreeListener(model, view), new GBTreeListener(model, view));		
-
+		view.getTreeView().addTreeListener(new GBTreeListener(model, view), new GBTreeListener(model, view));	
+		
+		//set up the welcome menu
+		JLabel welcome = new JLabel();
+		welcome.setText("Welcome to the GradeBook Management System");
+		JPanel welcomeView = new JPanel();
+		welcomeView.add(welcome);
+		JScrollPane courseScroll = new JScrollPane(welcomeView);
+		view.getCourseView().setCourseScroll(courseScroll);
+		view.getCourseView().getMainPanel().add(courseScroll);
+		view.getCourseView().getMainPanel().revalidate();
 	}
 
 

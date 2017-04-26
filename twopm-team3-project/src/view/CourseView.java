@@ -259,4 +259,8 @@ public class CourseView {
 	public JPanel getMainPanel(){
 		return mainpanel;	
 	}
+	
+	public void setCourseScroll(JScrollPane scroll){
+		courseScroll = scroll;
+	}
 }
