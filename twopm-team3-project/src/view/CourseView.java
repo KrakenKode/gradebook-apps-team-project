@@ -255,4 +255,8 @@ public class CourseView {
 	public Course getCurrentSelectedCourse(){
 		return this.course;
 	}
+	
+	public JPanel getMainPanel(){
+		return mainpanel;	
+	}
 }

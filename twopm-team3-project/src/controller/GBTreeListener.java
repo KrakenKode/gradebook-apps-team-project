@@ -45,20 +45,30 @@ class GBTreeListener implements TreeSelectionListener, MouseListener {
 	private Course lastSelCourse;
 	private Semester currSelSem;
 
+	/**
+	 * This constructor method adds all the listener subclasses to the view
+	 * for the tree swing component.
+	 * @param model
+	 * @param view
+	 */
 	public GBTreeListener(GradeBookModel model, GradeBookView view) {
 		this.model = model;
 		this.view = view;
 		tree = view.getTreeView().getTree();
 	}
 
+	
 	@Override
 	public void valueChanged(TreeSelectionEvent e) {
 
 		Object treeObject = tree.getLastSelectedPathComponent();
 
 		if (treeObject == null) {
-			JPanel welcomeView = new JPanel();
 			JLabel welcome = new JLabel();
+			JPanel welcomeView = new JPanel();
+			welcomeView.add(welcome);
+			view.getCourseView().getMainPanel().add(welcomeView);
+			view.getCourseView().getMainPanel().revalidate();
 			return;
 		}
 
@@ -164,6 +174,12 @@ class GBTreeListener implements TreeSelectionListener, MouseListener {
 		}
 	}
 
+	/**
+	 *	JPopupMenuListener is a subclass is a part of the GBTreeListener
+	 *  and uses ActionEvent objects getActionCommand to interpret
+	 *  which RightClick option the user has selected. It populates
+	 *  said option Menu to the user as well.
+	 */
 	class JPopupMenuListener implements ActionListener {
 
 		@Override
