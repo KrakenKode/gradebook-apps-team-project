@@ -55,13 +55,24 @@ class GBTreeListener implements TreeSelectionListener, MouseListener {
 	
 	@Override
 	public void valueChanged(TreeSelectionEvent e) {
+		DefaultMutableTreeNode node = null;
+		Object treeObject;
 
-		Object treeObject = tree.getLastSelectedPathComponent();
-
-		// Cast the Object into a DefaultMutableTreeNode		
-		DefaultMutableTreeNode node = (DefaultMutableTreeNode) treeObject;
-
-		// Returns the object stored in this node and casts it to a string			
+		// make sure something in the tree is actually selected
+		if((treeObject = tree.getLastSelectedPathComponent()) == null) {
+			return;
+		}
+		
+		// make sure treeObject is instanceof DefaultMutableTreeNode
+		if(!(treeObject instanceof DefaultMutableTreeNode)) {
+			System.out.println("treeObject in GBTreeListener isn't a DefaultMutableTreeNode");
+			return;		
+		}
+		
+		// Cast the Object into a DefaultMutableTreeNode
+		node = (DefaultMutableTreeNode) treeObject;
+			
+		// Returns the object stored in this node and casts it to a string	
 		String treeNode = (String) node.getUserObject();
 		if (treeNode == null) {return;}
 		if (node.isLeaf()) {
