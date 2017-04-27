@@ -44,8 +44,10 @@ public class CourseView {
 	//added to repaint panel
 	public void refresh() {
 		mainpanel.remove(courseScroll);
-		course.updatePredicted();
-		addCourseView(course);
+		if (course != null) {
+			course.updatePredicted();
+			addCourseView(course);
+		}
 	}
 	
 	//added to remove previous text boxes
