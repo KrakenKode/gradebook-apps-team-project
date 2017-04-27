@@ -27,7 +27,7 @@ public final class SaveOpenDriver {
 			}						
 		} catch(Exception e) {
 			e.printStackTrace();		
-			System.out.println("in saveSemesters");
+			return;
 		}
 		
 		// close the file
@@ -35,7 +35,7 @@ public final class SaveOpenDriver {
 			out.close();
 		} catch (IOException e) {
 			e.printStackTrace();
-			System.out.println("in saveSemesters");
+			return;
 		}
 
 	}
@@ -46,22 +46,17 @@ public final class SaveOpenDriver {
 		ObjectInputStream in = null;
 		
 		try {
-			in = new ObjectInputStream(new FileInputStream(file));
-			
-			while((curr = in.readObject()) != null) {
-				
+			in = new ObjectInputStream(new FileInputStream(file));		
+			while((curr = in.readObject()) != null) {			
 				if(curr instanceof Semester){
 					semesters.add((Semester) curr);
-				}
-							
-			}
-						
+				}				
+			}					
 		} catch(EOFException e) {
 			return;
 		} catch(Exception e) {
-			System.out.println("in readSemesters");
-
 			e.printStackTrace();
+			return;
 		}
 		
 		// close the file
@@ -69,8 +64,7 @@ public final class SaveOpenDriver {
 			in.close();
 		} catch (IOException e) {
 			e.printStackTrace();
-			System.out.println("in readSemesters");
-
+			return;
 		}
 				
 	}
